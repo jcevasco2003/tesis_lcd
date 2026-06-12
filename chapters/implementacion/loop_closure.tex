@@ -1,0 +1,26 @@
+\section{Detección y cierre de ciclos}
+
+\subsection{Submapas}
+
+Implementamos el sistema de submapas propuesto en LoopSplat, realizando todas las operaciones que antes eran globales, como la optimización de las gaussianas en la imagen, en un marco local de cada submapa. De esta forma, cada submapa se construye a partir de un conjunto de fotogramas consecutivos, obteniendo así regiones reducidas. Si bien esto beneficia la eficiencia de las operaciones, reduce la ventaja del muestreo global de keyframes, ya que dos keyframes de submapas distintos no pueden ser comparados directamente. Esto quiere decir que la optimización pierde el mantenimiento global por sí sola. Sin embargo, en este marco el objetivo es el mantenimiento global a partir de los ciclos, enriqueciendo no solo la calidad de la representación, sino también la estimación de la pose.
+
+\subsection{Descriptor}
+
+Para la extracción del descriptor NetVLAD utilizamos la implementación en Python de HLoc \cite{sarlin2019coarse}, disponible en \url{https://github.com/cvg/Hierarchical-Localization} y la red preentrenada en el conjunto de datos Pitts30k, de forma análoga a LoopSplat. Esta versión de la red da lugar a descriptores de tamaño $4096$. Como nuestra implementación está escrita en C++, la integración con HLoc se realiza montando un servidor que contiene el código de extracción en Python. El cliente, es decir nuestro nodo, se comunica con el servidor entregándole la imagen a procesar y recibiendo el descriptor.
+
+Esta implementación añade tiempos de latencia adicionales debido a los tiempos de comunicación, sin embargo, la arquitectura desacoplada de los hilos de detección de ciclos y el modelo de procesamiento por submapas permiten que esta latencia no afecte negativamente el rendimiento general del sistema. Además, facilita el acceso a posibles mejoras futuras en la red NetVLAD sin necesidad de reimplementaciones.
+
+Es posible implementar este factor en un nodo separado de ROS2, realizando la comunicación a través de mensajes. Sin embargo, esto mantiene la latencia de comunicación, y abre la posibilidad de incompatibilidades entre las versiones de Python y dependencias entre ROS2 y HLoc. Por ello, se optó por una comunicación directa que, a su vez, permite optimizaciones en GPU.
+
+\subsection{Heurísticas la detección de ciclos}
+
+Para reducir el número de falsos positivos en la detección de ciclos, se implementan dos heurísticas principales. La primera es un filtro basado en la coherencia entre los centros de los submapas candidatos: si la distancia euclidiana entre los centros de las nubes de puntos de los submapas es mayor que un umbral predefinido, se descarta la correspondencia. Análogamente, si la orientación entre dos submapas no es coherente, también se descarta. La segunda heurística es el filtro por similaridad definido en el trabajo original.
+
+
+\subsection{Registro de gaussianas}
+
+En lugar de utilizar un método basado en los jacobianos de la renderización, optamos por un enfoque más clásico en SLAM basado en el registro de nubes de puntos. Para ello, reinterpretamos los centros de las gaussianas como puntos en el espacio 3D, y sus covarianzas como incertidumbres asociadas a cada punto. De esta forma, el problema de registro se convierte en un problema de alineación de nubes de puntos. Para resolverlo, empleamos una variante de ICP (\textit{Iterative Closest Point}) que tiene en cuenta las covarianzas, implementada en Open3D \cite{zhou2018open3dmodernlibrary3d}. Esta librería requiere una estimación inicial de la transformación, la cual obtenemos a partir de la pose estimada por la IMU.
+
+\subsection{Optimización del grafo de poses}
+
+Una vez obtenidas las correspondencias entre los submapas que cierran un ciclo, se construye un grafo de poses donde cada nodo representa la pose de un submapa y cada arista representa una restricción de transformación. Para optimizar este grafo, se utiliza la biblioteca Ceres Solver \cite{Agarwal_Ceres_Solver_2022}, que permite resolver problemas de optimización no lineal en CPU. Debido a la reducción del número de nodos como submapas, la optimización no se ve afectada significativamente por el rendimiento de la CPU.

@@ -1,0 +1,103 @@
+\documentclass[11pt,a4paper,twoside]{tesis}
+% SI NO PENSAS IMPRIMIRLO EN FORMATO LIBRO PODES USAR
+%\documentclass[11pt,a4paper]{tesis}
+
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[left=3cm,right=3cm,bottom=3.5cm,top=3.5cm]{geometry}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{booktabs}
+\usepackage{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{url}
+\usepackage{tcolorbox}
+\usepackage{subcaption}
+
+\newtcolorbox{wipbox}{
+    colback=yellow!10,
+    colframe=red!60!black,
+    title=WIP,
+    fonttitle=\bfseries
+}
+
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mb}[1]{\mathbf{#1}}
+\newcommand{\Exp}{\text{Exp}}
+\newcommand{\Log}{\text{Log}}
+\newcommand{\wip}[1]
+    {
+    \begin{wipbox}
+        #1
+    \end{wipbox}
+    }
+
+\makeatletter
+\def\BState{\State\hskip-\ALG@thistlm}
+\makeatother
+
+\begin{document}
+
+%%%% CARATULA
+
+\def\autor{Jorge Augusto Cevasco Rieck}
+\def\tituloTesis{VIGS-Fusion-LC: \vspace{.2cm} \\ Sistema de SLAM visual-inercial basado en Gaussian Splatting con Loop Closure}
+%\def\runtitulo{La Guerra de las Galaxias: Rebelión e Imperio}
+%\def\runtitle{Star Wars: Rebellion and Empire}
+\def\director{Pablo De Cristóforis}
+%\def\codirector{Master Yoda}
+\def\lugar{Buenos Aires, 2026}
+
+\def\runtitulo{VIGS-Fusion-LC: Sistema de SLAM visual-inercial basado en Gaussian Splatting con Loop Closure}
+
+\input{caratula}
+
+\cleardoublepage
+\input{abs_esp.tex}
+
+\cleardoublepage
+\input{agradecimientos.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% INTRODUCCION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{../chapters/introduccion/main.tex}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% MARCO TEORICO
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{../chapters/marco_teorico/main.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% ESTADO DEL ARTE
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{../chapters/estado_del_arte/main.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% IMPLEMENTACION
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{../chapters/implementacion/main.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% RESULTADOS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{../chapters/resultados/main.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CONCLUSIONES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{../chapters/conclusiones/main.tex}
+
+
+\newpage
+
+\backmatter
+\bibliographystyle{unsrt}
+\bibliography{tesis}
+
+\end{document}

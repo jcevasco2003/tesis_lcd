@@ -1,0 +1,38 @@
+%=========================================================
+% CAPÍTULO: Detalles de la implementación
+%=========================================================
+
+\chapter{Sistema}
+\label{metodo}
+
+En este capítulo se describen las decisiones de diseño y arquitectura del programa y los algoritmos desarrollados en este trabajo. Además se presentan de forma minimal los conceptos básicos necesarios para comprender la implementación.
+
+El código completo se encuentra disponible en \url{https://github.com/jcevasco2003/vigs_fusion_lc}
+
+En la Figura \ref{fig:diagrama} se muestra un diagrama que resume el proceso del sistema.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{../imagenes_implementacion/vigs.drawio.png}
+    \caption{Los colores azul, rosa y verde representan los hilos de CPU involucrados una vez recibida la entrada de datos al sistema, enmarcada en naranja.}
+    \label{fig:diagrama}
+\end{figure}
+
+%---------------------------------------------------------
+% SECCIONES
+%---------------------------------------------------------
+
+\input{../chapters/implementacion/gestion_de_mapa}
+
+\input{../chapters/implementacion/seleccion_de_keyframes}
+
+\input{../chapters/implementacion/loop_closure}
+
+\input{../chapters/implementacion/ros2}
+
+\input{../chapters/implementacion/programacion_en_gpu}
+
+\input{../chapters/implementacion/hilos_en_cpu}
+
+
+%=========================================================

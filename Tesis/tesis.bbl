@@ -1,0 +1,218 @@
+\begin{thebibliography}{10}
+
+\bibitem{ndoye2025vigs}
+Abdoullah Ndoye, Amaury N{\`e}gre, Nicolas Marchand, and Franck Ruffier.
+\newblock Vigs-fusion: Fast gaussian splatting slam processed onboard a small quadrirotor.
+\newblock In {\em International Conference on Advanced Robotics (ICAR)}, 2025.
+
+\bibitem{xu2025fgsslamfourierbasedgaussiansplatting}
+Yansong Xu, Junlin Li, Wei Zhang, Siyu Chen, Shengyong Zhang, Yuquan Leng, and Weijia Zhou.
+\newblock Fgs-slam: Fourier-based gaussian splatting for real-time slam with sparse and dense map fusion, 2025.
+
+\bibitem{arandjelović2016netvladcnnarchitectureweakly}
+Relja Arandjelović, Petr Gronat, Akihiko Torii, Tomas Pajdla, and Josef Sivic.
+\newblock Netvlad: Cnn architecture for weakly supervised place recognition, 2016.
+
+\bibitem{zhu2025_loopsplat}
+Liyuan Zhu, Yue Li, Erik Sandström, Shengyu Huang, Konrad Schindler, and Iro Armeni.
+\newblock Loopsplat: Loop closure by registering 3d gaussian splats.
+\newblock In {\em International Conference on 3D Vision (3DV)}, 2025.
+
+\bibitem{kerbl2023gaussian}
+Bernhard Kerbl, Georgios Kopanas, Thomas Leimk{\"u}hler, and George Drettakis.
+\newblock 3d gaussian splatting for real-time radiance field rendering.
+\newblock {\em ACM Transactions on Graphics}, 42(4), 2023.
+
+\bibitem{SmithPixel}
+Alvy~Ray Smith.
+\newblock A pixel is not a little square, a pixel is not a little square, a pixel is not a little square!
+\newblock Technical Memo~6, Microsoft, 1995.
+
+\bibitem{howcameraworks}
+David Carey~Jr.
+\newblock {\em The Camera}.
+\newblock Ladybird How It Works. Ladybird Books, 1972.
+
+\bibitem{bokebinario}
+{Boke Binario}.
+\newblock La lente fotográfica.
+\newblock \url{https://bokebinario.wordpress.com/2010/06/19/la-lente-fotografica/}, 2010.
+\newblock Accedido: 2026-05-24.
+
+\bibitem{calibracion_camara}
+Zhengyou Zhang.
+\newblock A flexible new technique for camera calibration.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence}, 2000.
+
+\bibitem{ImageReconstruction}
+Gabor~T. Herman and Ron Davidi.
+\newblock On image reconstruction from a small number of projections.
+\newblock {\em Inverse Problems}, 24(4):045011, 2008.
+
+\bibitem{reconstruccion3DConUnaFoto}
+Maximilian Denninger and Rudolph Triebel.
+\newblock 3d scene reconstruction from a single viewport.
+\newblock In {\em Proceedings of the European Conference on Computer Vision (ECCV)}, 2020.
+
+\bibitem{imagen_de_profundidad}
+Dorsaf Sebai.
+\newblock Depth in focus: D component of rgb-d images and videos, Oct 2023.
+\newblock News and Opinion, Electrical \& Electronic Engineering, Springer Nature Communities.
+
+\bibitem{multiview_reconstruction_blog}
+Sumit Singh.
+\newblock Multi-view 3d reconstruction in autonomous vehicles: How it works?
+\newblock \url{https://www.labellerr.com/blog/multi-view-3d-reconstruction-in-autonomous-vehicles-how-it-works/}, November 2022.
+\newblock Blog post, Labellerr.
+
+\bibitem{building_rome_agarwal}
+Sameer Agarwal, Noah Snavely, Ian Simon, Steven~M. Seitz, and Richard Szeliski.
+\newblock Building rome in a day.
+\newblock In {\em Proceedings of the IEEE International Conference on Computer Vision (ICCV)}. IEEE, 2009.
+
+\bibitem{sfm_scale_ambiguity}
+Richard Szeliski and Sing~Bing Kang.
+\newblock Shape ambiguities in structure from motion.
+\newblock {\em Pattern Analysis and Machine Intelligence, IEEE Transactions on}, 19:506 -- 512, 06 1997.
+
+\bibitem{rgbd_registration}
+Rene Lacher, Francisco Vasconcelos, Norman Williams, Gerrit Rindermann, John Hipwell, David Hawkes, and Danail Stoyanov.
+\newblock Nonrigid reconstruction of 3d breast surfaces with a low-cost rgbd camera for surgical planning and aesthetic evaluation.
+\newblock {\em Medical Image Analysis}, 53, 01 2019.
+
+\bibitem{Sandström2023ICCV}
+Erik Sandström, Yue Li, Luc Van~Gool, and Martin R.~Oswald.
+\newblock Point-slam: Dense neural point cloud-based slam.
+\newblock In {\em Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)}, 2023.
+
+\bibitem{liu2024voxelslamcompleteaccurateversatile}
+Zheng Liu, Haotian Li, Chongjian Yuan, Xiyuan Liu, Jiarong Lin, Rundong Li, Chunran Zheng, Bingyang Zhou, Wenyi Liu, and Fu~Zhang.
+\newblock Voxel-slam: A complete, accurate, and versatile lidar-inertial slam system, 2024.
+
+\bibitem{10161425}
+Jianyuan Ruan, Bo~Li, Yibo Wang, and Yuxiang Sun.
+\newblock Slamesh: Real-time lidar simultaneous localization and meshing.
+\newblock In {\em 2023 IEEE International Conference on Robotics and Automation (ICRA)}, pages 3546--3552, 2023.
+
+\bibitem{stillwell2008naive}
+John Stillwell.
+\newblock {\em Naive Lie Theory}.
+\newblock Springer-Verlag, New York, 2008.
+
+\bibitem{sola2021microlietheorystate}
+Joan Solà, Jeremie Deray, and Dinesh Atchuthan.
+\newblock A micro lie theory for state estimation in robotics, 2021.
+
+\bibitem{simeoni2013statistics}
+Matthieu Simeoni.
+\newblock Statistics on manifolds applied to shape theory, 2013.
+\newblock PhD thesis.
+
+\bibitem{papalia2023score}
+Alan Papalia, Joseph Morales, Kevin~J. Doherty, David~M. Rosen, and John~J. Leonard.
+\newblock Score: A second-order conic initialization for range-aided slam.
+\newblock {\em IEEE Robotics and Automation Letters}, 8(5):2800--2807, 2023.
+
+\bibitem{liu2012convex}
+Minjie Liu, Shoudong Huang, Gamini Dissanayake, and Heng Wang.
+\newblock A convex optimization based approach for pose slam problems.
+\newblock In {\em 2012 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)}, pages 1898--1903, 2012.
+
+\bibitem{GarciaVentura2023}
+José García~Ventura.
+\newblock Aplicaciones de los métodos de optimización cuasi-newton en aprendizaje profundo.
+\newblock Tesis de maestría, Instituto Tecnológico de Santo Domingo, Santo Domingo, República Dominicana, March 2023.
+\newblock Maestría en Matemática Aplicada (MMA). Director: Dr. Javier García Maimó.
+
+\bibitem{Joyce2014Multivariate}
+David Joyce.
+\newblock Math 131: Multivariate calculus, 2014.
+\newblock Course notes, Spring 2014.
+
+\bibitem{zwicker2002ewa}
+Matthias Zwicker, Hanspeter Pfister, Jeroen van Baar, and Markus Gross.
+\newblock Ewa splatting.
+\newblock {\em IEEE Transactions on Visualization and Computer Graphics}, 8(3):223--238, 2002.
+
+\bibitem{zhang2024radegs}
+B.~Zhang, C.~Fang, R.~Shrestha, Y.~Liang, X.~Long, and P.~Tan.
+\newblock Rade-gs: Rasterizing depth in gaussian splatting.
+\newblock {\em arXiv preprint arXiv:2406.01467}, 2024.
+
+\bibitem{advancednavigation_imu_intro}
+{Advanced Navigation}.
+\newblock Inertial measurement unit (imu) -- an introduction, February 2023.
+\newblock Publicado el 13 de febrero de 2023. Accedido: 2026-01-xx.
+
+\bibitem{10814674}
+Pau Vial, Joan Solà, Narcís Palomeras, and Marc Carreras.
+\newblock On lie group imu and linear velocity preintegration for autonomous navigation considering the earth rotation compensation.
+\newblock {\em IEEE Transactions on Robotics}, 41:1346--1364, 2025.
+
+\bibitem{toniK_accelerometer_basics}
+Toni\_K.
+\newblock Accelerometer basics.
+\newblock \url{https://learn.sparkfun.com/tutorials/accelerometer-basics/all}, 2013.
+\newblock SparkFun Learn Tutorial. Accessed: 2026-03-12.
+
+\bibitem{ericco2019memsgyro}
+{ERICCO International}.
+\newblock How does a mems gyroscope work?, November 2019.
+\newblock Accessed: 2026-03-12.
+
+\bibitem{canalgeomatics_fiberopticgyros}
+{Canal Geomatics}.
+\newblock How do fiber optic gyros work?, 2025.
+\newblock Accedido: 2026-01-xx.
+
+\bibitem{LeuteneggerLynenBosseSiegwartFurgale2015}
+Stefan Leutenegger, Simon Lynen, Michael Bosse, Roland Siegwart, and Paul Furgale.
+\newblock Keyframe-based visual-inertial odometry using nonlinear optimization.
+\newblock {\em The International Journal of Robotics Research}, 34(3):314--334, 2015.
+
+\bibitem{MasnadiShirazi2019KalmanTutorial}
+Hamed Masnadi-Shirazi, Alireza Masnadi-Shirazi, and Mohammad-Amir Dastgheib.
+\newblock A step by step mathematical derivation and tutorial on kalman filters.
+\newblock {\em arXiv preprint arXiv:1910.03558}, October 2019.
+\newblock Version 1.
+
+\bibitem{Matsuki2024GaussianSplattingSLAM}
+Hajime Matsuki, Ryo Murai, Paul~H. Kelly, and Andrew~J. Davison.
+\newblock Gaussian splatting slam.
+\newblock In {\em Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}, pages 18039--18048, June 2024.
+
+\bibitem{radgs}
+Renxiang Xiao, Wei Liu, Yuanfan Zhang, Yushuai Chen, Jinming Chen, Zilu Wang, and Liang Hu.
+\newblock Rad-gs: Radar-vision integration for 3d gaussian splatting slam in outdoor environments.
+\newblock {\em IEEE Robotics and Automation Letters}, 10(12):13359–13366, December 2025.
+
+\bibitem{robotics12030088}
+Nigel Joseph~Bandeira Dias, Gustavo~Teodoro Laureano, and Ronaldo~Martins Da~Costa.
+\newblock Keyframe selection for visual localization and mapping tasks: A systematic literature review.
+\newblock {\em Robotics}, 12(3), 2023.
+
+\bibitem{sarlin2019coarse}
+Paul-Edouard Sarlin, Cesar Cadena, Roland Siegwart, and Marcin Dymczyk.
+\newblock From coarse to fine: Robust hierarchical localization at large scale.
+\newblock In {\em CVPR}, 2019.
+
+\bibitem{zhou2018open3dmodernlibrary3d}
+Qian-Yi Zhou, Jaesik Park, and Vladlen Koltun.
+\newblock Open3d: A modern library for 3d data processing, 2018.
+
+\bibitem{Agarwal_Ceres_Solver_2022}
+Sameer Agarwal, Keir Mierle, and The Ceres~Solver Team.
+\newblock {Ceres Solver}, 10 2023.
+
+\bibitem{mathworks_ros2_topics}
+{MathWorks}.
+\newblock Ros 2 topics.
+\newblock \url{https://ww2.mathworks.cn/help/ros/gs/ros2-topics.html}, 2026.
+\newblock Accessed: 2026-05-15.
+
+\bibitem{eurocmav}
+Michael Burri, Janosch Nikolic, Pascal Gohl, Thomas Schneider, Joern Rehder, Sammy Omari, Markus Achtelik, and Roland Siegwart.
+\newblock The euroc micro aerial vehicle datasets.
+\newblock {\em The International Journal of Robotics Research}, 35, 01 2016.
+
+\end{thebibliography}

@@ -1,0 +1,14 @@
+%\begin{center}
+%\large \bf \runtitulo
+%\end{center}
+%\vspace{1cm}
+\chapter*{\runtitulo}
+
+\noindent 
+En este trabajo se aborda el problema de Localización y Mapeo Simultáneos (SLAM). El objetivo principal fue replicar el trabajo de VIGS-Fusion \cite{ndoye2025vigs}, un sistema de SLAM visual-inercial basado en Gaussian Splatting, y extenderlo incorporando mejoras en la gestión del mapa y añadiendo un hilo dedicado a la detección y cierre de ciclos. 
+
+Para ello, se incorporaron las ideas de FGS-SLAM \cite{xu2025fgsslamfourierbasedgaussiansplatting} en la gestión del mapa, se desarrolló un proceso de detección de ciclos basado en descriptores NetVLAD \cite{arandjelović2016netvladcnnarchitectureweakly} y una optimización global para el cierre de ciclos adaptando el procedimiento propuesto por LoopSplat \cite{zhu2025_loopsplat}.
+
+\bigskip
+
+\noindent\textbf{Palabras claves:} SLAM, Gaussian Splatting, Loop Closure, Procesamiento de Imágenes, Optimización del Grafo de Poses, NetVLAD.

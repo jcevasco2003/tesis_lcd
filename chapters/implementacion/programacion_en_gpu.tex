@@ -1,0 +1,27 @@
+\section{Programación en GPU}
+
+Como se ha mencionado en la sección \ref{gaussian_splatting}, el método de Gaussian Splatting requiere muchos recursos computacionales, pero la naturaleza paralela de las primitivas permite distribuir el trabajo en una GPU.
+
+Una GPU (Unidad de Procesamiento de Gráficos) es un procesador especializado diseñado para manejar tareas de procesamiento gráfico y computación paralela. Originalmente, las GPU se desarrollaron para acelerar el renderizado de gráficos en videojuegos y aplicaciones visuales. Sin embargo, su arquitectura altamente paralela las ha convertido en herramientas poderosas para una amplia gama de aplicaciones más allá de los gráficos, incluyendo la inteligencia artificial, la simulación científica y el procesamiento de datos.
+
+Funcionalmente, una GPU consta de miles de núcleos de procesamiento que pueden ejecutar tareas simultáneamente bajo el modelo SIMD (Una instrucción, múltiples datos). El potencial consiste en dividir algoritmos complejos en partes pequeñas cuyas operaciones son las mismas, pero con diferentes datos. Así, la GPU reparte estas partes entre sus núcleos, realizando lo que se conoce como procesamiento paralelo.
+
+Por dentro, una GPU posee su propia memoria, que es más rápida que la memoria RAM de la CPU, pero también más limitada en capacidad. Para poder acceder a esta memoria, es necesario transferir los datos desde la CPU a la GPU, del mismo modo que los resultados obtenidos en la GPU deben ser transferidos de vuelta a la CPU para su uso posterior. Este proceso de transferencia, junto a la gestión de memoria y la paralelización de algoritmos, son los aspectos principales a trabajar.
+
+Por dentro, una GPU se divide en bloques de procesamiento, cada uno con una memoria propia, y cada bloque se divide a su vez en hilos de ejecución. Estos hilos pueden ejecutar el mismo código de forma independiente, así como acceder a la memoria del bloque o a la memoria global de la GPU. El código que se ejecuta en la GPU se conoce como kernel, y es escrito utilizando un marco de programación específico, como CUDA o OpenCL. En este trabajo, utilizamos CUDA, que es un lenguaje de programación desarrollado por NVIDIA para escribir código que se ejecuta exclusivamente en sus GPU. En particular, trabajamos con CUDA C++, que permite trabajar desde código escrito en C++.
+
+\subsection{Problemas vergonzosamente paralelos}
+
+Un problema es llamado vergonzosamente paralelo cuando dividirlo en tareas independientes resulta trivial, permitiendo una implementación directa en GPU. Esto abarca problemas típicos como la suma de vectores coordenada a coordenada, la multiplicación de matrices o la aplicación de filtros a imágenes. En estos casos, cada elemento del resultado puede ser calculado de forma independiente, lo que facilita la paralelización. En este trabajo, en tanto el costo de gestionar la memoria fuera comparativamente bajo, realizamos todas estas tareas en GPU. Por ejemplo, los filtros de Sobel, Canny y Laplace.
+
+
+\subsection{Gaussian Splatting en GPU}
+
+Tanto las gaussianas como todas las funciones que las utilizan fueron implementadas completamente en GPU. 
+
+Para el renderizado, trabajamos con una técnica estándar en este tipo de algoritmo que es el basado en tiles (o mosaicos). En esta técnica, la imagen de salida se divide en regiones de tamaño fijo, en este caso $16 \times 16$ píxeles, y cada región es procesada por un bloque de hilos en la GPU. Cada hilo dentro del bloque se encarga de calcular la contribución de las gaussianas a un píxel específico dentro de esa región. El motivo de emplear esta división es que las gaussianas contribuyen de forma significativa a un área limitada de la imagen, por lo que los píxeles de una misma región comparten muchas de las gaussianas, mientras que para regiones separadas las gaussianas relevantes varían. Así, podemos descartar muchas gaussianas según su distancia a la región, reduciendo los cálculos necesarios por píxel y aprovechando la memoria compartida del bloque para las gaussianas involucradas.
+
+Para las jacobianas, y el resto de operaciones relacionadas, trabajamos con un hilo por gaussiana, donde el resultado numérico se acumula en la memoria global antes de ser pasado a la CPU. De este modo, y al igual que en VIGS-Fusion, la CPU solo trabaja con matrices de tamaño reducido.
+
+
+

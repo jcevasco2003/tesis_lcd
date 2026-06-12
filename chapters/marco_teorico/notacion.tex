@@ -1,0 +1,88 @@
+\section{Notación y convenciones}
+\label{sec:notacion}
+
+\subsection{Objetos matemáticos}
+
+\begin{itemize}
+	\item Escalares en letra itálica: $\lambda$, $\sigma$, $t$.
+	\item Vectores columna en negrita minúscula: $\mathbf{x}$, $\mathbf{v}$, $\mathbf{p}$.
+	\item Matrices en negrita mayúscula: $\mathbf{A}$, $\mathbf{R}$, $\mathbf{K}$, $\mathbf{J}$.
+	\item Variables aleatorias vectoriales con notación en negrita: $\mathbf{x} \sim \mathcal{N}(\boldsymbol{\mu}, \boldsymbol{\Sigma})$.
+	\item Conjuntos, variedades y grupos en caligráfica: $\mathcal{M}$, $\mathcal{G}$, $\mathcal{X}$.
+	\item Álgebra de Lie y espacios tangentes en fraktur: $\mathfrak{se}(3)$, $T_{\mathcal{X}}\mathcal{M}$.
+\end{itemize}
+
+\subsection{Reglas de escritura}
+
+\begin{itemize}
+	\item Los puntos y vectores se tratan como vectores columna.
+	\item Las matrices actúan por la izquierda, y la composición se lee de izquierda a derecha según el efecto sobre el objeto.
+	\item Los subíndices se usan para enumeración, tiempo, acceso o marco de referencia; los superíndices se reservan para el marco o para indicar cantidades derivadas, según el contexto.
+\end{itemize}
+
+\subsection{Covarianzas}
+
+La covarianza se denota siempre con $\boldsymbol{\Sigma}$. Si se requiere la matriz de información, se escribe de forma explícita como
+\[
+\boldsymbol{\Lambda} \coloneq \boldsymbol{\Sigma}^{-1}.
+\]
+
+\subsection{Coordenadas homogéneas, proyección y Jacobiano}
+
+Distinguimos explícitamente entre coordenadas euclídeas y homogéneas. Un punto euclídeo en 3D se denota $\mathbf{p}=\begin{bmatrix}x\\y\\z\end{bmatrix}^\top \in \mathbb{R}^3$, y su representación homogénea se escribe
+\[
+\tilde{\mathbf{p}} = \begin{bmatrix}\mathbf{p} \\ 1\end{bmatrix} \in \mathbb{R}^4.
+\]
+La multiplicación por una transformación rígida $\mathbf{T}_{ab}\in SE(3)$ se hace sobre la forma homogénea como se indicó arriba.
+
+Denotamos la operación de proyección desde coordenadas de cámara 3D a coordenadas imagen 2D por $\pi(\cdot)$.
+
+En las derivaciones y en la propagación de incertidumbre usamos la linealización de $\pi$ alrededor de una media $\boldsymbol{\mu}_c$, definida por el Jacobiano
+\[
+\mathbf{J}_{\pi}(\boldsymbol{\mu}_c) \coloneq \frac{\partial \pi(\mathbf{x}_c)}{\partial \mathbf{x}_c}\Big|_{\mathbf{x}_c=\boldsymbol{\mu}_c} \in \mathbb{R}^{2\times 3}.
+\]
+
+En fórmulas concretas del texto usamos notaciones abreviadas como $\mathbf{J}_c$ o $\mathbf{J}_{\pi}$ cuando el contexto identifica claramente la proyección considerada.
+
+\subsection{Transformaciones y marcos}
+
+La notación $\mathbf{T}_{ab}$ denota la transformación que lleva coordenadas expresadas en el marco $a$ al marco $b$. Para un punto homogéneo $\tilde{\mathbf{p}}_a$ se escribe
+\[
+\tilde{\mathbf{p}}_b = \mathbf{T}_{ab}\,\tilde{\mathbf{p}}_a.
+\]
+Por lo tanto, la composición se escribe
+\[
+\mathbf{T}_{ac} = \mathbf{T}_{bc}\,\mathbf{T}_{ab},
+\]
+si primero se pasa de $a$ a $b$ y luego de $b$ a $c$. 
+
+La transformación inversa es
+\[
+\mathbf{T}_{ba} = \mathbf{T}_{ab}^{-1}.
+\]
+
+\subsection{Operaciones de Lie}
+
+La convención principal de la tesis es la perturbación a derecha. En particular, si $\mathcal{X}, \mathcal{Y} \in \mathcal{G}$ y $\tau \in \mathbb{R}^d$, se define
+\[
+\mathcal{X} \oplus \tau \coloneq \mathcal{X}\,\Exp(\tau^\wedge),
+\qquad
+\mathcal{Y} \ominus \mathcal{X} \coloneq \Log\!\left(\mathcal{X}^{-1}\mathcal{Y}\right).
+\]
+Salvo indicación explícita, se adopta esta convención.
+
+Cuando una formulación provenga de un desarrollo en marco global, la perturbación a izquierda debe escribirse de manera explícita:
+\[
+\tau \oplus_{\mathrm{izq}} \mathcal{X} \coloneq \Exp(\tau^\wedge)\,\mathcal{X},
+\qquad
+\mathcal{Y} \ominus_{\mathrm{izq}} \mathcal{X} \coloneq \Log\!\left(\mathcal{Y}\,\mathcal{X}^{-1}\right).
+\]
+
+\subsection{Notación auxiliar}
+
+\begin{itemize}
+	\item Las medias gaussianas se denotan con $\boldsymbol{\mu}$.
+	\item Los residuos se denotan con $\mathbf{r}$ y los Jacobianos con $\mathbf{J}$.
+	\item Los vectores de ruido se denotan con letras en negrita, y sus covarianzas con $\boldsymbol{\Sigma}$.
+	\item Cuando sea relevante, los vectores unitarios se indicarán con una barra o un acento circunflejo, según el contexto del capítulo.
+\end{itemize}

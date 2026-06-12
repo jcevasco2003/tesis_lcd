@@ -1,0 +1,47 @@
+\subsection{Fourier Gaussian Splatting}
+
+Para la inicialización de gaussianas, una de las heurísticas abordadas en este trabajo se basa en la propuesta de FGS-SLAM \cite{xu2025fgsslamfourierbasedgaussiansplatting}. La idea central es usar información espectral para separar regiones con distinto nivel de detalle y, en función de ello, adaptar el muestreo y la escala de las gaussianas.
+
+Sea $I(x,y)$ una imagen de tamaño $W \times H$. Su transformada discreta de Fourier (DFT) se define como:
+\begin{equation}
+F(u,v)=\sum_{x=0}^{W-1}\sum_{y=0}^{H-1} I(x,y)\, e^{-j2\pi(\frac{ux}{W}+\frac{vy}{H})}.
+\end{equation}
+En esta representación, las bajas frecuencias modelan variaciones suaves de intensidad, mientras que las altas frecuencias capturan bordes, texturas y cambios abruptos.
+
+Siguiendo FGS-SLAM, se aplica un filtro pasa-altos gaussiano en el dominio de Fourier:
+\begin{equation}
+H(u,v)=1-e^{-\frac{D^2(u,v)}{2D_0^2}},
+\end{equation}
+donde $D(u,v)$ es la distancia al centro del espectro y $D_0$ controla la frecuencia de corte. La señal filtrada es:
+\begin{equation}
+F_h(u,v)=F(u,v)\,H(u,v),
+\end{equation}
+y la reconstrucción espacial de alta frecuencia se obtiene mediante la transformada inversa:
+\begin{equation}
+\tilde{I}_h(x,y)=\mathcal{F}^{-1}\{F_h(u,v)\}.
+\end{equation}
+
+En la implementación real del sistema, este proceso se ejecuta completamente en GPU. Primero se convierte la imagen RGB/BGRA a escala de grises de 8 bits. Luego se aplica FFT 2D real-compleja, filtrado pasa-altos sobre el espectro y FFT inversa. El parámetro de corte se implementa como
+\begin{equation}
+\sigma=\max\big(1,\,\rho\,\min(W,H)\big),
+\end{equation}
+donde $\rho$ es un parámetro de ratio a determinar empíricamente. Tras la reconstrucción, se toma la magnitud absoluta, se normaliza a $[0,255]$ y se construye un histograma de 256 bins.
+
+Para separar regiones de alta y baja frecuencia se utiliza umbralización triangular sobre dicho histograma (consistente con la hipótesis unimodal tras el filtrado pasa-altos). Si $\tau$ es el umbral estimado, la máscara de alta frecuencia se define como:
+\begin{equation}
+M_h(x,y)=
+\begin{cases}
+1,& \tilde{I}_h(x,y)>\tau,\\
+0,& \text{en otro caso,}
+\end{cases}
+\end{equation}
+y la máscara de baja frecuencia como complemento:
+\begin{equation}
+M_l(x,y)=1-M_h(x,y).
+\end{equation}
+
+Estas máscaras se usan para densificación adaptativa: en regiones de alta frecuencia se emplea muestreo más denso y gaussianas de menor radio, mientras que en regiones de baja frecuencia se usa muestreo más espaciado y gaussianas de mayor radio. En términos de intervalos de muestreo, si $m$ corresponde a alta frecuencia y $n$ a baja frecuencia, se impone $m<n$.
+
+Este mecanismo reduce la subrepresentación en zonas con detalle fino y, al mismo tiempo, evita sobrepoblar regiones homogéneas. No obstante, mantiene dos limitaciones inherentes al enfoque espectral: costo computacional $O(N\log N)$ y carácter global de la FFT (cada coeficiente depende de la imagen completa), lo que puede impactar latencia y localidad de decisión en escenarios estrictos de tiempo real.
+
+En conclusión, la heurística de Fourier ofrece un criterio físicamente interpretable para distribuir gaussianas según complejidad local de la escena, y en este trabajo se adopta en una versión coherente con la implementación GPU del sistema.

@@ -1,0 +1,105 @@
+\section{Métricas}
+
+Para evaluar el desempeño del sistema se utilizan métricas clásicas en SLAM que permiten analizar tanto la calidad de la estimación de trayectoria como la calidad de la reconstrucción visual y el costo computacional asociado. En particular, se reportan las métricas ATE RMSE, PSNR, tiempo de mapeo por imagen (\textit{Map/img}) y tiempo de seguimiento por imagen (\textit{Track/img}).
+
+\subsection{ATE RMSE}
+
+El \textit{Absolute Trajectory Error Root Mean Square Error} (ATE RMSE) mide la precisión de la trayectoria estimada respecto de una trayectoria de referencia (\textit{ground truth}). Para ello, se compara la posición estimada de la cámara en cada instante con la posición real correspondiente.
+
+Sea $\mathbf{p}_i$ la posición estimada y $\mathbf{p}_i^{gt}$ la posición de referencia para el instante $i$. El error absoluto de trayectoria se define como:
+
+$$
+e_i = \left| \mathbf{p}_i - \mathbf{p}_i^{gt} \right|.
+$$
+
+A partir de estos errores individuales, el ATE RMSE se calcula como:
+
+$$
+\mathrm{ATE}_{RMSE}
+=
+\sqrt{
+\frac{1}{N}
+\sum_{i=1}^{N}
+e_i^2
+},
+$$
+
+donde $N$ es la cantidad de poses evaluadas.
+
+Esta métrica cuantifica el error global acumulado de la trayectoria. Valores menores indican una mejor estimación de la pose y una menor deriva durante la navegación.
+
+\subsection{PSNR}
+
+El \textit{Peak Signal-to-Noise Ratio} (PSNR) evalúa la calidad visual de las imágenes renderizadas a partir del mapa reconstruido comparándolas con las imágenes reales capturadas por la cámara.
+
+Su definición se basa en el error cuadrático medio (MSE):
+
+$$
+\mathrm{MSE}
+=
+\frac{1}{HW}
+\sum_{u=1}^{H}
+\sum_{v=1}^{W}
+\left(
+I(u,v)-\hat{I}(u,v)
+\right)^2,
+$$
+
+donde:
+
+\begin{itemize}
+\item $I(u,v)$ es el valor del píxel de la imagen de referencia.
+\item $\hat{I}(u,v)$ es el valor del píxel renderizado.
+\item $H$ y $W$ representan la altura y el ancho de la imagen.
+\end{itemize}
+
+A partir del MSE, el PSNR se define como:
+
+$$
+\mathrm{PSNR}
+=
+10 \log_{10}
+\left(
+\frac{L^2}{\mathrm{MSE}}
+\right),
+$$
+
+donde $L$ es el valor máximo posible de intensidad de un píxel.
+
+El PSNR se expresa en decibeles (dB). Valores más altos indican una reconstrucción visual más fiel a las observaciones originales.
+
+\subsection{Tiempo de mapeo por imagen (Map/img)}
+
+La métrica \textit{Map/img} mide el tiempo promedio dedicado a la etapa de mapeo para cada imagen procesada.
+
+Esta etapa incluye operaciones como la incorporación de nuevos keyframes, la optimización de gaussianas y las actualizaciones de la representación del mapa.
+
+Se calcula como:
+
+$$
+\mathrm{Map/img}
+=
+\frac{T_{\mathrm{map}}}{N},
+$$
+
+donde $T_{\mathrm{map}}$ es el tiempo total invertido en tareas de mapeo y $N$ es la cantidad de imágenes procesadas.
+
+Esta métrica permite evaluar el costo computacional asociado al mantenimiento y refinamiento del mapa.
+
+\subsection{Tiempo de seguimiento por imagen (Track/img)}
+
+La métrica \textit{Track/img} mide el tiempo promedio requerido para estimar la pose de la cámara a partir de cada nueva observación.
+
+Incluye las operaciones realizadas durante la etapa de seguimiento, tales como el renderizado necesario para la estimación de pose y la optimización asociada.
+
+Se define como:
+
+$$
+\mathrm{Track/img}
+=
+\frac{T_{\mathrm{track}}}{N},
+$$
+
+donde $T_{\mathrm{track}}$ representa el tiempo total dedicado al seguimiento y $N$ la cantidad de imágenes procesadas.
+
+Esta métrica resulta particularmente relevante para evaluar la capacidad del sistema de operar en tiempo real, ya que determina la latencia asociada a la estimación de pose.

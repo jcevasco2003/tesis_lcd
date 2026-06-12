@@ -1,0 +1,106 @@
+\section{LoopSplat: Detección de ciclos basada en descriptores visuales globales y submapas}
+
+En el problema de SLAM, hay una propiedad muy importante que es la capacidad de analizar si está pasando por un lugar por el que pasó antes, conocido como la detección de ciclos. Esta propiedad es muy fuerte debido a que, de detectarse un ciclo, se puede ajustar la trayectoria y el mapa para que sea coherente, corrigiendo errores acumulados a lo largo del ciclo.
+
+Para la detección, se emplean fundamentalmente heurísticas basadas en los sensores. En particular, nuestra implementación usará como base el paper de LoopSplat \cite{zhu2025_loopsplat}. Fundamentalmente, el procedimiento descrito en el paper se puede resumir en los siguientes pasos: para cada keyframe se extrae un descriptor de la imagen, se agrupan los keyframes en conjuntos llamados submapas, y para cada nuevo keyframe se utiliza una medida de similaridad con los descriptores de los anteriores para determinar si se pasó por el lugar anteriormente. En caso de que sí, se realiza un registro de los submapas como estimación inicial de la transformación entre ambos, y luego se realiza una optimización de la pose y del mapa mediante una técnica de optimización no lineal.
+
+A continuación, las distintas etapas explicadas en profundidad
+
+
+\subsection{Descriptor visual}
+
+Primero, es necesario definir qué es un descriptor visual: Se trata de una representación numérica en un vector o matriz de cierta característica de la imagen. Por ejemplo, en la gestión de mapa se emplearon distintos procedimientos para obtener descriptores que representan las zonas de alta frecuencia. En esos casos, el descriptor era en sí mismo una imagen fácilmente interpretable, pero no tiene por qué ser así. Muchos descriptores guardan la información en un vector cuyos elementos no representan nada interpretable, pero el vector completo resulta de utilizar una fórmula para condensar la característica. 
+
+Los descriptores se pueden categorizar en locales, cuando capturan la característica de una región alrededor de un punto de interés, o globales, cuando capturan la característica de la imagen entera. El descriptor que utilizamos, NetVLAD \cite{arandjelović2016netvladcnnarchitectureweakly} es global, y se basa en una red neuronal convolucional. Esto quiere decir que usa una serie de fórmulas divididas en capas, donde cada fórmula tiene un peso que determina su valor. 
+
+En el contexto del trabajo, se extrae el descriptor de la imagen RGB de cada keyframe. Debido a que el descriptor está implementado como una red neuronal, la operación es altamente paralelizable, permitiendo sacarle más provecho a la GPU. Es importante notar que, en secciones anteriores, mencionamos que los algoritmos de SLAM basados en descriptores no permiten tan alto grado de paralelización, y esto no se debe a la extracción en sí, sino a que extraen muchos descriptores locales por imagen y luego buscan emparejarlos con descriptores locales de imágenes anteriores para realizar el SLAM. Al tratar exclusivamente con descriptores globales, se evita esta limitación.
+
+\subsection{Submapas}
+
+Anteriormente, la optimización se definió de forma global, manteniendo el mapa actualizado a partir de la selección aleatoria de keyframes en el conjunto completo. Este procedimiento es por supuesto costoso, pero posee el beneficio de realizar un mantenimiento al mapa entero. La idea de los submapas es distinta. En lugar de intentar mantener todo, vamos guardando keyframes consecutivos en un mismo submapa hasta que se cumpla una condición que determine el cambio de submapa. 
+
+La condición de cambio es, en sí misma, una heurística. El trabajo previo de LoopSplat utiliza de forma exclusiva datos de imágenes RGBD, y utiliza como condición de cambio un límite de tiempo y de cantidad de keyframes por submapa
+
+
+\subsection{Medida de similaridad entre keyframes}
+
+Una vez obtenido el descriptor global para cada keyframe utilizando NetVLAD, es necesario definir una medida de similaridad entre imágenes. En este trabajo se utiliza la similaridad coseno entre descriptores, definida como:
+
+\begin{equation}
+\text{sim}(i,j) = \frac{d_i \cdot d_j}{\|d_i\|\|d_j\|}
+\end{equation}
+
+donde $d_i$ y $d_j$ son los descriptores de los keyframes $i$ y $j$ respectivamente.
+
+Dado que estos descriptores son globales, esta medida permite estimar si dos imágenes representan el mismo lugar, independientemente de pequeñas variaciones de iluminación o punto de vista.
+
+Sin embargo, comparar todos los keyframes entre sí no es suficiente, ya que es necesario definir un criterio adaptativo que determine cuándo una similaridad es suficientemente alta como para considerar un posible ciclo.
+
+Para ello, siguiendo \cite{zhu2025_loopsplat}, se introduce el concepto de puntaje de auto-similaridad. Para cada submapa $i$, se computan todas las similaridades entre sus keyframes y se define un umbral $s_i^{propio}$ como el percentil $p$ de dichas similaridades. En nuestros experimentos, se utiliza típicamente $p = 50$.
+
+Este umbral permite adaptar dinámicamente la detección de ciclos a las características del entorno: en escenas más ambiguas o repetitivas, el umbral será más alto, mientras que en escenas más distintivas será más bajo.
+
+De este modo, se detecta un candidato a ciclo cuando la similaridad entre keyframes de distintos submapas supera el umbral correspondiente.
+
+Sin embargo, la similaridad visual por sí sola no es suficiente para garantizar que dos submapas corresponden al mismo lugar, ya que pueden existir falsas coincidencias debido a estructuras repetitivas o ambigüedades visuales.
+
+
+Para reducir estos falsos positivos, se introduce un segundo criterio basado en consistencia geométrica. En particular, se calcula el ratio de superposición (OR) entre dos submapas $P$ y $Q$:
+
+\[
+\text{OR} = \frac{1}{|K_{ij}|} \sum_{(p,q)\in K_{ij}} \left[ \|T_{P \to Q}(p) - q\|^2 < \tau_1 \right]
+\]
+
+donde:
+\begin{itemize}
+    \item $K_{ij}$ es el conjunto de correspondencias entre puntos de $P$ y $Q$, obtenidas mediante búsqueda de vecinos más cercanos con verificación recíproca.
+    \item $T_{P \to Q}$ es la transformación estimada entre ambos submapas.
+    \item $\tau_1$ es un umbral de distancia.
+    \item $[\cdot]$ denota la función indicadora (vale 1 si la condición se cumple, 0 en caso contrario).
+\end{itemize}
+
+Intuitivamente, el overlap ratio mide qué fracción de puntos de un submapa coincide espacialmente con puntos del otro bajo la transformación estimada.
+
+A diferencia de métodos clásicos de registro de nubes de puntos, el umbral utilizado es relativamente laxo, ya que el objetivo no es obtener una alineación precisa en esta etapa, sino simplemente verificar la existencia de solapamiento espacial.
+
+Finalmente, se descartan aquellos ciclos detectados entre submapas demasiado cercanos en el tiempo, ya que no aportan información relevante para la corrección global del mapa.
+
+
+\subsection{Registro de submapas}
+
+Para obtener una estimación inicial de la transformación entre dos submapas que han sido detectados como candidatos a ciclo, se realiza un registro entre ambos. El trabajo original de LoopSplat emplea un método basado en la interpretación de los submapas como cuerpos rígidos, optimizando a través del álgebra de Lie. Para esto, realiza derivaciones analíticas de los jacobianos, utilizando como error la renderización de las gaussianas.
+
+\subsection{Optimización del grafo de poses}
+
+Una vez detectado un ciclo y estimada la transformación relativa entre los submapas involucrados, es necesario incorporar esta información de forma consistente dentro de la representación global del entorno. Para ello, LoopSplat emplea una optimización de grafo de poses (\textit{Pose Graph Optimization}, PGO).
+
+En este enfoque, cada submapa se modela como un nodo del grafo cuya variable de estado corresponde a su pose global. Las aristas representan restricciones relativas entre pares de submapas. Estas restricciones pueden provenir de dos fuentes distintas:
+
+\begin{itemize}
+\item Relaciones secuenciales entre submapas consecutivos, obtenidas durante la construcción normal del mapa.
+\item Relaciones de cierre de ciclo, generadas cuando el sistema detecta que dos submapas observan una misma región del entorno.
+\end{itemize}
+
+Cada arista almacena una transformación relativa medida entre dos submapas y una matriz de información que representa la confianza asociada a dicha medición. El objetivo de la optimización consiste en encontrar el conjunto de poses globales que mejor satisfaga simultáneamente todas las restricciones presentes en el grafo.
+
+Formalmente, para cada arista que conecta los nodos $i$ y $j$, se define un error de consistencia como la diferencia entre la transformación relativa observada y la transformación relativa inducida por las poses actuales del grafo. La optimización busca minimizar la suma ponderada de estos errores:
+
+\[
+\min_{{T_i}}
+\sum_{(i,j)\in E}
+e_{ij}^{T},\Omega_{ij},e_{ij},
+\]
+
+donde:
+
+\begin{itemize}
+\item $T_i$ y $T_j$ son las poses globales de los submapas.
+\item $e_{ij}$ representa el error asociado a la restricción entre ambos nodos.
+\item $\Omega_{ij}$ es la matriz de información de la medición.
+\item $E$ es el conjunto de aristas del grafo.
+\end{itemize}
+
+Intuitivamente, la optimización distribuye los errores acumulados a lo largo de toda la trayectoria en lugar de concentrarlos en una única región. De esta manera, cuando se detecta un cierre de ciclo, la trayectoria completa puede reajustarse para lograr una representación geométricamente consistente del entorno.
+
+Una vez obtenidas las nuevas poses optimizadas de los submapas, las gaussianas asociadas a cada uno de ellos son transformadas utilizando dichas poses actualizadas. Como resultado, tanto la trayectoria como el mapa reconstruido quedan alineados con las restricciones impuestas por los ciclos detectados.
+

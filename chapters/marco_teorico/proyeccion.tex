@@ -1,0 +1,61 @@
+\section{Proyección}
+
+A partir de los parámetros intrínsecos $\mathbf{K}$ y extrínsecos $\mathbf{R}, \mathbf{t}$ podemos expresar la relación entre un punto ${\mathbf{x}}_w \in \mathbb{R}^3$ y su proyección en el plano imagen $\mathbf{u} \in \mathbb{R}^2$ con una transformación proyectiva del siguiente modo:
+
+\begin{equation}
+\lambda \, \tilde{\mathbf{u}} =
+\mathbf{K}
+\begin{pmatrix}
+\mathbf{R} & \mathbf{t}
+\end{pmatrix}
+\tilde{\mathbf{x}}_w,
+\end{equation}
+
+A esta matriz que combina los parámetros intrínsecos y extrínsecos la llamamos $\mathbf{P}$, y, si lo pensamos como una función, la llamamos $\pi$.
+
+En el marco de referencia de la cámara, tenemos puntos de la forma $\mathbf{x}_c = \mathbf{R}\,\mathbf{x}_w + \mathbf{t}$. Al aplicarles las intrínsecas:
+\begin{equation}
+\pi(\mathbf{x}_w) =
+\begin{pmatrix}
+u \\
+v
+\end{pmatrix}
+=
+\begin{pmatrix}
+f_x \dfrac{x_c}{z_c} + c_x \\
+f_y \dfrac{y_c}{z_c} + c_y
+\end{pmatrix}.
+\label{proyeccion_pinhole}
+\end{equation}
+
+En particular, nos interesa qué pasa cuando hay pequeñas variaciones en la posición del punto. Para eso, derivamos respecto a cada coordenada para obtener el Jacobiano de la proyección, de ahora en adelante $\mathbf{J}$.
+\begin{equation}
+\mathbf{J}
+=
+\frac{\partial \pi(\mathbf{x}_c)}{\partial \mathbf{x}_c}
+\in \mathbb{R}^{2 \times 3}.
+\end{equation}
+
+Al derivar respecto de $x_c$, $y_c$ y $z_c$, queda
+
+\begin{equation}
+\mathbf{J}
+=
+\begin{pmatrix}
+\dfrac{f_x}{z_c} & 0 & -\dfrac{f_x x_c}{z_c^2} \\
+0 & \dfrac{f_y}{z_c} & -\dfrac{f_y y_c}{z_c^2}
+\end{pmatrix}.
+\label{jacobiano_proyeccion_camara}
+\end{equation}
+
+Cuando fuere necesario, lo podemos extender a coordenadas homogéneas completando con una fila nula. El uso de una u otra expresión dependerá del contexto del problema.
+
+\begin{equation}
+\mathbf{J}_{\mathrm{hom}}
+=
+\begin{pmatrix}
+\dfrac{f_x}{z_c} & 0 & -\dfrac{f_x x_c}{z_c^2} \\
+0 & \dfrac{f_y}{z_c} & -\dfrac{f_y y_c}{z_c^2} \\
+0 & 0 & 0
+\end{pmatrix}.
+\end{equation}

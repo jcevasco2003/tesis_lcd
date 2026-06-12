@@ -1,0 +1,98 @@
+\section{Heurísticas para gestión del mapa}
+
+Como ya explicamos, la generación de gaussianas, ya sea en la inicialización o en la densificación, resulta sumamente importante para poder acelerar y corregir la optimización. Debido a que desde un punto de vista teórico no hay una forma cerrada de resolver este problema, se emplean heurísticas como la de FGS-Slam. En esta sección, presentamos otras propuestas que fueron implementadas en este trabajo como sustituto de la de Fourier, basadas en técnicas clásicas del procesamiento de imágenes. Reinterpretamos el problema de la diferenciación de frecuencias como un problema de detección de bordes, donde las regiones de alta frecuencia corresponden a bordes y texturas marcadas.
+
+\subsection{Sobel y Laplace}
+
+A partir del costo computacional adicional asociado a la transformada de Fourier, es natural considerar operadores locales que aproximen el contenido de alta frecuencia sin recurrir a un análisis global del espectro. En este contexto, los operadores de Sobel y Laplace resultan especialmente útiles, ya que permiten detectar cambios bruscos de intensidad de manera simple y eficiente en el dominio espacial.
+
+\textbf{Operador de Sobel.} El operador de Sobel aproxima el gradiente de la imagen, es decir, la primera derivada espacial de la intensidad. Para una imagen $I(x,y)$, las derivadas parciales discretas en las direcciones horizontal y vertical se estiman mediante los kernels:
+\begin{equation}
+G_x =
+\begin{bmatrix}
+-1 & 0 & 1 \\
+-2 & 0 & 2 \\
+-1 & 0 & 1
+\end{bmatrix},
+\qquad
+G_y =
+\begin{bmatrix}
+-1 & -2 & -1 \\
+0 & 0 & 0 \\
+1 & 2 & 1
+\end{bmatrix}.
+\end{equation}
+La respuesta de Sobel se obtiene por convolución con la imagen:
+\begin{equation}
+S_x = I * G_x, \qquad S_y = I * G_y.
+\end{equation}
+A partir de estas componentes, la magnitud del gradiente se define como:
+\begin{equation}
+S = \sqrt{S_x^2 + S_y^2}.
+\end{equation}
+Esta magnitud resalta bordes, texturas y transiciones abruptas, por lo que constituye una aproximación local al contenido de alta frecuencia. A diferencia de Fourier, Sobel no requiere transformar la imagen al dominio frecuencial y su costo computacional es considerablemente menor, lográndose en tiempo lineal.
+
+\textbf{Operador de Laplace.} El operador Laplace aproxima la segunda derivada espacial y, por tanto, mide la variación de la pendiente de la imagen. En dos dimensiones se define como:
+\begin{equation}
+\nabla^2 I = \frac{\partial^2 I}{\partial x^2} + \frac{\partial^2 I}{\partial y^2}.
+\end{equation}
+En versión discreta, una aproximación habitual es el kernel:
+\begin{equation}
+L =
+\begin{bmatrix}
+0 & 1 & 0 \\
+1 & -4 & 1 \\
+0 & 1 & 0
+\end{bmatrix},
+\end{equation}
+o variantes equivalentes con conectividad diagonal. Su respuesta se calcula como:
+\begin{equation}
+L_I = I * L.
+\end{equation}
+La respuesta del Laplaciano enfatiza cambios rápidos de intensidad en todas las direcciones, por lo que suele destacar bordes finos y estructuras delgadas. Sin embargo, al ser una derivada de segundo orden, también es más sensible al ruido que Sobel. Aunque, del mismo modo, su complejidad temporal es lineal.
+
+\textbf{Construcción de regiones de alta frecuencia.} En nuestra implementación, tanto Sobel como Laplace se utilizan para aproximar la distribución espacial de detalle fino. Una vez obtenida la respuesta de cada operador, se normaliza a $[0,1]$ y se aplica el mismo criterio de umbralización triangular empleado en la heurística de Fourier. Si $M_s$ y $M_l$ denotan las máscaras binarias derivadas de Sobel y Laplace, entonces las regiones de alta frecuencia quedan definidas como:
+\begin{equation}
+M_s(x,y)=\mathbb{I}[S(x,y)>\tau_s],
+\qquad
+M_l(x,y)=\mathbb{I}[L(x,y)>\tau_l],
+\end{equation}
+donde $\mathbb{I}[\cdot]$ es la función indicadora y $\tau_s$, $\tau_l$ son los umbrales estimados por histograma.
+
+\subsection{Canny}
+
+El detector de bordes de Canny constituye una alternativa más estructurada a los operadores diferenciales locales como Sobel y Laplace, ya que incorpora explícitamente un criterio de optimalidad para la detección de bordes: buena detección (baja tasa de falsos negativos), buena localización (bordes bien posicionados) y respuesta única (supresión de múltiples respuestas a un mismo borde).
+
+A diferencia de los métodos basados únicamente en derivadas, Canny introduce un proceso en varias etapas. En primer lugar, la imagen $I(x,y)$ se suaviza mediante un filtro gaussiano para reducir el ruido:
+\begin{equation}
+I_\sigma(x,y) = I(x,y) * G_\sigma(x,y),
+\end{equation}
+donde $G_\sigma$ es un kernel gaussiano con desviación estándar $\sigma$.
+
+Luego, se calcula el gradiente de la imagen suavizada:
+\begin{equation}
+G_x = I_\sigma * G_x^{Sobel}, \qquad G_y = I_\sigma * G_y^{Sobel},
+\end{equation}
+y su magnitud:
+\begin{equation}
+G = \sqrt{G_x^2 + G_y^2}.
+\end{equation}
+
+A continuación, se aplica supresión de no-máximos, que conserva únicamente los puntos que son máximos locales en la dirección del gradiente, produciendo bordes delgados (típicamente de un solo píxel). Finalmente, se aplica umbralización con histéresis, utilizando dos umbrales $\tau_{low}$ y $\tau_{high}$, definidos como:
+\begin{equation}
+\tau_{low} < \tau_{high}.
+\end{equation}
+Los píxeles con gradiente mayor a $\tau_{high}$ se consideran bordes fuertes, mientras que aquellos entre ambos umbrales se conservan únicamente si están conectados a bordes fuertes.
+
+En la implementación utilizada en este trabajo, Canny se aplica directamente sobre la imagen en escala de grises cuantizada a 8 bits. El resultado es una máscara binaria:
+\begin{equation}
+M_c(x,y) =
+\begin{cases}
+1, & \text{si } (x,y) \in \text{bordes detectados por Canny}, \\
+0, & \text{en otro caso}.
+\end{cases}
+\end{equation}
+
+A diferencia de Sobel y Laplace, donde la detección de regiones de alta frecuencia depende de un umbral aplicado sobre magnitudes continuas, Canny produce directamente una segmentación binaria basada en un criterio global y contextual de bordes. Esto lo convierte en un detector más preciso y estable frente al ruido, aunque también más restrictivo en términos de densidad de activación.
+
+En el contexto de la densificación de gaussianas, la máscara de Canny puede interpretarse como una estimación de estructura geométrica de la escena. Sin embargo, debido a su naturaleza esquelética (bordes delgados), tiende a subrepresentar regiones texturadas densas que sí son capturadas por Sobel o el análisis espectral de Fourier.

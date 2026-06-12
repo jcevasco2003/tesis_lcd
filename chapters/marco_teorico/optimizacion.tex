@@ -1,0 +1,235 @@
+\section{Optimización}
+Los métodos de SLAM que utilizan primitivas suaves para el modelo del mundo permiten formular el problema de estimación como uno de optimización, cuyo objetivo es encontrar el mínimo (o máximo) de una función objetivo $F(\mathbf{x})$. En particular, el caso más común es el de mínimos cuadrados no lineales, donde se busca resolver
+
+$$
+\min_{\mathbf{x}} F(\mathbf{x}) = \frac{1}{2}\,\|r(\mathbf{x})\|^2,
+$$
+
+donde $\mathbf{x} \in \mathbb{R}^n$ (o una variedad diferenciable, como $SE(3)$) representa el estado del sistema, y $r(\mathbf{x})$ es un vector de residuos que mide la diferencia entre las observaciones empíricas y las predicciones generadas por el modelo.
+
+La función de costo se construye a partir de distintos tipos de mediciones, que pueden ser visuales, geométricas o inerciales, y refleja distintos tipos de error, como el de reproyección, el fotométrico o el geométrico de cada observación.
+
+Dado que $r(\mathbf{x})$ suele ser una función no lineal del estado, el problema no admite una solución analítica cerrada. Por esta razón, se emplean algoritmos de optimización iterativos, que generan una sucesión de estimaciones $\{\mathbf{x}_k\}$ que, idealmente, converge hacia un mínimo local de $F(\mathbf{x})$. La convergencia se evalúa en función del tamaño del incremento $\|\Delta \mathbf{x}_k\|$, la reducción del costo, o un número máximo de iteraciones.
+
+Para funciones convexas, existe un único mínimo que es global, sin embargo, en el problema de SLAM no existe tal garantía, por lo que para converger al mínimo global es necesario además empezar en un entorno del mismo. Caso contrario, se convergería a un mínimo local. Esto es subsanado con tener aproximaciones iniciales lo suficientemente "buenas". Para esto, \cite{papalia2023score} \cite{liu2012convex} muestran algunas formulaciones convexas para la iniciación en distintos contextos de SLAM que permiten una cercanía al óptimo, aunque a costa de mayor complejidad computacional. En el marco de nuestro trabajo, la inicialización de las primitivas se realiza directamente a partir de los datos de los sensores. Luego, las primitivas se van agregando, desplazando o quitando a medida que se optimiza y que se obtienen nuevos datos.
+
+Para la optimización de problemas no lineales, la literatura brindó muchos métodos que a día de hoy se siguen utilizando, como el método del máximo descenso, el método del gradiente conjugado o los métodos inerciales. 
+
+Todos los métodos siguen la misma estructura general:
+
+\begin{enumerate}
+\item Paso 1: Determinar condiciones iniciales ($\mathbf{x}_0$, $k=0$ y parámetros particulares del método). Fijar $\epsilon > 0$ pequeño.
+
+\item Paso 2: Criterio de parada. De estar lo suficientemente cerca del óptimo (o llegar a un máximo de iteraciones), el algoritmo se detiene. Para determinar si se está lo suficientemente cerca, usualmente se compara si $||\nabla{f(\mathbf{x})}|| < \epsilon$. Caso contrario, va al paso 3.
+
+\item Paso 3: Determinar una dirección de descenso $-\mathbf{d}_k$ y actualizar $\mathbf{x}_{k+1} = \mathbf{x}_k - \mathbf{d}_k$, $k= k + 1$. Volver al paso 2.
+\end{enumerate}
+
+En el marco de este trabajo, para la optimización de la pose se empleó el método de Levenberg-Marquadt, que es del tipo Newton con una modificación del tipo Cauchy. Por otro lado, para la optimzación de las gaussianas, se empleó el método ADAM
+
+
+
+\subsection{Método de Newton}
+
+
+Siguiendo la explicación de \cite{GarciaVentura2023}, en el caso unidimensional, este método utiliza la aproximación por serie de Taylor de hasta orden dos de la función $f$ sobre un punto $x_{k}+\epsilon$.
+
+\begin{equation}
+    f(x_{k}+\epsilon) = f(x_k) + f'(x_k) \epsilon + \frac{1}{2} f''(x_k) \epsilon^2
+\end{equation}
+
+que se minimiza cuando
+
+\begin{equation}
+\begin{split}    
+\frac{d}{d\epsilon}[f(x_k) + f'(x_k) \epsilon + \frac{1}{2} f''(x_k) \epsilon^2] = \\\\
+f'(x_k) + f''(x_k) \epsilon = 0
+\end{split}
+\end{equation}
+
+dando lugar a un paso de 
+
+$$
+\epsilon = - \frac{f'(x_k)}{f''(x_k)}
+$$
+
+Luego, el paso iterativo será $ x_{k+1} = x_k - \frac{f'(x_k)}{f''(x_k)} $
+
+Extendiendo al caso a $n$ dimensiones, la primera derivada pasa a ser el gradiente $\nabla f$ y la segunda derivada la hessiana $H$. Luego, el paso iterativo queda
+
+$$
+x_{k+1} = x_k - [H(x_k)]^{-1} \nabla f(x_k)
+$$
+
+Así, en cada paso se aproxima la función con un paraboloide y se va hacia el mínimo. Este algoritmo funciona particularmente bien cuando el punto ya se encuentra en un entorno arbitrariamente chico del óptimo.
+
+\subsection{Método de Cauchy}
+Es bien sabido en la literatura que el gradiente de una función representa la dirección de máximo crecimiento \cite{Joyce2014Multivariate}. Con esta idea en mente, Cauchy propuso realizar pasos en el sentido contrario al gradiente, logrando ir en la dirección de mayor descenso.
+
+$$
+x_{k+1} = x_k - \alpha \nabla f(x_k)
+$$
+
+El valor de $\alpha \in \mathbb{R}_{>0}$ determina la longitud del paso, y es el factor que decide si el algoritmo converge o no, pues un paso demasiado alto puede alejarse del óptimo. Además, dejando un valor fijo, por más pequeño que sea, hará que la función objetivo rebote cerca del óptimo, sin llegar a él. Este último se conoce como método del gradiente con paso fijo. Por otro lado, este método permite un descenso rápido al estar lejos del óptimo.
+
+\subsection{Método de Levenberg-Marquadt}
+Mezclando las ideas de Newton y Cauchy, y aprovechando que la matriz hessiana (de ahora en adelante $\nabla^2 f$) es definida o semidefinida positiva cerca del óptimo, la modificación de Marquadt propuso una combinación de las ideas.
+
+$$
+x_{k+1} = x_k -(\nabla^2f(x_k) + \lambda \mathbf{I})^{-1} \nabla f(x_k)
+$$
+
+Veamos qué pasa con el factor $\lambda$:
+
+Si $\lambda \to \infty$:
+
+$$
+d_k = -(\nabla^2f(x_k) + \lambda \mathbf{I})^{-1} \nabla f(x_k) \approx
+-(\lambda \mathbf{I})^{-1} \nabla f(x_k) = -\frac{1}{\lambda} \nabla f(x_k)
+$$
+
+Llamando $\alpha \coloneq \frac{1}{\lambda}$, tenemos un paso del método del gradiente.
+
+Por otro lado, si $\lambda \to 0$
+
+$$
+d_k = -(\nabla^2f(x_k) + \lambda \mathbf{I})^{-1} \nabla f(x_k) \approx
+- (\nabla^2 f(x_k))^{-1} \nabla f(x_k)
+$$
+
+que es un paso del método de Newton.
+
+El algoritmo de Levenberg-Marquadt busca comenzar con el método del gradiente con pasos cada vez más largos, al decrecer $\lambda$, transformándose al método de Newton en el límite  $\lambda \to 0$. Una forma usual de controlar $\lambda$ es que, si un paso va a aumentar el valor de la función, se duplica el $\lambda$ para tomar un paso de gradiente, mientras que si un paso va a disminuir el valor de la función de divide a la mitad para tomar un paso de Newton.
+
+\subsection{Aplicación en la pose}
+Como vimos, nos interesa minimizar la función objetivo
+$$
+F(x) = \frac{1}{2}||r(x)||^2 = \frac{1}{2} r(x)^T r(x) = \frac{1}{2}\sum_{i=1}^{n}r_i(x)^2
+$$
+
+
+Para obtener el gradiente de $F(x)$, se utiliza la expresión
+$$
+F(x) = \frac{1}{2} r(x)^T r(x).
+$$
+
+Al derivar,
+$$
+dF = \frac{1}{2}(dr^T r + r^T dr) = r(x)^T dr.
+$$
+
+Dado que $dr = J(x)dx$, se obtiene
+$$
+dF = r(x)^T J(x)\,dx,
+$$
+
+y por lo tanto
+$$
+\nabla F(x) = J(x)^T r(x).
+$$
+
+Luego, para la hessiana de $F(x)$, tenemos que
+
+$$
+\nabla^2 F(x) = J(x)^T J(x) + \sum_{i=1}^m r_i(x) \nabla^2 r_i(x)
+$$
+
+Notemos que, cerca del mínimo, el segundo sumando es despreciable, por lo que usamos la aproximación
+
+$$
+\nabla^2 F(x) \approx J(x)^T J(x)
+$$
+
+Sin embargo, no siempre podemos calcular una inversa de $\nabla^2 F(x) + \lambda \mathbf{I}$ para calcular la dirección, por lo que la forma general es encontrar una solución del sistema
+
+$$
+(\nabla^2 F(x) + \lambda \mathbf{I}) d_k = -g_k
+$$
+
+donde la incógnita $d_k$ será la dirección.
+
+Ahora, veamos los pasos del algoritmo:
+
+\begin{algorithm}[H]
+\caption{Algoritmo de Levenberg-Marquardt}
+\label{optimizacion_lm_clasico}
+\begin{algorithmic}[1]
+\State $x_k \gets x_0$
+\State $k \gets 0$
+\State $\lambda_k \gets \lambda_0$
+
+\While{$\|J(x_k)^T r(x_k)\| > \varepsilon \;\land\; k < k_{\max}$}
+
+    \State $r_k \gets r(x_k)$
+    \State $J_k \gets J(x_k)$
+    \State $g_k \gets J_k^T r_k$
+    \State $H_k \gets J_k^T J_k$
+
+    \State Resolver $(H_k + \lambda_k I)d_k = -g_k$
+
+    \If{$F(x_k + d_k) < F(x_k)$}
+        \State $x_{k+1} \gets x_k + d_k$
+        \State $\lambda_{k+1} \gets \frac{1}{2}\lambda_k$
+    \Else
+        \State $\lambda_{k+1} \gets 2\lambda_k$
+        \State $x_{k+1} \gets x_k$
+    \EndIf
+
+    \State $k \gets k + 1$
+
+\EndWhile
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{ADAM}
+
+ADAM (\textit{Adaptive Moment Estimation}) es un método de optimización estocástico ampliamente utilizado en la literatura actual. Combina las ideas de \textit{momentum} y escalado adaptativo de los gradientes, permitiendo converger más rápido y de forma más estable que los métodos clásicos de gradiente.
+
+La idea principal es mantener dos medias móviles exponenciales:  
+\begin{itemize}
+    \item \textbf{Momento del gradiente:}  
+    \[
+    m_{k+1} = \beta_1 m_{k} + (1-\beta_1) \nabla f(x_k), \quad \beta_1 \in [0,1)
+    \]  
+    que acumula la dirección de descenso promedio de iteraciones anteriores.
+    \item \textbf{Magnitud cuadrática del gradiente:}  
+    \[
+    v_{k+1} = \beta_2 v_{k} + (1-\beta_2) \nabla f(x_k) \odot \nabla f(x_k), \quad \beta_2 \in [0,1)
+    \]  
+    que controla adaptativamente la escala del paso para cada dimensión, evitando que los pasos sean demasiado grandes en direcciones con gradientes grandes.
+\end{itemize}
+
+Como las medias iniciales $m_0$ y $v_0$ están sesgadas hacia cero, se corrige este sesgo en cada iteración:  
+\[
+\hat{m}_k = \frac{m_k}{1-\beta_1^k}, \quad
+\hat{v}_k = \frac{v_k}{1-\beta_2^k}.
+\]
+
+Finalmente, la actualización de los parámetros se realiza con:  
+\[
+x_{k+1} = x_k - \alpha \frac{\hat{m}_k}{\sqrt{\hat{v}_k} + \varepsilon},
+\]  
+donde $\alpha$ es la tasa de aprendizaje y $\varepsilon$ un valor pequeño ($10^{-8}$) para estabilidad numérica.
+
+\begin{algorithm}[H]
+\caption{ADAM: Adaptive Moment Estimation}
+\label{alg:adam_latex}
+\begin{algorithmic}[1]
+\State $x_0 \gets x$ \Comment{Valor inicial de los parámetros}
+\State $m_0 \gets 0$
+\State $v_0 \gets 0$
+\State $k \gets 0$
+
+\While{$\lVert \nabla f(x_k) \rVert > \varepsilon \;\land\; k < max\_iter$}
+    \State $k \gets k + 1$
+    \State $g_k \gets \nabla f(x_{k-1})$ \Comment{Gradiente en el paso anterior}
+    \State $m_k \gets \beta_1 m_{k-1} + (1-\beta_1) g_k$
+    \State $v_k \gets \beta_2 v_{k-1} + (1-\beta_2) (g_k \odot g_k)$
+    \State $\hat{m}_k \gets m_k / (1 - \beta_1^k)$
+    \State $\hat{v}_k \gets v_k / (1 - \beta_2^k)$
+    \State $x_k \gets x_{k-1} - \alpha \, \hat{m}_k / (\sqrt{\hat{v}_k} + \varepsilon)$
+\EndWhile
+
+\State \Return $x_k$
+\end{algorithmic}
+\end{algorithm}

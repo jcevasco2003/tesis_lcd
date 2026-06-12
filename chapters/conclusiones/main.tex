@@ -1,0 +1,14 @@
+\chapter{Conclusiones}
+\label{conclusiones}
+
+En este trabajo se presentó una extensión de un sistema de SLAM visual-inercial basado en Gaussian Splatting, incorporando variaciones en la gestión de mapa y la detección y cierre de ciclos. El objetivo principal fue obtener un sistema más robusto y preciso, capaz de aprovechar el recorrido para corregir los errores en la deriva y mejorar la calidad de la estimación y el modelo de mapa.
+
+Para ello, se desarrolló una variante del sistema original de VIGS-Fusion con: un preprocesamiento de las imágenes para mejorar la gestión del mapa de gaussianas basado en regiones de alta frecuencia, un modelo de submapeo para mejorar la eficiencia computacional, una estrategia de detección de ciclos a partir de descriptores NetVLAD, y un proceso de optimización global para la corrección de la trayectoria y el mapa al detectar un ciclo.
+
+Los resultados obtenidos en los experimentos muestran que el preprocesamiento de las imágenes es un proceso con un costo negligible que mejora la calidad de la reconstrucción visual, y que el modelo de submapeo reduce el costo computacional sin afectar la calidad de la estimación. Además, en los conjuntos de datos evaluados, aquellos con algún ciclo presentaron una mejora significativa en las métricas, mientras que aquellos sin ciclos no presentaron un empeoramiento..
+
+\section{Trabajo futuro}
+
+Como trabajo futuro, un camino que consideramos importante es la exploración de otros conjuntos de datos como EuRoC-MAV \cite{eurocmav}, que presenta secuencias con una duración más larga, así como algunas con más ciclos, permitiendo evaluar el desempeño del sistema en escenarios más complejos. Sin embargo, este conjunto de datos no incluye datos de una cámara de profundidad sino de una cámara estéreo, por lo que sería necesario preprocesar las imágenes mediante un método de estimación de la profundidad.
+
+Además, un cuello de botella en la implementación actual fue la dependencia total de ROS2, lo que imposibilitó optimizaciones al introducir limitaciones a través de la CPU. En este sentido, se puede explorar una implementación desacopladas que permita, además, comparar el trabajo con otros sistemas de Gaussian Splatting que no estén integrados en ROS2 y extender sus posibles usos. 

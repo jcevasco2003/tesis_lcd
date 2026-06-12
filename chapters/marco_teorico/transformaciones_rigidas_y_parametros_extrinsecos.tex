@@ -1,0 +1,26 @@
+\section{Transformaciones rígidas y parámetros extrínsecos}
+Para poder representar efectivamente el mundo, es necesario un sistema de coordenadas. Para esto, se fija un sistema de coordenadas global, en el cual efectuar transformaciones rígidas. Las mismas son una composición de una rotación y una traslación.
+
+Sea $\mathbf{x}_w \in \mathbb{R}^3$ un punto expresado en el sistema de referencia del mundo.
+Su representación en el sistema de la cámara viene dada por
+
+\begin{equation}
+\mathbf{x}_c = \mathbf{R}\,\mathbf{x}_w + \mathbf{t},
+\end{equation}
+
+donde $\mathbf{R} \in SO(3)$, espacio que trataremos en una sección posterior, es una matriz de rotación, y $\mathbf{t} \in \mathbb{R}^3$ es
+un vector de traslación.
+
+Utilizando coordenadas homogéneas, esta relación puede escribirse de forma matricial como
+
+\begin{equation}
+\tilde{\mathbf{x}}_c =
+\begin{pmatrix}
+\mathbf{R} & \mathbf{t} \\
+\mathbf{0}^\top & 1
+\end{pmatrix}
+\tilde{\mathbf{x}}_w.
+\end{equation}
+
+Los parámetros $\mathbf{R}$ y $\mathbf{t}$ se conocen como parámetros extrínsecos de la cámara,
+ya que describen su posición y orientación en el entorno. Nos referimos a la combinación de ambos como la pose de la cámara.

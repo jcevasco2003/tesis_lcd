@@ -1,0 +1,26 @@
+\section{Localización y mapeo simultáneos}
+
+El marco de nuestro trabajo abordó una versión distinta de este problema, ampliamente utilizada en el área de la robótica. Tomamos imágenes a tiempo real, las ordenamos bajo el criterio temporal, y nos interesa obtener tanto la reconstrucción del entorno, llamado mapeo, como la localización de la cámara, llamada pose, a lo largo de la secuencia. Nos encontramos con el problema de \textit{Simultaneous Localization and Mapping} (SLAM).
+
+Hay dos estrategias empleadas para encarar el problema, que son la indirecta y la directa. En la primera, se pre-procesan los datos básicos de los sensores para obtener representaciones intermedias más concretas centrándose en \textit{features} o puntos clave, mientras que en la segunda se usan los datos directamente. Estos últimos tienden a ser más costosos, pues tienen que encarar el problema para todos los puntos de la imagen; sin embargo, se vuelven más precisos gracias a ello. En particular, la literatura emplea algoritmos paralelizables para poder implementar en la Unidad de Procesamiento de Gráficos (GPU).
+
+El planteamiento clásico de SLAM se formula en un marco probabilístico, modelando el problema mediante grafos de factores y buscando el \emph{maximum a posteriori} (MAP) de la distribución de probabilidad conjunta. Dado un estado inicial del robot $\mathbf{x}_0$, un conjunto de controles $\mathbf{u}_{0:T-1}$ y mediciones sensoriales $\mathbf{z}_{1:T}$, el objetivo es estimar la trayectoria de estados $\mathbf{x}_{1:T}$ y el mapa $\mathbf{m}$ que mejor expliquen las observaciones.
+
+Bajo supuestos habituales de ruido gaussiano e independencia condicional de los errores de los sensores, el problema puede expresarse como la minimización de una suma de errores cuadráticos:
+\begin{equation}
+\min_{\mathbf{x}_{1:T},\,\mathbf{m}}
+\sum_{t=1}^{T}
+\big\|
+\mathbf{z}_t - h(\mathbf{x}_t, \mathbf{m})
+\big\|_2^2
+\;+\;
+\sum_{t=0}^{T-1}
+\big\|
+\mathbf{x}_{t+1} - f(\mathbf{x}_t, \mathbf{u}_t)
+\big\|_2^2,
+\end{equation}
+donde $h(\cdot)$ denota el modelo de observación, que predice la medición esperada a partir del estado y el mapa, y $f(\cdot)$ representa el modelo de movimiento del sistema. Esta formulación conduce naturalmente a una estructura de grafo dispersa, en la cual cada término del costo corresponde a un factor que conecta un subconjunto reducido de variables.
+
+Este enfoque permite resolver el problema de SLAM mediante técnicas de optimización no lineal y factorización de matrices dispersas, constituyendo la base de numerosos sistemas modernos de SLAM.
+
+Otro enfoque posible es el de interpretar el modelo de observación como un renderizador que, a partir de un mapa tridimensional y una pose de la cámara, genera una imagen artificial. Así, el objetivo es encontrar las variables que minimicen la diferencia entre la imagen renderizada y la real. Este enfoque permite crear variables que representen el entorno de distintas formas, como una nube de puntos \cite{Sandström2023ICCV}, de voxels \cite{liu2024voxelslamcompleteaccurateversatile} o de triángulos (\textit{meshes}) \cite{10161425}. Otras representaciones, muy empleadas en la literatura, son las que se caracterizan por ser tanto continuas como diferenciables, permitiendo el uso de optimización por gradientes. Tal es el caso de NeRF y Gaussian Splatting. Todos estos métodos hacen fuerte uso de las propiedades pertenecientes a los grupos de Lie para poder formular y derivar sus ecuaciones fundamentales y expresar los errores a optimizar.

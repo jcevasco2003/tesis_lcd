@@ -1,0 +1,80 @@
+\section{Coordenadas homogéneas}
+
+En el contexto de la visión por computadora y la geometría proyectiva, resulta necesario poder representar las llamadas transformaciones afines, que veremos más adelante, y las proyectivas de forma lineal.  Así, se emplea una extensión de las coordenadas euclídeas mediante el uso de coordenadas homogéneas. En las mismas, se agrega una dimensión más al espacio que representa la escala.
+
+Así, un punto bidimensional $(u, v) \in \mathbb{R}^2$ puede representarse en coordenadas homogéneas como el vector
+\begin{equation}
+    \tilde{\mathbf{u}} =
+    \begin{pmatrix}
+    u \\
+    v \\
+    1
+    \end{pmatrix},
+\end{equation}
+
+
+mientras que un punto tridimensional $(x, y, z) \in \mathbb{R}^3$ se representa como
+\begin{equation}
+\tilde{\mathbf{x}} =
+\begin{pmatrix}
+x \\
+y \\
+z \\
+1
+\end{pmatrix}.
+\end{equation}
+
+En esta formulación, dos vectores homogéneos que difieren por un factor escalar distinto de cero representan el mismo punto euclídeo. En el caso bidimensional, esto implica que
+
+\begin{equation}
+\lambda
+\begin{pmatrix}
+u \\
+v \\
+1
+\end{pmatrix}
+\sim
+\begin{pmatrix}
+\lambda u \\
+\lambda v \\
+\lambda
+\end{pmatrix},
+\qquad \lambda \neq 0,
+\end{equation}
+
+Es decir, corresponden a la misma coordenada cartesiana $(u, v)$ luego de normalizar por la última componente.
+
+En el modelo de cámara pinhole, la relación entre un punto del espacio expresado en el sistema de referencia de la cámara y su proyección en la imagen puede escribirse como
+
+\begin{equation}
+\lambda
+\begin{pmatrix}
+u \\
+v \\
+1
+\end{pmatrix}
+=
+\mathbf{K}
+\begin{pmatrix}
+x \\
+y \\
+z
+\end{pmatrix},
+\end{equation}
+donde $\mathbf{K}$ es la matriz intrínseca de la cámara y $\lambda$ es un factor de escala asociado a la profundidad del punto. Este factor es a priori desconocido, y no se puede deducir meramente de una imagen RGB. Si conociéramos $z$, podemos tomar $\lambda = z$, normalizar y obtener que:
+
+\begin{equation}
+\begin{pmatrix}
+u \\
+v \\
+1
+\end{pmatrix}
+=
+\mathbf{K}
+\begin{pmatrix}
+x/z \\
+y/z \\
+1
+\end{pmatrix},
+\end{equation}
+

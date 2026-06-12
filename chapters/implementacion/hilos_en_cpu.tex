@@ -1,0 +1,13 @@
+\section{Hilos en CPU}
+
+La CPU, de forma similar a la GPU, también puede ejecutar tareas en paralelo mediante el uso de hilos. Un hilo es una unidad de ejecución dentro de un proceso, y permite que diferentes partes de un programa se ejecuten simultáneamente. En este trabajo, se utilizan hilos en CPU para gestionar tareas que pueden ejecutarse con cierto grado de paralelismo pero que no requieren la potencia de una GPU ni cumplen el principio SIMD, es decir, no es posible dividirlas en partes pequeñas. Además, los hilos en CPU permiten trabajar en tareas con recursos compartidos donde los hilos se bloquean mutuamente para evitar conflictos, teniendo un sentido de orden en la ejecución.
+
+\subsection{Hilos empleados}
+
+Las tareas relacionadas a la localización, así como la gestión de keyframes y funciones principales, se realizan en un hilo dedicado. Esto se debe a que estas tareas requieren un orden específico y secuencial que determina el flujo de ejecución. En este hilo se encuentra la función que recibe las imágenes y la información de la IMU organizadas, encargándose tanto de la toma de decisiones (por ejemplo, si tratarla como un nuevo keyframe o no) como de la ejecución de las funciones necesarias para actualizar la pose a partir del problema de minimización. Este problema se resuelve utilizando la biblioteca Ceres, que permite resolver problemas de optimización no lineal de forma eficiente, exclusiva de CPU.
+
+Por otro lado, un hilo distinto se encarga de optimizar el mapa, es decir, actualizar los parámetros de las gaussianas. Aquí se muestrea dentro del submapa, y luego se realiza la optimización con ADAM en GPU. De este modo, comparte con el hilo principal la información de las gaussianas, pero se bloquean cuando es necesario para evitar colisiones.
+
+Un tercer hilo se encarga de la visualización, actualizando la ventana que muestra el mapa reconstruido en tiempo real así como las poses estimadas. Este hilo no participa en el sistema principal, sino que funciona únicamente para mostrar la información.
+
+Del mismo modo que LoopSplat \cite{zhu2025_loopsplat}, separamos las tareas relacionadas a los ciclos en un hilo dedicado para evitar bloqueos. Así, un cuarto hilo se encarga del proceso completo de detección, verificación, registro y cierre de ciclos. Este hilo trabaja exclusivamente sobre los submapas cerrados, por lo que apenas colisiona con los hilos principales.
