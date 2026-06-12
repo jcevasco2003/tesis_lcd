@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex tesis"] 1781296929.9214 "tesis.aux" "tesis.bbl" "tesis" 1781296872.10279 0
+["bibtex tesis"] 1781296929.9214 "tesis.aux" "tesis.bbl" "tesis" 1781302225.35214 0
   "./tesis.bib" 1781296791.45276 18408 a4723546208e1a7d476aa035c7e43b7f ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/unsrt.bst" 1292289607 18030 1376b4b231b50c66211e47e42eda2875 ""
-  "tesis.aux" 1781296871.72137 27320 04eb15ae80c2aea2fcac7188cf671315 "pdflatex"
+  "tesis.aux" 1781302223.81199 27320 04eb15ae80c2aea2fcac7188cf671315 "pdflatex"
   (generated)
   "tesis.bbl"
   "tesis.blg"
   (rewritten before read)
-["pdflatex"] 1781296870.08586 "/home/jorge/ros2_thesis_ws/src/escrito/Tesis/tesis.tex" "tesis.pdf" "tesis" 1781296872.10302 0
+["pdflatex"] 1781302220.79452 "/home/jorge/ros2_thesis_ws/src/escrito/Tesis/tesis.tex" "tesis.pdf" "tesis" 1781302225.35265 0
   "../chapters/conclusiones/main.tex" 1781287412.59812 2314 b8edd197586aa272475b5777629d94ce ""
   "../chapters/estado_del_arte/fourier.tex" 1780957729.47171 3365 b0465cbc083a5b13c9680e34c823afc4 ""
   "../chapters/estado_del_arte/loopsplat.tex" 1780983985.07686 10008 381bdf009b43e9dee8d33645ab875294 ""
@@ -40,7 +40,7 @@
   "../chapters/marco_teorico/transformaciones_rigidas_y_parametros_extrinsecos.tex" 1779657471.25097 1209 ebe2acecba57337e69a8e3025a0f82e7 ""
   "../chapters/resultados/dataset.tex" 1781296703.22849 660 fedd7b59c1a5c62254f4c5b9f3ab8737 ""
   "../chapters/resultados/evaluacion.tex" 1781296612.9347 8273 627dbe8e54d531852f398499a0949d76 ""
-  "../chapters/resultados/main.tex" 1780961730.90881 514 921f6d51c1dfa649463fa03ae5903727 ""
+  "../chapters/resultados/main.tex" 1781302218.75545 498 30bd59d178f26addfb731063d2c82e49 ""
   "../chapters/resultados/metricas.tex" 1781216202.89742 3602 39c7980d36d02f3fc6539f953fc6c8e3 ""
   "../imagenes_implementacion/What-is-a-ROS2-message.png" 1778877512.41589 18379 481881cf7ebb05c83eaf9fcc084d18fd ""
   "../imagenes_implementacion/mascaras_original.png" 1780980571.14311 75876 e2e2363ddff390bffe2210e76d37a8c3 ""
@@ -256,7 +256,7 @@
   "agradecimientos.tex" 1781295629.21333 706 47e55bb51e36c919b1d175899a3a6fbf ""
   "caratula.tex" 1781036887.32356 747 1355d7658a8125e5facf8bad72bf400c ""
   "logofcen.pdf" 1778817034 39758 9bdae1f60233e50ba5e4e659fa2e6078 ""
-  "tesis.aux" 1781296871.72137 27320 04eb15ae80c2aea2fcac7188cf671315 "pdflatex"
+  "tesis.aux" 1781302223.81199 27320 04eb15ae80c2aea2fcac7188cf671315 "pdflatex"
   "tesis.bbl" 1781296870.07737 9762 e209db86100c8831e0723a6ccc54feee "bibtex tesis"
   "tesis.cls" 1778817034 36659 469a5b174f6a5f4de348ff19f86a677d ""
   "tesis.tex" 1781296293.73886 2444 9c8fa18178340f44f51fa80ae64db513 ""
