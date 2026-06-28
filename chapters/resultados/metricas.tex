@@ -24,7 +24,7 @@ e_i^2
 },
 $$
 
-donde $N$ es la cantidad de poses evaluadas.
+\noindent donde $N$ es la cantidad de poses evaluadas.
 
 Esta métrica cuantifica el error global acumulado de la trayectoria. Valores menores indican una mejor estimación de la pose y una menor deriva durante la navegación.
 
@@ -45,7 +45,7 @@ I(u,v)-\hat{I}(u,v)
 \right)^2,
 $$
 
-donde:
+\noindent donde:
 
 \begin{itemize}
 \item $I(u,v)$ es el valor del píxel de la imagen de referencia.
@@ -64,7 +64,7 @@ $$
 \right),
 $$
 
-donde $L$ es el valor máximo posible de intensidad de un píxel.
+\noindent donde $L$ es el valor máximo posible de intensidad de un píxel.
 
 El PSNR se expresa en decibeles (dB). Valores más altos indican una reconstrucción visual más fiel a las observaciones originales.
 
@@ -82,7 +82,7 @@ $$
 \frac{T_{\mathrm{map}}}{N},
 $$
 
-donde $T_{\mathrm{map}}$ es el tiempo total invertido en tareas de mapeo y $N$ es la cantidad de imágenes procesadas.
+\noindent donde $T_{\mathrm{map}}$ es el tiempo total invertido en tareas de mapeo y $N$ es la cantidad de imágenes procesadas.
 
 Esta métrica permite evaluar el costo computacional asociado al mantenimiento y refinamiento del mapa.
 
@@ -100,6 +100,6 @@ $$
 \frac{T_{\mathrm{track}}}{N},
 $$
 
-donde $T_{\mathrm{track}}$ representa el tiempo total dedicado al seguimiento y $N$ la cantidad de imágenes procesadas.
+\noindent donde $T_{\mathrm{track}}$ representa el tiempo total dedicado al seguimiento y $N$ la cantidad de imágenes procesadas.
 
 Esta métrica resulta particularmente relevante para evaluar la capacidad del sistema de operar en tiempo real, ya que determina la latencia asociada a la estimación de pose.

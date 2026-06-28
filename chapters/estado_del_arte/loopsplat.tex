@@ -30,7 +30,7 @@ Una vez obtenido el descriptor global para cada keyframe utilizando NetVLAD, es 
 \text{sim}(i,j) = \frac{d_i \cdot d_j}{\|d_i\|\|d_j\|}
 \end{equation}
 
-donde $d_i$ y $d_j$ son los descriptores de los keyframes $i$ y $j$ respectivamente.
+\noindent donde $d_i$ y $d_j$ son los descriptores de los keyframes $i$ y $j$ respectivamente.
 
 Dado que estos descriptores son globales, esta medida permite estimar si dos imágenes representan el mismo lugar, independientemente de pequeñas variaciones de iluminación o punto de vista.
 
@@ -51,7 +51,7 @@ Para reducir estos falsos positivos, se introduce un segundo criterio basado en 
 \text{OR} = \frac{1}{|K_{ij}|} \sum_{(p,q)\in K_{ij}} \left[ \|T_{P \to Q}(p) - q\|^2 < \tau_1 \right]
 \]
 
-donde:
+\noindent donde:
 \begin{itemize}
     \item $K_{ij}$ es el conjunto de correspondencias entre puntos de $P$ y $Q$, obtenidas mediante búsqueda de vecinos más cercanos con verificación recíproca.
     \item $T_{P \to Q}$ es la transformación estimada entre ambos submapas.
@@ -91,7 +91,7 @@ Formalmente, para cada arista que conecta los nodos $i$ y $j$, se define un erro
 e_{ij}^{T},\Omega_{ij},e_{ij},
 \]
 
-donde:
+\noindent donde:
 
 \begin{itemize}
 \item $T_i$ y $T_j$ son las poses globales de los submapas.

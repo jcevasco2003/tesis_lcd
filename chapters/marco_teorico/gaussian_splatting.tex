@@ -43,7 +43,7 @@ Utilizando propiedades de la probabilidad en matrices, dada una transformación 
 \mathbf{y} = \mathbf{A}\mathbf{x} + \mathbf{B}
 \end{equation}
 
-vale que la covarianza
+\noindent vale que la covarianza
 
 \begin{equation}
 \boldsymbol{\Sigma}_y = \mathbf{A}\boldsymbol{\Sigma}_x\mathbf{A}^\top.
@@ -65,7 +65,7 @@ Por la misma propiedad, y recordando que la covarianza en el sistema de referenc
 \mathbf{R}\,\boldsymbol{\Sigma}\,\mathbf{R}^\top
 \end{equation}
 
-tenemos que
+\noindent tenemos que
 
 \begin{equation}
 \boxed{
@@ -83,7 +83,7 @@ $\mu_i' = \pi(\mathbf{T}_{cw} \cdot  \mu_i)$.
 A partir de la media y la matriz de covarianza, podemos determinar nuestra gaussiana respecto de la densidad $\alpha$, siguiendo una variación de la fórmula probabilística clásica:
 
 \begin{equation}
-\alpha_i(x) = o_i \cdot e^{-\frac{1}{2}(x-\mu_i')^T \Sigma_i'^{-1}(x-\mu_i')}
+\alpha_i(x) = o_i \cdot e^{-\frac{1}{2}(x-\mu_i')^T \Sigma_i'^{-1}(x-\mu_i')}.
 \end{equation}
 
 Notemos que el término de normalización de la gaussiana, que multiplica la exponencial, no está definido. Esto se debe a que no empleamos la gaussiana desde el punto de vista de la probabilidad sino como primitiva. Al tener control sobre el término multiplicativo, ganamos un grado de libertad en la representación. En su lugar, tenemos un término de opacidad, que se optimizará junto al resto de parámetros.
@@ -130,7 +130,7 @@ $$
 
 El valor de la gaussiana en el rayo puede también computarse como función de t:
 $$
-G^1(t) = e^{-(o+tv-x_c)^T \Sigma^{-1} (o+tv-x_c)}
+G^1(t) = e^{-(o+tv-x_c)^T \Sigma^{-1} (o+tv-x_c)}.
 $$
 Tenemos que el valor de la gaussiana a lo largo del rayo es, en sí, una gaussiana unidimensional.
 
@@ -138,10 +138,13 @@ Con ello, \cite{zhang2024radegs} definió el punto de intersección entre el ray
 
 Notemos lo siguiente:
 
-\begin{equation}
-max(G^1(t)) = max(log(G^1(t)) = max(-(o+tv-x_c)^T\Sigma^{-1}(o+tv-x_c)) =
-min((o+tv-x_c)^T\Sigma^{-1}(o+tv-x_c))
-\end{equation}
+
+\begin{align*}
+max(G^1(t)) =& max(log(G^1(t))) \\ 
+            =& max(-(o+tv-x_c)^T\Sigma^{-1}(o+tv-x_c)) \\
+            =& min((o+tv-x_c)^T\Sigma^{-1}(o+tv-x_c))
+\end{align*}
+
 
 Desarrollemos el término a minimizar. Llamemos $d = o - x_c$
 
@@ -154,7 +157,7 @@ Como $\Sigma^{-1}$ es semidefinida positiva y $v \neq 0$, sabemos que $v^T \Sigm
 Derivamos respecto de $t$ e igualamos a $0$.
 
 \begin{equation}
-\frac{dQ}{dt} = 2 v^T \Sigma^{-1} d + 2 t v^T \Sigma^{-1} v = 0
+\frac{dQ}{dt} = 2 v^T \Sigma^{-1} d + 2 t v^T \Sigma^{-1} v = 0.
 \end{equation}
 
 Despejamos $t$ y reemplazamos $-d$ por $(x_c-o)$
@@ -164,7 +167,7 @@ t^* = - \frac{v^T \Sigma^{-1}d}{v^T \Sigma^{-1} v} = \frac{v^T \Sigma^{-1} (x_c 
         {v^T \Sigma^{-1} v} 
 \end{equation}
 
-y listo.
+\noindent y listo.
 
 Para continuar, definimos el espacio de rayos como el sistema de coordenadas tal que todo rayo saliente de cámara es paralelo, formando un espacio no cartesiano. La transformación al espacio de rayos se realiza del siguiente modo: Para un punto $(x,y,z)^T$ en el espacio de la cámara, se obtiene el punto $(u,v,t)$ tomando $(u,v)$ como las coordenadas en el plano de la cámara, y $t=\sqrt{x^2+y^2+z^2}$. A lo largo de un rayo, se preservan las coordenadas $(u,v)$ pero varía $t$. 
 
@@ -201,7 +204,7 @@ Como podemos ver a partir de la figura \ref{espacio_rayos_camara}, $t$ es la dis
 d = cos\theta \cdot t^*
 \end{equation}
 
-con $\theta$ el ángulo entre el rayo de luz y el eje principal de la cámara. Para simplificarlo, \cite{zhang2024radegs} aproxima por $\theta_c$, el ángulo definido por la media $x_c$ de la gaussiana. Así, la profundidad $x$ es
+\noindent con $\theta$ el ángulo entre el rayo de luz y el eje principal de la cámara. Para simplificarlo, \cite{zhang2024radegs} aproxima por $\theta_c$, el ángulo definido por la media $x_c$ de la gaussiana. Así, la profundidad $x$ es
 \begin{equation}
 d = cos\theta_c \cdot t^* = \frac{z_c}{t_c} t^* = \frac{z_c}{t_c} \hat{q} (u_c - u_o)
 = \hat{p}(u_c - u_o)
@@ -257,7 +260,7 @@ Es posible mantener constantes las gaussianas y permitir que el algoritmo itere 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.75\linewidth]{../imagenes_marco_teorico/densificacion_gaussianas.png}
-    \caption{Arriba, se observa la densificación en zonas subrepresentadas clonando la original. Abajo, tenemos la densificación en zonas sobrerepresentadas mediante la partición de la original. Imagen extraída de \cite{zhang2024radegs}}
+    \caption{Arriba, se observa la densificación en zonas subrepresentadas clonando la original. Abajo, tenemos la densificación en zonas sobrerepresentadas mediante la partición de la original. Imagen extraída de \cite{zhang2024radegs}.}
 \end{figure}
 
 Por otro lado, la optimización de los parámetros podría dar lugar a gaussianas con $\alpha$ tan pequeño que su aporte en la representación sea fundamentalmente nulo. Debido a esto, otro paso para el control de gaussianas es la poda, eliminando aquellas con un $\alpha < \epsilon_\alpha$, siendo $\epsilon_\alpha$ un umbral.

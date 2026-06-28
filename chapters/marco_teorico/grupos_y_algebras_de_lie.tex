@@ -110,7 +110,7 @@ $$
 Así, los elementos del álgebra de Lie, es decir del espacio tangente a la identidad, son de la forma
 
 \begin{equation}
-v^{\wedge} = \mathcal{X}^{-1} \mathcal{\dot{X}} = - \mathcal{\dot{X}}^{-1} \mathcal{X}
+v^{\wedge} = \mathcal{X}^{-1} \mathcal{\dot{X}} = - \mathcal{\dot{X}}^{-1} \mathcal{X}.
 \label{derivada_algebra_lie}
 \end{equation}
 
@@ -130,7 +130,7 @@ $$
 \tau^\wedge \mapsto (\tau^\wedge)^\vee = \tau = \sum_{i=1}^m \tau_i \mathbb{e}_i,
 $$
 
-donde $\mathbf{e}_i$ son los vectores de la base de $\mathbb{R}^m$, con $\mathbf{e}_i^\wedge = E_i$.
+\noindent donde $\mathbf{e}_i$ son los vectores de la base de $\mathbb{R}^m$, con $\mathbf{e}_i^\wedge = E_i$.
 
 Con estos isomorfismos, se vuelve conveniente trabajar directamente en $\mathbb{R}^m$, pues permite utilizar operaciones matriciales y herramientas del cálculo de forma más sencilla.
 
@@ -153,12 +153,12 @@ Llamamos retracción al mapeo de elementos del álgebra de Lie hacia el grupo. E
 El mapa exponencial surge al considerar las derivadas temporales de $\mathcal{X} \in \mathcal{M}$ sobre la variedad. Despejando la ecuación \ref{derivada_algebra_lie}, tenemos que
 
 $$
-\mathcal{\dot{X}} = \mathcal{X} v^\wedge
+\mathcal{\dot{X}} = \mathcal{X} v^\wedge.
 $$
 
 Fijando $v$, tenemos una Ecuación Diferencial Ordinaria de solución
 $$
-\mathcal{X}(t) = \mathcal{X}(0) \exp(v^\wedge t)
+\mathcal{X}(t) = \mathcal{X}(0) \exp(v^\wedge t).
 $$
 
 Como $\mathcal{X}(t)$ y $\mathcal{X}(0)$ son elementos del grupo, entonces $\exp(v^\wedge t) = \mathcal{X}(0)^{-1} \mathcal{X}(t)$ lo es también. Luego, $\exp(v^\wedge t) $ mapea elementos $v^\wedge$ del álgebra de Lie al grupo.
@@ -174,10 +174,10 @@ El mapa exponencial cumple las siguiente propiedades:
 
 \begin{itemize}
 
-\item $\exp((t+s)\tau^\wedge) = \exp(t \tau^\wedge) \exp(s\tau^\wedge)$
-\item $\exp(t\tau^\wedge) = \exp(\tau^\wedge)^t$
-\item $\exp(-\tau^\wedge) = \exp(\tau^\wedge)^{-1}$
-\item $\exp(\mathcal{X} \tau^\wedge \mathcal{X}^{-1}) = \mathcal{X} \exp(\tau^\wedge) \mathcal{X}^{-1}$
+\item $\exp((t+s)\tau^\wedge) = \exp(t \tau^\wedge) \exp(s\tau^\wedge)$.
+\item $\exp(t\tau^\wedge) = \exp(\tau^\wedge)^t$.
+\item $\exp(-\tau^\wedge) = \exp(\tau^\wedge)^{-1}$.
+\item $\exp(\mathcal{X} \tau^\wedge \mathcal{X}^{-1}) = \mathcal{X} \exp(\tau^\wedge) \mathcal{X}^{-1}$.
 
 \end{itemize}
 
@@ -197,25 +197,25 @@ Mediante la suma y resta podemos analizar incrementos en una variedad expresánd
 \item 
 $$
 \oplus \text{ a derecha}: \qquad \mathcal{Y} = \mathcal{X} \oplus \\^\mathcal{X}\tau \coloneq
-                    \mathcal{X} \circ \text{Exp}(^\mathcal{X}\tau) \in \mathcal{M}
+                    \mathcal{X} \circ \text{Exp}(^\mathcal{X}\tau) \in \mathcal{M}.
 $$
 
 \item
 $$
 \ominus \text{ a derecha}: \qquad ^\mathcal{E}\tau = \mathcal{Y} \ominus \mathcal{X} \coloneq
-             \text{Log}(\mathcal{X}^{-1} \circ \mathcal{Y}) \in \mathcal{T}_\mathcal{X}\mathcal{M}
+             \text{Log}(\mathcal{X}^{-1} \circ \mathcal{Y}) \in \mathcal{T}_\mathcal{X}\mathcal{M}.
 $$
 
 \item 
 $$
 \oplus \text{ a izquierda}: \qquad \mathcal{Y} = \\^\mathcal{X}\tau \oplus \mathcal{X} \coloneq
-                    \text{Exp}(^\mathcal{E}\tau) \circ \mathcal{X} \in \mathcal{M}
+                    \text{Exp}(^\mathcal{E}\tau) \circ \mathcal{X} \in \mathcal{M}.
 $$
 
 \item 
 $$
 \ominus \text{ a izquierda}: \qquad ^\mathcal{E}\tau = \mathcal{Y} \ominus \mathcal{X} \coloneq
-             \text{Log}(\mathcal{Y} \circ \mathcal{X}^{-1}) \in \mathcal{T}_\mathcal{E}\mathcal{M}
+             \text{Log}(\mathcal{Y} \circ \mathcal{X}^{-1}) \in \mathcal{T}_\mathcal{E}\mathcal{M}.
 $$
 
 \end{itemize}
@@ -263,7 +263,7 @@ $$
 \textbf{Ad}_\mc{X} (\prescript{\mc{X}}{}{\tau})
 $$
 
-llamado matriz adjunta. Se obtiene de aplicar el operador Vee a la adjunta
+\noindent llamado matriz adjunta. Se obtiene de aplicar el operador Vee a la adjunta
 
 $$
 \textbf{Ad}_\mc{X}(\tau) = (\mc{X} \tau^\wedge \mc{X}^{-1})^\vee
@@ -311,20 +311,20 @@ Si lo particionamos en vectores columnas $j_i$ para $i = 1,2,...,m$,
 
 $$
 j_i = \frac{\partial f(x)}{\partial x_i} \coloneq
-\lim_{h \to 0} \frac{f(x+h e_i) - f(x)}{h} \in \mathbb{R}^n
+\lim_{h \to 0} \frac{f(x+h e_i) - f(x)}{h} \in \mathbb{R}^n.
 $$
 
 Para simplificar la notación, comprimimos el sistema a la forma
 
 $$
 J = \frac{\partial f(x)}{\partial x} \coloneq
-\lim_{h \to 0} \frac{f(x+h) - f(x)}{h}
+\lim_{h \to 0} \frac{f(x+h) - f(x)}{h}.
 $$
 
 Para los cálculos, la técnica más usada es la de desarrollar la expresión hasta obtener algo de la forma
 
 $$
-\lim_{h \to 0} \frac{Jh}{h} \coloneq \frac{\partial Jh}{\partial h} = J
+\lim_{h \to 0} \frac{Jh}{h} \coloneq \frac{\partial Jh}{\partial h} = J.
 $$
 
 Así, tenemos la aproximación lineal
@@ -333,7 +333,7 @@ $$
 f(x+h) \longrightarrow f(x) + \frac{\partial f(x)}{\partial x} h
 $$
 
-cuando $h \to 0$.
+\noindent cuando $h \to 0$.
 
 Con esta idea, se definen distintos Jacobianos según el tipo de cálculo que se quiera realizar. 
 
@@ -409,7 +409,7 @@ $$
 \end{bmatrix}
 $$
 
-que permite representar rotaciones y productos cruz con multiplicación matricial.
+\noindent que permite representar rotaciones y productos cruz con multiplicación matricial.
 
 A partir de la literatura, tenemos los siguientes resultados.
 

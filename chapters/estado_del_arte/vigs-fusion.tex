@@ -19,12 +19,12 @@ El estado a tiempo $k$ se define como
     x_k = [\mb{P}_k, \mb{V}_k, \mb{b}_a^k, \mb{b}_g^k]
 \end{equation}
 
-con $\mb{P}_k \in SE(3)$ representando la traslación $\mb{p}_k \in \mathbb{R}^3$ y la rotación $\mb{R}_k \in SO(3)$; $\mb{V}_k$ la velocidad; $\mb{b}_a^k$ y $\mb{b}_g^k$ los sesgos del acelerómetro y giróscopo, respectivamente.
+\noindent con $\mb{P}_k \in SE(3)$ representando la traslación $\mb{p}_k \in \mathbb{R}^3$ y la rotación $\mb{R}_k \in SO(3)$; $\mb{V}_k$ la velocidad; $\mb{b}_a^k$ y $\mb{b}_g^k$ los sesgos del acelerómetro y giróscopo, respectivamente.
 
 Para optimizar, se define una función de costo general que combina los residuos de RGB-D, de IMU y de marginalización:
 
 \begin{equation}
-C(\mb{x}_k) = r_{RGB-D} + r_{IMU} + r_{Marg}
+C(\mb{x}_k) = r_{RGB-D} + r_{IMU} + r_{Marg}.
 \end{equation}
 
 Para la minimización se utilizó Levenberg-Marquadt, con una aproximación del segundo orden $r_{RGB-D}$, en contraste con los métodos del estado del arte que utilizaban descenso del gradiente de primer orden.
@@ -41,7 +41,7 @@ Esta convención se conserva aquí para mantener la formulación original del m�
 Este residuo se compone del residuo fotométrico, que es la diferencia entre el color observado y el renderizado, $r_{photo} = RGB(x) - C(x)$, y el residuo geométrico, que es la diferencia entre la profundidad observada y la renderizada, $r_{geo} = D(x) - d(x)$. Para calcular la profundidad renderizada $d(x)$ se consideró la mediana de las profundidades de las gaussianas calculadas con \ref{profundidad_gaussianas}.
 
 \begin{equation}
-r_{RGB-D} = r_{photo} + r_{geo}
+r_{RGB-D} = r_{photo} + r_{geo}.
 \end{equation}
 
 En la literatura, se utiliza descenso del gradiente computando el Jacobiano a partir del modelo de color y profundidad, requiriendo muchos parámetros para poder diferenciar la suma de gaussianas pesadas. En este paper, se determinó un cambio que consiste en usar las derivadas de la imagen observada en el espacio bidimensional. Para obtener los Jacobianos se diferenciaron el color observado $RGB(x)$ y la profundidad $D(x)$.
@@ -50,7 +50,7 @@ En la literatura, se utiliza descenso del gradiente computando el Jacobiano a pa
 
 \begin{equation}
 \mb{J}_{\xi_c}^{r_{photo}} = \frac{\mc{D}r_{photo}}{\mc{D}\xi_c} = 
-\frac{\mc{D}(RGB(x) - C(x))}{\mc{D}\xi_c} = \frac{\mc{D}RGB(x)}{\mc{D}\xi_c}
+\frac{\mc{D}(RGB(x) - C(x))}{\mc{D}\xi_c} = \frac{\mc{D}RGB(x)}{\mc{D}\xi_c}.
 \label{jacobiano_error_fotometrico}
 \end{equation}
 
@@ -61,7 +61,7 @@ Utilizando los gradientes de la imagen observada, se aplicó la regla de la cade
 \frac{\mc{D}\mb{u}}{\mc{D}\mb{u}_c} \frac{\mc{D}\mb{u}_c}{\mc{D}\xi_c}
 \end{equation}
 
-donde $\mb{u}(u_x, u_y)$ es la ubicación del píxel en el plano bidimensional, y $\mb{u}_c$ su ubicación en el espacio tridimensional en el sistema de referencia de la cámara.
+\noindent donde $\mb{u}(u_x, u_y)$ es la ubicación del píxel en el plano bidimensional, y $\mb{u}_c$ su ubicación en el espacio tridimensional en el sistema de referencia de la cámara.
 
 A partir de esta descomposición, se tienen los siguientes términos:
 
@@ -84,7 +84,7 @@ A partir de esta descomposición, se tienen los siguientes términos:
     \item 
     El Jacobiano de los puntos respecto de un movimiento en la pose
     \begin{equation}
-    \frac{\mc{D}\mb{u}_c}{\mc{D}\xi_c}
+    \frac{\mc{D}\mb{u}_c}{\mc{D}\xi_c}.
     \end{equation}
     Para encontrar una fórmula cerrada, \cite{Matsuki2024GaussianSplattingSLAM} utilizó la derivación en la variante. Así, la perturbación $\delta \xi_c$, descompuesta en su traslación $\rho'$ y su rotación $\omega'$ induce la acción sobre el punto
     
@@ -95,7 +95,7 @@ A partir de esta descomposición, se tienen los siguientes términos:
     por lo que la perturbación lleva a la diferencia
 
     \begin{equation}
-    \delta\mu_c = \mu_c' - \mu_c = \rho + [\omega]_X \mu_c = \rho - [\mu_c]_X \,\,\omega
+    \delta\mu_c = \mu_c' - \mu_c = \rho + [\omega]_X \mu_c = \rho - [\mu_c]_X \,\,\omega.
     \end{equation}
 
     Luego, podemos expresar el Jacobiano como
@@ -103,7 +103,7 @@ A partir de esta descomposición, se tienen los siguientes términos:
     \begin{equation}
     \frac{\mc{D}\mb{u}_c}{\mc{D}\xi_c} = 
     \begin{bmatrix}
-        \mb{I} & -[\mb{u}_c]_X
+        \mb{I} & -[\mb{u}_c]_X.
     \end{bmatrix}
     \label{jacobiano_puntos_pose}
     \end{equation}
@@ -112,14 +112,14 @@ A partir de esta descomposición, se tienen los siguientes términos:
 \subsubsection{Jacobiano del error geométrico}
 
 \begin{equation}
-    \mb{J}_{\xi_c}^{r_{geo}} = \frac{\mc{D}(D(x) - d(x))}{\mc{D}\xi_c} = \frac{\mc{D}D(x)}{\mc{D}\xi_c}
+    \mb{J}_{\xi_c}^{r_{geo}} = \frac{\mc{D}(D(x) - d(x))}{\mc{D}\xi_c} = \frac{\mc{D}D(x)}{\mc{D}\xi_c}.
 \end{equation}
 
 Mediante la regla de la cadena,
 
 \begin{equation}
     \frac{\mc{D}D(x)}{\mc{D}\xi_c} = \frac{\mc{D}D(\mb{x})}{\mc{D}\mb{u}_c}
-    \frac{\mc{D}\mb{u}_c}{\mc{D}\xi_c}
+    \frac{\mc{D}\mb{u}_c}{\mc{D}\xi_c}.
 \end{equation}
 
 De nuevo, tenemos una descomposición con los términos:
@@ -131,7 +131,7 @@ De nuevo, tenemos una descomposición con los términos:
     \frac{\mc{D}D(\mb{x})}{\mc{D}\mb{u}_c} = r = 
     \begin{bmatrix}
         \frac{u_x - c_x}{f_x} \\
-        \frac{u_y - c_y}{f_y}
+        \frac{u_y - c_y}{f_y}.
     \end{bmatrix}
     \end{equation}
 
@@ -159,7 +159,7 @@ se expresa el Jacobiano completo
     \mb{J}_{\xi_c}^{r_{RGB-D}} =
     \begin{bmatrix}
         \mb{J}_{\xi_c}^{r_{photo}} \\
-        \mb{J}_{\xi_c}^{r_{geo}}
+        \mb{J}_{\xi_c}^{r_{geo}}.
     \end{bmatrix}
 \end{equation}
 
@@ -168,13 +168,13 @@ Luego, para poder usar Levenberg-Marquadt se tienen las expresiones
 \begin{equation}
     {\mb{J}_{\xi_c}^{r_{RGB-D}}}^T \mb{J}_{\xi_c}^{r_{RGB-D}} =
     {\mb{J}_{\xi_c}^{r_{photo}}}^T \mb{J}_{\xi_c}^{r_{photo}} +
-    {\mb{J}_{\xi_c}^{r_{geo}}}^T \mb{J}_{\xi_c}^{r_{geo}}
+    {\mb{J}_{\xi_c}^{r_{geo}}}^T \mb{J}_{\xi_c}^{r_{geo}},
 \end{equation}
     
 \begin{equation}
     {\mb{J}_{\xi_c}^{r_{RGB-D}}}^T \mb{r}_{RGB-D} =
     {\mb{J}_{\xi_c}^{r_{photo}}}^T \mb{r}_{photo} +
-    {\mb{J}_{\xi_c}^{r_{geo}}}^T \mb{r}_{geo}
+    {\mb{J}_{\xi_c}^{r_{geo}}}^T \mb{r}_{geo}.
 \end{equation}
 
 
@@ -195,7 +195,7 @@ El estado del sistema en el instante $k$ se define como
 \right)
 \end{equation}
 
-donde $\mathbf{p}_k$ es la posición, $\mathbf{q}_k$ la orientación, $\mathbf{v}_k$ la velocidad y $\mathbf{b}_{a_k},\mathbf{b}_{g_k}$ representan los sesgos del acelerómetro y el giroscopio respectivamente.
+\noindent donde $\mathbf{p}_k$ es la posición, $\mathbf{q}_k$ la orientación, $\mathbf{v}_k$ la velocidad y $\mathbf{b}_{a_k},\mathbf{b}_{g_k}$ representan los sesgos del acelerómetro y el giroscopio respectivamente.
 
 Entre dos fotogramas consecutivos $i$ y $j$, las mediciones de la IMU se preintegran obteniendo las cantidades
 
@@ -203,7 +203,7 @@ Entre dos fotogramas consecutivos $i$ y $j$, las mediciones de la IMU se preinte
 (\Delta \mathbf{p}_{ij}, \Delta \mathbf{v}_{ij}, \Delta \mathbf{q}_{ij})
 \end{equation}
 
-que representan los cambios relativos de posición, velocidad y orientación expresados en el sistema de referencia del instante $i$.
+\noindent que representan los cambios relativos de posición, velocidad y orientación expresados en el sistema de referencia del instante $i$.
 
 Siguiendo la formulación de la preintegración en variedades, la predicción del estado en el instante $j$ a partir del estado en $i$ puede escribirse como
 
@@ -232,7 +232,7 @@ Siguiendo la formulación de la preintegración en variedades, la predicción de
 \Delta \mathbf{q}_{ij}
 \end{align}
 
-donde $\mathbf{R}_i$ es la matriz de rotación asociada al cuaternión $\mathbf{q}_i$.
+\noindent donde $\mathbf{R}_i$ es la matriz de rotación asociada al cuaternión $\mathbf{q}_i$.
 
 El residuo IMU compara la predicción obtenida mediante estas ecuaciones con el estado estimado por el optimizador. Se define entonces como
 
@@ -248,7 +248,7 @@ El residuo IMU compara la predicción obtenida mediante estas ecuaciones con el 
 \end{bmatrix}
 \end{equation}
 
-donde cada componente corresponde a un error en posición, orientación, velocidad y sesgos.
+\noindent donde cada componente corresponde a un error en posición, orientación, velocidad y sesgos.
 
 El residuo de posición se define como
 
@@ -265,7 +265,7 @@ El residuo de posición se define como
 \frac12 \mathbf{g}\Delta t^2
 \right)
 -
-\Delta \mathbf{p}_{ij}
+\Delta \mathbf{p}_{ij}.
 \end{equation}
 
 El residuo de velocidad se expresa como
@@ -281,7 +281,7 @@ El residuo de velocidad se expresa como
 \mathbf{g}\Delta t
 \right)
 -
-\Delta \mathbf{v}_{ij}
+\Delta \mathbf{v}_{ij}.
 \end{equation}
 
 Para la orientación se utiliza la diferencia de cuaterniones en el grupo $SO(3)$
@@ -290,7 +290,7 @@ Para la orientación se utiliza la diferencia de cuaterniones en el grupo $SO(3)
 \mathbf{r}_q =
 (\mathbf{q}_i^{-1}\mathbf{q}_j)
 \ominus
-\Delta\mathbf{q}_{ij}
+\Delta\mathbf{q}_{ij}.
 \end{equation}
 
 Utilizando la parametrización mínima del error rotacional en $SO(3)$, este término puede escribirse explícitamente como
@@ -304,13 +304,13 @@ Utilizando la parametrización mínima del error rotacional en $SO(3)$, este té
 \right).
 \end{equation}
 
-donde $\mathrm{vec}(\cdot)$ extrae la parte vectorial del cuaternión.
+\noindent donde $\mathrm{vec}(\cdot)$ extrae la parte vectorial del cuaternión.
 
 Los residuos asociados a los sesgos se definen como
 
 \begin{align}
-\mathbf{r}_{ba} &= \mathbf{b}_{a_j} - \mathbf{b}_{a_i} \\
-\mathbf{r}_{bg} &= \mathbf{b}_{g_j} - \mathbf{b}_{g_i}
+\mathbf{r}_{ba} &= \mathbf{b}_{a_j} - \mathbf{b}_{a_i}, \\
+\mathbf{r}_{bg} &= \mathbf{b}_{g_j} - \mathbf{b}_{g_i}.
 \end{align}
 
 Para resolver el problema mediante optimización no lineal, el residuo se linealiza alrededor de una estimación actual $\tilde{\mathbf{x}}$.
@@ -324,7 +324,7 @@ Para resolver el problema mediante optimización no lineal, el residuo se lineal
 \delta \mathbf{x}
 \end{equation}
 
-donde
+\noindent donde
 
 \begin{equation}
 \mathbf{J}
@@ -332,7 +332,7 @@ donde
 \frac{\partial \mathbf{r}_{IMU}}{\partial \mathbf{x}}
 \end{equation}
 
-es el Jacobiano del residuo respecto al estado.
+\noindent es el Jacobiano del residuo respecto al estado.
 
 Por ejemplo, derivando el residuo de posición respecto a $\mathbf{p}_i$ se obtiene
 
@@ -342,7 +342,7 @@ Por ejemplo, derivando el residuo de posición respecto a $\mathbf{p}_i$ se obti
 -\mathbf{R}_i^\top
 \end{equation}
 
-mientras que respecto a $\mathbf{p}_j$
+\noindent mientras que respecto a $\mathbf{p}_j$
 
 \begin{equation}
 \frac{\partial \mathbf{r}_p}{\partial \mathbf{p}_j}
@@ -350,12 +350,12 @@ mientras que respecto a $\mathbf{p}_j$
 \mathbf{R}_i^\top
 \end{equation}
 
-y respecto a la velocidad inicial
+\noindent y respecto a la velocidad inicial
 
 \begin{equation}
 \frac{\partial \mathbf{r}_p}{\partial \mathbf{v}_i}
 =
--\mathbf{R}_i^\top \Delta t
+-\mathbf{R}_i^\top \Delta t.
 \end{equation}
 
 Las derivadas respecto a la orientación utilizan la aproximación de primer orden de la rotación
@@ -365,7 +365,7 @@ Las derivadas respecto a la orientación utilizan la aproximación de primer ord
 \approx
 \mathbf{I}
 +
-[\delta \boldsymbol{\theta}]_\times
+[\delta \boldsymbol{\theta}]_\times.
 \end{equation}
 
 Finalmente, los residuos se ponderan mediante la matriz de información de la medición
@@ -377,7 +377,7 @@ Finalmente, los residuos se ponderan mediante la matriz de información de la me
 \mathbf{r}_{IMU}
 \end{equation}
 
-donde $\mathbf{W}=\boldsymbol{\Sigma}^{-1}$ es la inversa de la covarianza de la preintegración.
+\noindent donde $\mathbf{W}=\boldsymbol{\Sigma}^{-1}$ es la inversa de la covarianza de la preintegración.
 
 
 
@@ -404,7 +404,7 @@ Sea el vector completo de variables del problema
 \end{bmatrix}
 \end{equation}
 
-donde
+\noindent donde
 
 \begin{itemize}
 \item $\mathbf{x}_m$ representa las variables que se desean marginalizar (estados antiguos),
@@ -418,7 +418,7 @@ El problema de mínimos cuadrados puede escribirse como
 \|\mathbf{r}(\mathbf{x})\|^2
 \end{equation}
 
-donde $\mathbf{r}(\mathbf{x})$ es el vector de residuos del sistema.
+\noindent donde $\mathbf{r}(\mathbf{x})$ es el vector de residuos del sistema.
 
 Linealizando alrededor de una estimación actual $\tilde{\mathbf{x}}$ se obtiene
 
@@ -428,14 +428,14 @@ Linealizando alrededor de una estimación actual $\tilde{\mathbf{x}}$ se obtiene
 \mathbf{r}_0 + \mathbf{J}\delta\mathbf{x}
 \end{equation}
 
-donde
+\noindent donde
 
 \begin{equation}
 \delta\mathbf{x} =
 \mathbf{x} \ominus \tilde{\mathbf{x}}
 \end{equation}
 
-y $\mathbf{J}$ es el Jacobiano del residuo.
+\noindent y $\mathbf{J}$ es el Jacobiano del residuo.
 
 El sistema normal asociado al problema de mínimos cuadrados es
 
@@ -443,11 +443,11 @@ El sistema normal asociado al problema de mínimos cuadrados es
 \mathbf{A}\delta\mathbf{x} = \mathbf{b}
 \end{equation}
 
-con
+\noindent con
 
 \begin{align}
 \mathbf{A} &= \mathbf{J}^\top \mathbf{J} \\
-\mathbf{b} &= \mathbf{J}^\top \mathbf{r}_0
+\mathbf{b} &= \mathbf{J}^\top \mathbf{r}_0.
 \end{align}
 
 Separando las variables a marginalizar y las variables restantes, la matriz 
@@ -461,7 +461,7 @@ $\mathbf{A}$ puede escribirse como
 \end{bmatrix}
 \end{equation}
 
-y el vector $\mathbf{b}$ como
+\noindent y el vector $\mathbf{b}$ como
 
 \begin{equation}
 \mathbf{b} =
@@ -488,7 +488,7 @@ obteniéndose un nuevo sistema reducido
 \mathbf{b}_m
 \end{align}
 
-que depende únicamente de las variables restantes $\mathbf{x}_r$.
+\noindent que depende únicamente de las variables restantes $\mathbf{x}_r$.
 
 Este sistema reducido define un nuevo factor que encapsula la información de las 
 variables marginalizadas.
@@ -501,7 +501,7 @@ Para integrarlo nuevamente en el optimizador, se busca una factorización de la 
 \mathbf{J}_{marg}
 \end{equation}
 
-donde $\mathbf{J}_{marg}$ es el jacobiano del nuevo factor de marginalización.
+\noindent donde $\mathbf{J}_{marg}$ es el jacobiano del nuevo factor de marginalización.
 
 En la implementación, esta factorización se obtiene mediante descomposición espectral
 
@@ -512,7 +512,7 @@ En la implementación, esta factorización se obtiene mediante descomposición e
 \mathbf{V}^\top
 \end{equation}
 
-de donde se define
+\noindent de donde se define
 
 \begin{equation}
 \mathbf{J}_{marg} =
@@ -531,7 +531,7 @@ El residuo asociado al factor de marginalización se define entonces como
 \delta\mathbf{x}_r
 \end{equation}
 
-donde
+\noindent donde
 
 \begin{equation}
 \mathbf{r}_0 =
@@ -546,7 +546,7 @@ Finalmente, el incremento de estado utilizado en la evaluación del residuo es
 \mathbf{x}_r \ominus \mathbf{x}_r^0
 \end{equation}
 
-donde $\mathbf{x}_r^0$ es el punto de linearización almacenado en el momento de 
+\noindent donde $\mathbf{x}_r^0$ es el punto de linearización almacenado en el momento de 
 realizar la marginalización.
 
 En el caso de variables definidas en $SE(3)$, el incremento se calcula en el 
@@ -581,7 +581,7 @@ En este trabajo se utiliza una función de costo compuesta por tres términos, a
 \mathcal{L} = \mathcal{L}_{\text{rgb}} + w_{\text{depth}} \mathcal{L}_{\text{depth}} + w_{\text{dist}} \mathcal{L}_{\text{dist}} + \lambda_{\text{iso}} \mathcal{L}_{\text{iso}}
 \end{equation}
 
-donde:
+\noindent donde:
 
 \paragraph{Término fotométrico ($\mathcal{L}_{\text{rgb}}$):}
 Mide la diferencia cuadrática entre el color renderizado y el observado en cada píxel:
@@ -634,20 +634,20 @@ El color se forma a partir del alpha-blending de los splats bidimensionales. Por
 C = \sum_n T_n \alpha_n c_n
 \end{equation}
 
-con $T_n$ la transmitancia, $\alpha_n$ la opacidad y $c_n$ el color de la gaussiana $n$ en orden de profundidad back-to-front.
+\noindent con $T_n$ la transmitancia, $\alpha_n$ la opacidad y $c_n$ el color de la gaussiana $n$ en orden de profundidad back-to-front.
 
 Luego, tenemos que, sea $e = C - C_{obs}$ tal que $L = \frac{1}{2}||e||^2$ sea la función de pérdida,
 
 \begin{equation}
     \frac{\partial L}{\partial c_n} = 
     \frac{\partial L}{\partial C} \frac{\partial C}{\partial c_n} =
-    e (T_n\alpha_n)
+    e (T_n\alpha_n).
 \end{equation}
 
 Ahora, para poder extenderlo a la gaussiana tridimensional, no es necesario realizar ningún cambio, ya que el color no se perturba al proyectar. Podemos simplemente usar
 
 \begin{equation}
-    \frac{\partial L}{\partial c_n^{3d}} = \frac{\partial L}{\partial c_n^{2d}}
+    \frac{\partial L}{\partial c_n^{3d}} = \frac{\partial L}{\partial c_n^{2d}}.
 \end{equation}
 
 
@@ -657,13 +657,13 @@ Ahora, para poder extenderlo a la gaussiana tridimensional, no es necesario real
 Para la opacidad $\alpha_n$, tenemos que la misma influye activamente en el término correspondiente a la gaussiana $n$, y en todas las posteriores a partir del alpha-blending, pues
 
 \begin{equation}
-T_n = \prod_{k<n}(1-\alpha_k) 
+T_n = \prod_{k<n}(1-\alpha_k).
 \end{equation}
 
 Al derivar, tenemos tanto el término propio de color $T_n \alpha_n c_n$ como todos los términos posteriores. Como el término propio es lineal en $\alpha_n$, la derivada es simplemente $T_n c_n$. Por otro lado, para un $m>n$ fijo,
 
 \begin{equation}
-\frac{\partial T_m}{\partial \alpha_n} = - \frac{T_m}{1 - \alpha_n}
+\frac{\partial T_m}{\partial \alpha_n} = - \frac{T_m}{1 - \alpha_n}.
 \end{equation}
 
 Luego,
@@ -673,14 +673,14 @@ Luego,
     = T_n c_n - \frac{C - C_{\leq n}}{1-\alpha_n}
 \end{equation}
 
-con $C_{\leq n}$ el color acumulado hasta n.
+\noindent con $C_{\leq n}$ el color acumulado hasta n.
 
 Finalmente,
 
 \begin{equation}
     \frac{\partial L}{\partial \alpha_n} = 
     \frac{\partial L}{\partial C} \frac{\partial C}{\partial \alpha_n} =
-    e (T_n c_n - \frac{C - C_{\leq n}}{1-\alpha_n})
+    e (T_n c_n - \frac{C - C_{\leq n}}{1-\alpha_n}).
 \end{equation}
 
 
@@ -692,7 +692,7 @@ Para calcular el gradiente de la media $\mu_{3D}$, lo separamos en:
     \frac{\partial L}{\partial \mu_{3D}} =
     \frac{\partial L}{\partial \mu_{2D}} \frac{\partial \mu_{2D}}{\partial \mu_{3D}}
     + \frac{\partial L}{\partial z} \frac{\partial z}{\partial \mu_{3D}}
-    + \frac{\partial L}{\partial \Sigma'} \frac{\partial \Sigma'}{\partial \mu_{3D}}
+    + \frac{\partial L}{\partial \Sigma'} \frac{\partial \Sigma'}{\partial \mu_{3D}}.
 \end{equation}
 
 Ahora, deducimos cada término
@@ -702,7 +702,7 @@ Ahora, deducimos cada término
 Sea $\mb{J}$ el jacobiano de la proyección,
 
 \begin{equation}
-    \frac{\partial \mu_{2D}}{\partial \mu_{3D}} = \mb{J}
+    \frac{\partial \mu_{2D}}{\partial \mu_{3D}} = \mb{J}.
 \end{equation}
 
 Para el factor restante, observamos que la media bidimensional influye en la
@@ -715,7 +715,7 @@ G(x) =
 \right),
 \end{equation}
 
-y sea $\alpha = \sigma G$ la opacidad efectiva del splat en el píxel.
+\noindent y sea $\alpha = \sigma G$ la opacidad efectiva del splat en el píxel.
 Entonces,
 
 \begin{equation}
@@ -742,7 +742,7 @@ Aplicando regla de la cadena,
 La coordenada de profundidad es simplemente la tercera componente de la media en el sistema de referencia de la cámara:
 
 \begin{equation}
-    z = \mu_{3D,z}
+    z = \mu_{3D,z}.
 \end{equation}
 
 Por lo tanto,
@@ -754,7 +754,7 @@ Por lo tanto,
     \end{bmatrix}
 \end{equation}
 
-y el término correspondiente del gradiente queda
+\noindent y el término correspondiente del gradiente queda
 
 \begin{equation}
     \frac{\partial L}{\partial z}
@@ -785,13 +785,13 @@ Recordando que $D_{\text{med}}(p) = z_n + \hat{p}_n \cdot (p - \mu_n^{2D})$ para
 \end{split}
 \end{equation}
 
-donde el indicador $\mathbf{1}_{\text{med}}(n)$ vale 1 únicamente en el píxel donde la gaussiana $n$ cruza $T=0.5$, y $\frac{\partial D_{\text{med}}}{\partial z_n} = 1$ ya que $D_{\text{med}}$ depende linealmente de $z_n$.
+\noindent donde el indicador $\mathbf{1}_{\text{med}}(n)$ vale 1 únicamente en el píxel donde la gaussiana $n$ cruza $T=0.5$, y $\frac{\partial D_{\text{med}}}{\partial z_n} = 1$ ya que $D_{\text{med}}$ depende linealmente de $z_n$.
 
 \paragraph{Deducción del gradiente del término de distorsión}
 
 El término de distorsión es:
 \begin{equation}
-\mathcal{L}_{\text{dist}} = \sum_{p,n} \frac{w_{\text{dist}}}{2}\, \alpha_n(p)\,T_n(p)\, \big(d_n(p)-D_{\text{med}}(p)\big)^2
+\mathcal{L}_{\text{dist}} = \sum_{p,n} \frac{w_{\text{dist}}}{2}\, \alpha_n(p)\,T_n(p)\, \big(d_n(p)-D_{\text{med}}(p)\big)^2.
 \end{equation}
 
 Derivando respecto a $z_n$ (la profundidad de la gaussiana $n$):
@@ -804,7 +804,7 @@ Derivando respecto a $z_n$ (la profundidad de la gaussiana $n$):
 \end{split}
 \end{equation}
 
-donde usamos que $d_n(p) = z_n + \hat{p}_n \cdot (p - \mu_n^{2D})$, de modo que $\frac{\partial d_n(p)}{\partial z_n} = 1$. 
+\noindent donde usamos que $d_n(p) = z_n + \hat{p}_n \cdot (p - \mu_n^{2D})$, de modo que $\frac{\partial d_n(p)}{\partial z_n} = 1$. 
 
 
 En esta derivación, $D_{\text{med}}(p)$ se trata como constante respecto a $z_n$ mediante un \textit{stop-gradient}, es decir, considerando nulo el gradiente. Esto es correcto porque: (1) si $n$ no es el splat mediano en el píxel $p$, entonces $D_{\text{med}}(p)$ efectivamente depende de otro splat diferente, no de $z_n$; (2) si $n$ \emph{es} el splat mediano, ambas derivadas $\frac{\partial d_n}{\partial z_n} = 1$ y $\frac{\partial D_{\text{med}}}{\partial z_n} = 1$ se cancelarían, resultando en contribución nula.
@@ -829,7 +829,7 @@ Recordemos que la covarianza proyectada se describe en términos de la covarianz
     \Sigma' = \mb{J} \, \Sigma \, \mb{J}^T
 \end{equation}
 
-donde $\mb{J}$ depende de la media 3D a través de la proyección perspectiva.
+\noindent donde $\mb{J}$ depende de la media 3D a través de la proyección perspectiva.
 
 Luego, al derivar respecto de la media
 
@@ -843,7 +843,7 @@ Luego, al derivar respecto de la media
 Como consideramos la proyección afín local para todas las cuentas, se considera que el jacobiano es constante, dando lugar a que
 
 \begin{equation}
-    \frac{\partial \mb{J}}{\partial \mu_{3D}} \approx 0
+    \frac{\partial \mb{J}}{\partial \mu_{3D}} \approx 0.
 \end{equation}
 
 Luego, este término se anula.
@@ -858,7 +858,7 @@ Recordemos la parametrización de la covarianza en el sistema de referencia del 
 \Sigma = R S^2 R^T
 \end{equation}
 
-donde:
+\noindent donde:
 \begin{itemize}
     \item $R \in SO(3)$ es la matriz de rotación (obtenida del cuaternión),
     \item $S = \mathrm{diag}(s_x, s_y, s_z)$ contiene las escalas.
@@ -870,13 +870,13 @@ En esta formulación, la covarianza proyectada $\Sigma'$ resulta
 \Sigma = \mb{T} \Sigma_{3D} \mb{T}^T
 \end{equation}
 
-donde:
+\noindent donde:
 
 \begin{equation}
 T = J W
 \end{equation}
 
-y:
+\noindent y:
 \begin{itemize}
     \item $J$ es el Jacobiano de proyección perspectiva,
     \item $W$ es la rotación cámara-mundo.
@@ -893,7 +893,7 @@ Aplicando la regla de la cadena:
 =
 \mb{T}^T
 \frac{\partial \mathcal{L}}{\partial \Sigma'}
-\mb{T}
+\mb{T}.
 \end{equation}
 
 Para obtener $\frac{\partial \mathcal{L}}{\partial \Sigma'}$, notamos que la covarianza 2D afecta a la pérdida a través de la forma gaussiana y, por tanto, de la opacidad $\alpha_n(p) = \sigma_n \exp(-\frac{1}{2}\delta^T \Sigma'^{-1} \delta)$, donde $\delta = p - \mu_n^{2D}$.
@@ -904,12 +904,12 @@ Usamos la identidad para la derivada de una inversa:
 =
 - A^{-T}
 \frac{\partial F}{\partial A^{-1}}
-A^{-T}
+A^{-T}.
 \end{equation}
 
 Luego:
 \begin{equation}
-\frac{\partial \mathcal{L}}{\partial \Sigma'} = - \Sigma'^{-1} \frac{\partial \mathcal{L}}{\partial \Sigma'^{-1}} \Sigma'^{-1}
+\frac{\partial \mathcal{L}}{\partial \Sigma'} = - \Sigma'^{-1} \frac{\partial \mathcal{L}}{\partial \Sigma'^{-1}} \Sigma'^{-1}.
 \end{equation}
 
 Observando que:
@@ -917,20 +917,20 @@ Observando que:
 \frac{\partial G}{\partial \Sigma'^{-1}} = -\frac{1}{2} G \, \delta \delta^T
 \end{equation}
 
-y
+\noindent y
 
 \begin{equation}
-    \frac{\partial \alpha}{\partial G} = \sigma
+    \frac{\partial \alpha}{\partial G} = \sigma.
 \end{equation}
 
 Aplicando la regla de la cadena, cadena:
 \begin{equation}
 \frac{\partial \mathcal{L}}{\partial \Sigma'^{-1}} = \frac{\partial \mathcal{L}}{\partial \alpha} \frac{\partial \alpha}{\partial G} \frac{\partial G}{\partial \Sigma'^{-1}} = 
 -\frac{1}{2} \frac{\partial \mathcal{L}}{\partial \alpha} \, \sigma\, G\, \delta \delta^T
-= -\frac{1}{2} \frac{\partial \mathcal{L}}{\partial \alpha} \, \alpha\, \delta \delta^T
+= -\frac{1}{2} \frac{\partial \mathcal{L}}{\partial \alpha} \, \alpha\, \delta \delta^T.
 \end{equation}
 
-Este último paso surge de que $\alpha = \sigma G$
+Este último paso surge de que $\alpha = \sigma G$.
 
 Este gradiente se acumula sobre todos los píxeles donde la gaussiana contribuye.
 
@@ -941,14 +941,14 @@ Este gradiente se acumula sobre todos los píxeles donde la gaussiana contribuye
 Sea $M \coloneq \mb{R} \mb{S}$, entonces
 
 \begin{equation}
-\Sigma_{3D} = M M^T
+\Sigma_{3D} = M M^T.
 \end{equation}
 
 El gradiente respecto a $M$ es:
 
 \begin{equation}
 \frac{\partial \mathcal{L}}{\partial M}
-= 2 \frac{\partial \mathcal{L}}{\partial \Sigma} M
+= 2 \frac{\partial \mathcal{L}}{\partial \Sigma} M.
 \end{equation}
 
 Luego, por definición de $M$, el gradiente para la escala es
@@ -959,7 +959,7 @@ Luego, por definición de $M$, el gradiente para la escala es
 R_{:,i}^T
 \left(
 \frac{\partial \mathcal{L}}{\partial M}
-\right)_{:,i}
+\right)_{:,i}.
 \end{equation}
 
 Es posible expresar las escalas en logaritmo, en tal caso:
@@ -968,13 +968,13 @@ Es posible expresar las escalas en logaritmo, en tal caso:
 s_i = e^{\tilde{s}_i}
 \end{equation}
 
-entonces:
+\noindent entonces:
 
 \begin{equation}
 \frac{\partial \mathcal{L}}{\partial \tilde{s}_i}
 =
 \frac{1}{s_i}
-\frac{\partial \mathcal{L}}{\partial s_i}
+\frac{\partial \mathcal{L}}{\partial s_i}.
 \end{equation}
 
 \paragraph{Regularización isotrópica}
@@ -988,7 +988,7 @@ Para mantener una relación entre las escalas, se introduce un término de pérd
 \sum_i (s_i - \bar{s})^2
 \end{equation}
 
-donde:
+\noindent donde:
 
 \begin{equation}
 \bar{s} = \frac{s_x + s_y + s_z}{3}
@@ -1007,7 +1007,7 @@ Su gradiente es:
 \end{bmatrix}
 \end{equation}
 
-donde $\Delta_i = s_i - \bar{s}$.
+\noindent donde $\Delta_i = s_i - \bar{s}$.
 
 
 \paragraph{Gradiente respecto a la rotación}

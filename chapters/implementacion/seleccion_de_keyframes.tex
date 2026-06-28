@@ -5,11 +5,11 @@ La selección de keyframes es categorizada por \cite{robotics12030088} en tres t
 
 En el marco de este trabajo, dado un fotograma nuevo se clasifica como keyframe si cumple con un criterio de covisibilidad con el keyframe anterior menor a una cota superior. Esto quiere decir que la información que representa respecto del último keyframe es lo suficientemente nueva.
 
-Para obtener la covisibilidad, se necesita primero calcular la visibilidad estimada de las gaussianas en ambos fotogramas por separado. En cada uno, se identifica qué gaussianas son utilizadas para renderizarlo bajo la representación actual del mundo, observando si su contribución es significativa. Luego, se utiliza una fórmula de Intersección Sobre Unión (Intersection over Union, abreviado IoE) para calcular el ratio:
+Para obtener la covisibilidad, se necesita primero calcular la visibilidad estimada de las gaussianas en ambos fotogramas por separado. En cada uno, se identifica qué gaussianas son utilizadas para renderizarlo bajo la representación actual del mundo, observando si su contribución es significativa. Luego, se utiliza una fórmula de Intersección Sobre Unión (\textit{Intersection over Union}, abreviado IoU) para calcular el ratio:
 
 Sea $G_i$ el conjunto de gaussianas que se consideran visibles,
 $$
-IoE (G_1, G_2) = \frac{|G_1 \cap G_2|}{|G_1 \cup G_2|} 
+IoU (G_1, G_2) = \frac{|G_1 \cap G_2|}{|G_1 \cup G_2|}.
 $$
 
 Observemos que el denominador no debería anularse, ya que el keyframe anterior debería tener al menos una gaussiana representándolo tras los debidos pasos de optimización.
