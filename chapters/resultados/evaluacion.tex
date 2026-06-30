@@ -76,31 +76,35 @@ A continuación, presentamos una comparativa evaluando nuestro nodo y el de VIGS
 
 \begin{table}[H]
 \centering
-\caption{Comparación de métricas entre la configuración propuesta y VIGS-Fusion.}
+\caption{Comparación de métricas entre la configuración propuesta, con y sin cierre de ciclos, y VIGS-Fusion.}
 \label{tab:results_comparison}
 \begin{tabular}{llcccc}
 \hline
 \textbf{Dataset} & \textbf{Método} & \textbf{Track [ms]} & \textbf{Map [ms]} & \textbf{PSNR [dB]} & \textbf{ATE} \\
 \hline
-                % TRACK % MAP % PSNR % ATE
+                          % TRACK % MAP % PSNR % ATE
 \multirow{2}{*}{Line}
-& Nuestro       & 52.02 & 9.41 & 27.51 & 8.87 \\
-& VIGS-Fusion  & 56.35  & 12.32 & 22.19& 9.95 \\
+& Nuestro (con LC)       & 52.02 & 9.41 & 27.51 & 8.87 \\
+& Nuestro (sin LC)       & 51.85 & 9.50 & 27.32 & 9.82 \\
+& VIGS-Fusion            & 56.35  & 12.32 & 22.19& 9.95 \\
 \hline
 
 \multirow{2}{*}{Square-Shape}
-& Nuestro       & 57.93 & 15.19 & 24.28 & 16.73 \\
-& VIGS-Fusion  & 54.49  & 19.50 & 22.19& 21.52     \\
+& Nuestro (con LC)      & 57.93 & 15.19 & 24.28 & 16.73 \\
+& Nuestro (sin LC)      & 58.12 & 14.98 & 24.49 & 20.82 \\
+& VIGS-Fusion           & 54.49  & 19.50 & 22.19& 21.52     \\
 \hline
 
 \multirow{2}{*}{Rotation-Only}
-& Nuestro       & 42.11 & 10.38 & 25.08 & 18.84 \\
-& VIGS-Fusion  & 39.91   & 17.11 & 20.31 & 24.95     \\
+& Nuestro (con LC)       & 42.11 & 10.38 & 25.08 & 18.84 \\
+& Nuestro (sin LC)       & 42.41 & 10.09 & 25.28 & 24.32 \\
+& VIGS-Fusion            & 39.91   & 17.11 & 20.31 & 24.95     \\
 \hline
 
 \multirow{2}{*}{Line-Rot}
-& Nuestro       & 43.73 & 7.67 & 25.77 & 11.16 \\
-& VIGS-Fusion  & 48.02  & 9.89 & 18.59  & 11.82      \\
+& Nuestro (con LC)       & 43.73 & 7.67 & 25.77 & 11.16 \\
+& Nuestro (sin LC)       & 43.80 & 7.78 & 25.95 & 11.56 \\
+& VIGS-Fusion            & 48.02  & 9.89 & 18.59  & 11.82      \\
 \hline
 
 \end{tabular}
