@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex tesis"] 1783278494.40351 "tesis.aux" "tesis.bbl" "tesis" 1783278535.5825 0
+["bibtex tesis"] 1783283051.98676 "tesis.aux" "tesis.bbl" "tesis" 1783283055.69541 0
   "./tesis.bib" 1781296791.45276 18408 a4723546208e1a7d476aa035c7e43b7f ""
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/unsrt.bst" 1292289607 18030 1376b4b231b50c66211e47e42eda2875 ""
-  "tesis.aux" 1783278534.62476 27352 3370df33da926e38f0cfc877dbc1bcfc "pdflatex"
+  "tesis.aux" 1783283054.46865 27499 a2423b3a00b0e7c94e5e174dc9bdfd3e "pdflatex"
   (generated)
   "tesis.bbl"
   "tesis.blg"
   (rewritten before read)
-["pdflatex"] 1783278531.58929 "/home/jorge/ros2_thesis_ws/src/escrito/Tesis/tesis.tex" "tesis.pdf" "tesis" 1783278535.58283 0
+["pdflatex"] 1783283052.12961 "/home/jorge/ros2_thesis_ws/src/escrito/Tesis/tesis.tex" "tesis.pdf" "tesis" 1783283055.69563 0
   "../chapters/conclusiones/main.tex" 1781287412.59812 2314 b8edd197586aa272475b5777629d94ce ""
   "../chapters/estado_del_arte/fourier.tex" 1780957729.47171 3365 b0465cbc083a5b13c9680e34c823afc4 ""
   "../chapters/estado_del_arte/loopsplat.tex" 1782668902.63355 10038 ba3c72d1f579fd822248a3679ea3e328 ""
@@ -24,18 +24,18 @@
   "../chapters/introduccion/main.tex" 1781042458.79983 496 a123e656b778719fa3e3d2df686e2667 ""
   "../chapters/introduccion/motivacion.tex" 1781042458.83183 4515 bb56e6dc77a539bd8967791b1d48e168 ""
   "../chapters/introduccion/objetivos.tex" 1782666962.285 946 e66f0587b18082b2bf7bf9b066567ef2 ""
-  "../chapters/marco_teorico/back_projection_e_imagenes_de_profundidad.tex" 1781045619.35244 3494 f971d45c7c0a38634844188e22342cb9 ""
+  "../chapters/marco_teorico/back_projection_e_imagenes_de_profundidad.tex" 1783282438.60168 3564 16a2bc1deeba9e0270afc713ebda8f79 ""
   "../chapters/marco_teorico/camaras_y_parametros_intrinsecos.tex" 1782667102.03219 3129 d73f230c02d7d1f1fd580dc87fc931ba ""
   "../chapters/marco_teorico/coordenadas_homogeneas.tex" 1782667249.74606 2086 8ae4a788734841b987b9e106448d3544 ""
   "../chapters/marco_teorico/gaussian_splatting.tex" 1783278489.40216 19655 ca8d66a1b072f0815b4575b2c23882db ""
-  "../chapters/marco_teorico/grupos_y_algebras_de_lie.tex" 1782669671.50416 20735 4e6ede5d058492e5f5b8dc6b5b211a0d ""
-  "../chapters/marco_teorico/imagenes_y_pixeles.tex" 1781043879.14427 3263 da7979252e49427f19836da2507945e3 ""
-  "../chapters/marco_teorico/imu.tex" 1783278530.58096 9138 cb7e19319babda5b46d866979a54ac61 ""
+  "../chapters/marco_teorico/grupos_y_algebras_de_lie.tex" 1783282946.34168 20962 f214fb7682ea11aeacde621b7542edca ""
+  "../chapters/marco_teorico/imagenes_y_pixeles.tex" 1783282376.06653 3326 632e0947f1263d960a4cd3e491103151 ""
+  "../chapters/marco_teorico/imu.tex" 1783279769.04827 9138 cb7e19319babda5b46d866979a54ac61 ""
   "../chapters/marco_teorico/main.tex" 1781219955.23343 1771 f30fb9e5129fdfaa9f1d4e28ce892844 ""
   "../chapters/marco_teorico/notacion.tex" 1781044829.5795 4255 a859eee44f4e755a5f8c3d5568fa03b1 ""
   "../chapters/marco_teorico/optimizacion.tex" 1783277567.51108 10901 85d9fc8347817696971457cad744a4db ""
   "../chapters/marco_teorico/proyeccion.tex" 1782667249.74606 1977 3b1c9f5da0410673cf75509a8299cf78 ""
-  "../chapters/marco_teorico/reconstruccion_de_imagenes_y_odometria.tex" 1781046152.59727 3291 6bce032567ef6786ee09868d57e9dffa ""
+  "../chapters/marco_teorico/reconstruccion_de_imagenes_y_odometria.tex" 1783283048.2046 3753 85c3d079843114ceda322f5ca8932311 ""
   "../chapters/marco_teorico/slam.tex" 1781046388.5321 3558 0075d06829e88ec598564f48a9bb4d51 ""
   "../chapters/marco_teorico/transformaciones_rigidas_y_parametros_extrinsecos.tex" 1782667249.74606 1219 91ecd44f18693eca15d0f2df302fcf16 ""
   "../chapters/resultados/dataset.tex" 1781296703.22849 660 fedd7b59c1a5c62254f4c5b9f3ab8737 ""
@@ -256,8 +256,8 @@
   "agradecimientos.tex" 1781295629.21333 706 47e55bb51e36c919b1d175899a3a6fbf ""
   "caratula.tex" 1781036887.32356 747 1355d7658a8125e5facf8bad72bf400c ""
   "logofcen.pdf" 1778817034 39758 9bdae1f60233e50ba5e4e659fa2e6078 ""
-  "tesis.aux" 1783278534.62476 27352 3370df33da926e38f0cfc877dbc1bcfc "pdflatex"
-  "tesis.bbl" 1783278415.74726 9762 e209db86100c8831e0723a6ccc54feee "bibtex tesis"
+  "tesis.aux" 1783283054.46865 27499 a2423b3a00b0e7c94e5e174dc9bdfd3e "pdflatex"
+  "tesis.bbl" 1783283052.12309 9762 e209db86100c8831e0723a6ccc54feee "bibtex tesis"
   "tesis.cls" 1778817034 36659 469a5b174f6a5f4de348ff19f86a677d ""
   "tesis.tex" 1783277702.47903 2444 9c8fa18178340f44f51fa80ae64db513 ""
   (generated)

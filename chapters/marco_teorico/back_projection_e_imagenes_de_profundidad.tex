@@ -6,7 +6,7 @@ En \cite{reconstruccion3DConUnaFoto} se aborda este problema con una arquitectur
 
 Para mejorar el rendimiento, se puede emplear el uso de sensores que producen imágenes de profundidad. Los mismos implementan métodos como \textit{Time of Flight} (ToF), que consiste en medir el tiempo que se tarda en emitir y recibir una luz para cada píxel. La imagen de salida se modela como una función $D: \Omega \subset Z^2 \to \mathbb{R}^+$ tal que para $(x,y)$, tenemos una representación de la distancia entre el centro óptico de la cámara y el punto real de la muestra en el espacio, medida a lo largo del rayo de visión. 
 
-Para renderizarlas, es decir mostrarlas en la pantalla, el resultado puede definirse en una escala. Una posibilidad es en enteros entre 0 y 255, donde 255 representa los puntos que se encuentren más cercanos en la imagen, y 0 los más lejanos. Luego, podemos usar estos valores para obtener una imagen en escala de grises donde un color más claro represente una distancia menor.
+Para renderizarlas, es decir mostrarlas en la pantalla, el resultado puede definirse en una escala. Una posibilidad es en enteros entre 0 y 255, donde 255 representa los puntos que se encuentren más cercanos en la imagen, y 0 los más lejanos. Luego, podemos usar estos valores para obtener una imagen en escala de grises donde un color más claro represente una distancia menor. Tal representación se puede observar en la figura \ref{prof_imagen}.
 
 \begin{figure}[H]
     \centering
