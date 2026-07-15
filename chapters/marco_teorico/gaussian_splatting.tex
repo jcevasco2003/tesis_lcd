@@ -115,7 +115,7 @@ donde $\mathbf{u}$ recorre los píxeles de la imagen. Dicho error puede utilizar
 
 Desde una perspectiva probabilística, este esquema puede interpretarse como una estimación de tipo \emph{maximum a posteriori} (MAP), donde el renderizado actúa como modelo de observación y las gaussianas constituyen la representación del mapa. En este sentido, Gaussian Splatting define explícitamente la función de observación $h(\cdot)$ que relaciona el estado del sistema (pose de la cámara y mapa) con las mediciones visuales, lo cual resulta fundamental para su integración en marcos de SLAM visual.
 
-Otra ventaja relevante de esta representación es su eficiencia computacional. Al no depender de redes neuronales profundas y tener primitivas explícitas e independientes, el entrenamiento y el renderizado pueden realizarse en tiempo real con algoritmos paralelos en GPU. Esto habilita aplicaciones en entornos dinámicos y de gran escala, donde métodos implícitos suelen resultar prohibitivos.
+Otra ventaja relevante de esta representación es su eficiencia computacional. Al no depender de redes neuronales profundas y tener primitivas explícitas e independientes, el entrenamiento y el renderizado pueden realizarse en tiempo real con algoritmos paralelos en GPU. Esto facilita aplicaciones en entornos dinámicos y de gran escala, donde métodos implícitos suelen resultar prohibitivos.
 
 \subsection{Orden de profundidad}
 

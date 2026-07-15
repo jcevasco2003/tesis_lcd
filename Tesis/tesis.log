@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.5.15)  5 JUL 2026 20:24
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2026.5.15)  15 JUL 2026 17:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -650,11 +650,11 @@ Package pdftex.def Info: ../imagenes_marco_teorico/rgbd_registration.png  used o
 LaTeX Info: Redefining \. on input line 23.
 LaTeX Info: Redefining \% on input line 23.
  [18 <../imagenes_marco_teorico/rgbd_registration.png>]) (../chapters/marco_teorico/grupos_y_algebras_de_lie.tex
-LaTeX Info: Redefining \. on input line 22.
-LaTeX Info: Redefining \% on input line 22.
+LaTeX Info: Redefining \. on input line 21.
+LaTeX Info: Redefining \% on input line 21.
  [19]
-LaTeX Info: Redefining \. on input line 106.
-LaTeX Info: Redefining \% on input line 106.
+LaTeX Info: Redefining \. on input line 104.
+LaTeX Info: Redefining \% on input line 104.
  [20]
 Missing character: There is no e in font msbm10!
 <../imagenes_marco_teorico/mapa_exponencial.png, id=108, 711.65875pt x 467.7475pt>
@@ -688,14 +688,12 @@ LaTeX Info: Redefining \% on input line 539.
 LaTeX Info: Redefining \. on input line 13.
 LaTeX Info: Redefining \% on input line 13.
  [27]
-LaTeX Info: Redefining \. on input line 58.
-LaTeX Info: Redefining \% on input line 58.
+LaTeX Info: Redefining \. on input line 54.
+LaTeX Info: Redefining \% on input line 54.
  [28]
-LaTeX Info: Redefining \. on input line 108.
-LaTeX Info: Redefining \% on input line 108.
+LaTeX Info: Redefining \. on input line 104.
+LaTeX Info: Redefining \% on input line 104.
  [29]
-Underfull \vbox (badness 1824) has occurred while \output is active []
-
 LaTeX Info: Redefining \. on input line 183.
 LaTeX Info: Redefining \% on input line 183.
  [30])
@@ -841,7 +839,7 @@ LaTeX Info: Redefining \% on input line 52.
  [59]
 LaTeX Info: Redefining \. on input line 87.
 LaTeX Info: Redefining \% on input line 87.
- [60])) (../chapters/implementacion/main.tex
+ [60]) (../chapters/estado_del_arte/programacion_en_gpu.tex)) (../chapters/implementacion/main.tex
 LaTeX Info: Redefining \. on input line 5.
 LaTeX Info: Redefining \% on input line 5.
  [61]
@@ -857,11 +855,11 @@ File: ../imagenes_implementacion/vigs.drawio.png Graphic file (type png)
 Package pdftex.def Info: ../imagenes_implementacion/vigs.drawio.png  used on input line 16.
 (pdftex.def)             Requested size: 384.1096pt x 190.8827pt.
 (../chapters/implementacion/gestion_de_mapa.tex [63 <../imagenes_implementacion/vigs.drawio.png>]
-LaTeX Info: Redefining \. on input line 65.
-LaTeX Info: Redefining \% on input line 65.
+LaTeX Info: Redefining \. on input line 62.
+LaTeX Info: Redefining \% on input line 62.
  [64]) (../chapters/implementacion/seleccion_de_keyframes.tex
-LaTeX Info: Redefining \. on input line 4.
-LaTeX Info: Redefining \% on input line 4.
+LaTeX Info: Redefining \. on input line 3.
+LaTeX Info: Redefining \% on input line 3.
  [65]
 <../imagenes_marco_teorico/Beta-binomial_distribution.png, id=274, 655.44875pt x 655.44875pt>
 File: ../imagenes_marco_teorico/Beta-binomial_distribution.png Graphic file (type png)
@@ -871,29 +869,26 @@ Package pdftex.def Info: ../imagenes_marco_teorico/Beta-binomial_distribution.pn
 )
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 28.
-LaTeX Info: Redefining \% on input line 28.
+LaTeX Info: Redefining \. on input line 34.
+LaTeX Info: Redefining \% on input line 34.
  [66] (../chapters/implementacion/loop_closure.tex
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 LaTeX Info: Redefining \. on input line 10.
 LaTeX Info: Redefining \% on input line 10.
- [67 <../imagenes_marco_teorico/Beta-binomial_distribution.png>]) (../chapters/implementacion/ros2.tex
-LaTeX Info: Redefining \. on input line 4.
-LaTeX Info: Redefining \% on input line 4.
- [68]
+ [67 <../imagenes_marco_teorico/Beta-binomial_distribution.png>]
+LaTeX Info: Redefining \. on input line 31.
+LaTeX Info: Redefining \% on input line 31.
+ [68]) (../chapters/implementacion/ros2.tex
 <../imagenes_implementacion/What-is-a-ROS2-message.png, id=286, 591.20876pt x 198.7425pt>
 File: ../imagenes_implementacion/What-is-a-ROS2-message.png Graphic file (type png)
 <use ../imagenes_implementacion/What-is-a-ROS2-message.png>
 Package pdftex.def Info: ../imagenes_implementacion/What-is-a-ROS2-message.png  used on input line 9.
 (pdftex.def)             Requested size: 341.43437pt x 114.77945pt.
-) (../chapters/implementacion/programacion_en_gpu.tex
-LaTeX Info: Redefining \. on input line 4.
-LaTeX Info: Redefining \% on input line 4.
- [69 <../imagenes_implementacion/What-is-a-ROS2-message.png (PNG copy)>]
-LaTeX Info: Redefining \. on input line 23.
-LaTeX Info: Redefining \% on input line 23.
- [70]) (../chapters/implementacion/hilos_en_cpu.tex)) (../chapters/resultados/main.tex
+LaTeX Info: Redefining \. on input line 17.
+LaTeX Info: Redefining \% on input line 17.
+ [69 <../imagenes_implementacion/What-is-a-ROS2-message.png (PNG copy)>]) (../chapters/implementacion/programacion_en_gpu.tex) (../chapters/implementacion/hilos_en_cpu.tex
+LaTeX Info: Redefining \. on input line 8.
+LaTeX Info: Redefining \% on input line 8.
+ [70])) (../chapters/resultados/main.tex
 LaTeX Info: Redefining \. on input line 5.
 LaTeX Info: Redefining \% on input line 5.
  [71]
@@ -903,10 +898,10 @@ LaTeX Info: Redefining \% on input line 5.
 
 ]
 Cap\'{\i }tulo 5.
-(../chapters/resultados/metricas.tex [73]) (../chapters/resultados/dataset.tex) (../chapters/resultados/evaluacion.tex
-LaTeX Info: Redefining \. on input line 6.
-LaTeX Info: Redefining \% on input line 6.
- [74]
+(../chapters/resultados/metricas.tex [73]) (../chapters/resultados/dataset.tex
+LaTeX Info: Redefining \. on input line 9.
+LaTeX Info: Redefining \% on input line 9.
+ [74]) (../chapters/resultados/evaluacion.tex
 <../imagenes_implementacion/mascaras_original.png, id=306, 787.94376pt x 476.78125pt>
 File: ../imagenes_implementacion/mascaras_original.png Graphic file (type png)
 <use ../imagenes_implementacion/mascaras_original.png>
@@ -932,13 +927,10 @@ File: ../imagenes_implementacion/mask_canny.png Graphic file (type png)
 <use ../imagenes_implementacion/mask_canny.png>
 Package pdftex.def Info: ../imagenes_implementacion/mask_canny.png  used on input line 41.
 (pdftex.def)             Requested size: 204.85802pt x 126.10414pt.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 LaTeX Info: Redefining \. on input line 48.
 LaTeX Info: Redefining \% on input line 48.
  [75 <../imagenes_implementacion/mascaras_original.png>]
-Underfull \vbox (badness 4378) has occurred while \output is active []
+Underfull \vbox (badness 1137) has occurred while \output is active []
 
 LaTeX Info: Redefining \. on input line 75.
 LaTeX Info: Redefining \% on input line 75.
@@ -946,38 +938,38 @@ LaTeX Info: Redefining \% on input line 75.
 <../imagenes_resultados/ejemplo_1.png, id=317, 851.18pt x 481.8pt>
 File: ../imagenes_resultados/ejemplo_1.png Graphic file (type png)
 <use ../imagenes_resultados/ejemplo_1.png>
-Package pdftex.def Info: ../imagenes_resultados/ejemplo_1.png  used on input line 122.
+Package pdftex.def Info: ../imagenes_resultados/ejemplo_1.png  used on input line 124.
 (pdftex.def)             Requested size: 209.1301pt x 118.36917pt.
 <../imagenes_resultados/ejemplo_3.png, id=318, 851.18pt x 481.8pt>
 File: ../imagenes_resultados/ejemplo_3.png Graphic file (type png)
 <use ../imagenes_resultados/ejemplo_3.png>
-Package pdftex.def Info: ../imagenes_resultados/ejemplo_3.png  used on input line 129.
+Package pdftex.def Info: ../imagenes_resultados/ejemplo_3.png  used on input line 131.
 (pdftex.def)             Requested size: 209.1301pt x 118.36917pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 137.
-LaTeX Info: Redefining \% on input line 137.
+LaTeX Info: Redefining \. on input line 139.
+LaTeX Info: Redefining \% on input line 139.
  [77]
 <../imagenes_resultados/ejemplo2_1.png, id=322, 851.18pt x 481.8pt>
 File: ../imagenes_resultados/ejemplo2_1.png Graphic file (type png)
 <use ../imagenes_resultados/ejemplo2_1.png>
-Package pdftex.def Info: ../imagenes_resultados/ejemplo2_1.png  used on input line 143.
+Package pdftex.def Info: ../imagenes_resultados/ejemplo2_1.png  used on input line 145.
 (pdftex.def)             Requested size: 209.1301pt x 118.36917pt.
 <../imagenes_resultados/ejemplo2_2.png, id=323, 851.18pt x 481.8pt>
 File: ../imagenes_resultados/ejemplo2_2.png Graphic file (type png)
 <use ../imagenes_resultados/ejemplo2_2.png>
-Package pdftex.def Info: ../imagenes_resultados/ejemplo2_2.png  used on input line 150.
+Package pdftex.def Info: ../imagenes_resultados/ejemplo2_2.png  used on input line 152.
 (pdftex.def)             Requested size: 209.1301pt x 118.36917pt.
 <../imagenes_resultados/ejemplo3_1.png, id=324, 851.18pt x 481.8pt>
 File: ../imagenes_resultados/ejemplo3_1.png Graphic file (type png)
 <use ../imagenes_resultados/ejemplo3_1.png>
-Package pdftex.def Info: ../imagenes_resultados/ejemplo3_1.png  used on input line 164.
+Package pdftex.def Info: ../imagenes_resultados/ejemplo3_1.png  used on input line 166.
 (pdftex.def)             Requested size: 209.1301pt x 118.36917pt.
 <../imagenes_resultados/ejemplo3_2.png, id=325, 851.18pt x 481.8pt>
 File: ../imagenes_resultados/ejemplo3_2.png Graphic file (type png)
 <use ../imagenes_resultados/ejemplo3_2.png>
-Package pdftex.def Info: ../imagenes_resultados/ejemplo3_2.png  used on input line 171.
+Package pdftex.def Info: ../imagenes_resultados/ejemplo3_2.png  used on input line 173.
 (pdftex.def)             Requested size: 209.1301pt x 118.36917pt.
 )) (../chapters/conclusiones/main.tex
 LaTeX Info: Redefining \. on input line 1.
@@ -1034,15 +1026,15 @@ L3 programming layer <2024-01-22>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 18760 strings out of 474222
- 375529 string characters out of 5748733
+ 18765 strings out of 474222
+ 375809 string characters out of 5748733
  1940975 words of memory out of 5000000
- 40597 multiletter control sequences out of 15000+600000
+ 40600 multiletter control sequences out of 15000+600000
  574253 words of font info for 95 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  83i,23n,93p,1482b,555s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmib10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1095.pfb>
-Output written on tesis.pdf (83 pages, 5723799 bytes).
+Output written on tesis.pdf (83 pages, 5724900 bytes).
 PDF statistics:
  453 PDF objects out of 1000 (max. 8388607)
  269 compressed objects within 3 object streams

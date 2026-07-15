@@ -46,7 +46,7 @@ Ahora, en la Figura \ref{fig:masks} se presentan las máscaras obtenidas por cad
     \label{fig:masks}
 \end{figure}
 
-Luego, comparamos las métricas fijando un conjunto de datos.
+Luego, comparamos las métricas fijando un conjunto de datos y promediando los resultados sobre 15 iteraciones.
 
 \begin{table}[H]
 \centering
@@ -71,7 +71,7 @@ Debido a que la gestión de mapa funciona a partir de un muestreo fino en las zo
 
 \subsection{Comparativa con VIGS-Fusion}
 
-A continuación, presentamos una comparativa evaluando nuestro nodo y el de VIGS-Fusion utilizando el conjunto de datos mencionado. Para cada secuencia, se evalúan las métricas ejecutando a tiempo real, es decir, perdiendo todos los fotogramas que no llegan a procesarse. Los resultados se resumen en la Tabla \ref{tab:results_comparison}. Las secuencias que poseen ciclos poseen un único ciclo justo al final, y son \textit{Square-Shape} y \textit{Rotation-Only}. Las métricas fueron tomadas con una GPU NVIDIA RTX 3090 y una CPU Intel i5-9400F.
+A continuación, presentamos una comparativa evaluando nuestro nodo y el de VIGS-Fusion utilizando el conjunto de datos mencionado y tomando promedio sobre 15 iteraciones. Para cada secuencia, se evalúan las métricas ejecutando a tiempo real, es decir, perdiendo todos los fotogramas que no llegan a procesarse. Los resultados se resumen en la Tabla \ref{tab:results_comparison}. Las secuencias que poseen ciclos poseen un único ciclo justo al final, y son \textit{Square-Shape} y \textit{Rotation-Only}. Las métricas fueron tomadas con una GPU NVIDIA RTX 3090 y una CPU Intel i5-9400F.
 
 
 \begin{table}[H]
@@ -109,6 +109,8 @@ A continuación, presentamos una comparativa evaluando nuestro nodo y el de VIGS
 
 \end{tabular}
 \end{table}
+
+En todas las secuencias, se detectó y cerró un único ciclo, justo al final del recorrido, dejando pocos segundos de la secuencia luego de la corrección.
 
 \subsection{Visualización}
 

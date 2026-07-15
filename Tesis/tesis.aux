@@ -202,6 +202,7 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}Medida de similaridad entre keyframes}{59}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2.4}Registro de submapas}{60}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2.5}Optimización del grafo de poses}{60}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Programación en GPU}{61}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {chapter}{\numberline {4.}Sistema}{63}{}\protected@file@percent }
 \@writefile{lof}{\addvspace {10pt}}
 \@writefile{lot}{\addvspace {10pt}}
@@ -209,31 +210,29 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Los colores azul, rosa y verde representan los hilos de CPU involucrados una vez recibida la entrada de datos al sistema, enmarcada en naranja.}}{63}{}\protected@file@percent }
 \newlabel{fig:diagrama}{{4.1}{63}{}{}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4.1}Heurísticas para gestión del mapa}{63}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}Sobel y Laplace}{63}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}Sobel y Laplace}{64}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1.2}Canny}{65}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Selección y muestreo de keyframes}{65}{}\protected@file@percent }
 \citation{robotics12030088}
-\citation{sarlin2019coarse}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Selección y muestreo de keyframes}{66}{}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Distintas combinaciones de $\alpha $ y $\beta $ en la distribución beta binomial para n=10. Con $\alpha = 0.7$ y $\beta =2$ la distribución favorece los valores más bajos con un decaimiento hacia los más altos.}}{67}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {4.3}Detección y cierre de ciclos}{67}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Submapas}{67}{}\protected@file@percent }
+\citation{sarlin2019coarse}
 \citation{zhou2018open3dmodernlibrary3d}
-\citation{Agarwal_Ceres_Solver_2022}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Descriptor}{68}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3.3}Heurísticas la detección de ciclos}{68}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3.4}Registro de gaussianas}{68}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.5}Optimización del grafo de poses}{68}{}\protected@file@percent }
+\citation{Agarwal_Ceres_Solver_2022}
 \citation{mathworks_ros2_topics}
 \citation{mathworks_ros2_topics}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.5}Optimización del grafo de poses}{69}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {4.4}ROS2}{69}{}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Idea general de cómo funcionan los mensajes en ROS2. El nodo 1 publica mensajes en un tópico, cada mensaje con ciertos datos. El nodo 2, por su parte, se suscribe al tópico. Así, cada vez que el nodo 1 publique algún dato, el callback asociado en el nodo 2 se ejecutará. Imagen extraida de \cite  {mathworks_ros2_topics}}}{69}{}\protected@file@percent }
 \newlabel{ros2_message}{{4.3}{69}{}{}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.5}Programación en GPU}{70}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.1}Problemas vergonzosamente paralelos}{70}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.2}Gaussian Splatting en GPU}{70}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}Tareas en GPU}{70}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4.6}Hilos en CPU}{70}{}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6.1}Hilos empleados}{70}{}\protected@file@percent }
 \citation{zhu2025_loopsplat}
-\@writefile{toc}{\contentsline {section}{\numberline {4.6}Hilos en CPU}{71}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.6.1}Hilos empleados}{71}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {chapter}{\numberline {5.}Resultados}{73}{}\protected@file@percent }
 \@writefile{lof}{\addvspace {10pt}}
 \@writefile{lot}{\addvspace {10pt}}

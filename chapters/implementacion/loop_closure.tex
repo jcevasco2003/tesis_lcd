@@ -2,7 +2,11 @@
 
 \subsection{Submapas}
 
-Implementamos el sistema de submapas propuesto en LoopSplat, realizando todas las operaciones que antes eran globales, como la optimización de las gaussianas en la imagen, en un marco local de cada submapa. De esta forma, cada submapa se construye a partir de un conjunto de fotogramas consecutivos, obteniendo así regiones reducidas. Si bien esto beneficia la eficiencia de las operaciones, reduce la ventaja del muestreo global de keyframes, ya que dos keyframes de submapas distintos no pueden ser comparados directamente. Esto quiere decir que la optimización pierde el mantenimiento global por sí sola. Sin embargo, en este marco el objetivo es el mantenimiento global a partir de los ciclos, enriqueciendo no solo la calidad de la representación, sino también la estimación de la pose.
+Implementamos el sistema de submapas propuesto en LoopSplat, realizando todas las operaciones que antes eran globales, como la optimización de las gaussianas en la imagen, en un marco local de cada submapa. 
+
+De esta forma, cada submapa se construye a partir de un conjunto de fotogramas consecutivos, obteniendo así regiones reducidas. La idea es que a partir de cierto tiempo $t_i$, caracterizado por la integración de un keyframe nuevo lo suficientemente lejano al inicio del submapa actual, se cree un nuevo submapa. Así, se inicializará un nuevo conjunto de gaussianas propio del submapa nuevo, y se irán acumulando todas las mediciones visuales e inerciales siempre en el marco local del submapa. De esta forma, cada submapa tiene su propio conjunto de gaussianas, keyframes y su propia optimización, a cambio de cierto grado de redundancia en la representación. Esto último se debe a que dos submapas consecutivos inevitablemente compartirán información de la escena, así como también en otros submapas que lleguen a observar al menos parte de la misma región del espacio, en especial aquellos que forman ciclos.
+
+Si bien esto beneficia la eficiencia de las operaciones, reduce la ventaja del muestreo global de keyframes, ya que dos keyframes de submapas distintos no pueden ser comparados directamente. Esto quiere decir que la optimización pierde el mantenimiento global por sí sola. Sin embargo, en este marco el objetivo es el mantenimiento global a partir de los ciclos, enriqueciendo no solo la calidad de la representación, sino también la estimación de la pose.
 
 \subsection{Descriptor}
 
@@ -23,4 +27,6 @@ En lugar de utilizar un método basado en los jacobianos de la renderización, o
 
 \subsection{Optimización del grafo de poses}
 
-Una vez obtenidas las correspondencias entre los submapas que cierran un ciclo, se construye un grafo de poses donde cada nodo representa la pose de un submapa y cada arista representa una restricción de transformación. Para optimizar este grafo, se utiliza la biblioteca Ceres Solver \cite{Agarwal_Ceres_Solver_2022}, que permite resolver problemas de optimización no lineal en CPU. Debido a la reducción del número de nodos como submapas, la optimización no se ve afectada significativamente por el rendimiento de la CPU.
+Una vez obtenidas las correspondencias entre los submapas que cierran un ciclo, se actualiza el grafo de poses donde cada nodo representa la pose de un submapa y cada arista representa una restricción de transformación. La matriz de información de las aristas se calcula a partir de la incertidumbre acumulada por la odometría, la confianza devuelta por ICP, el coeficiente de superposición de las nubes y la similaridad devuelta por NetVLAD.
+
+Para optimizar este grafo, se utiliza la biblioteca Ceres Solver \cite{Agarwal_Ceres_Solver_2022}, que permite resolver problemas de optimización no lineal en CPU. Debido a la reducción del número de nodos como submapas, la optimización no se ve afectada significativamente por el rendimiento de la CPU.

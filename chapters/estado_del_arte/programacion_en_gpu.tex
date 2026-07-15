@@ -1,0 +1,10 @@
+\section{Programación en GPU}
+
+Como se ha mencionado en la sección \ref{gaussian_splatting}, el método de Gaussian Splatting requiere muchos recursos computacionales, pero la naturaleza paralela de las primitivas permite distribuir el trabajo en una GPU.
+
+Una GPU (Unidad de Procesamiento de Gráficos) es un procesador especializado diseñado para manejar tareas de procesamiento gráfico y computación paralela.  Funcionalmente, una GPU consta de miles de núcleos de procesamiento que pueden ejecutar tareas simultáneamente bajo el modelo SIMT (Una instrucción, múltiples hilos). El potencial consiste en dividir algoritmos complejos en partes pequeñas cuyas operaciones son las mismas, pudiendo ser ejecutadas en paralelo. Así, la GPU reparte estas partes entre sus núcleos, realizando lo que se conoce como procesamiento paralelo.
+
+Por dentro, una GPU posee su propia memoria, que es más rápida que la memoria RAM de la CPU, pero también más limitada en capacidad. Para poder acceder a esta memoria, es necesario transferir los datos desde la CPU a la GPU, del mismo modo que los resultados obtenidos en la GPU deben ser transferidos de vuelta a la CPU para su uso posterior. Este proceso de transferencia, junto a la gestión de memoria y la paralelización de algoritmos, son los aspectos principales a trabajar. El código que se ejecuta en la GPU se conoce como kernel, y es escrito utilizando un marco de programación específico, como CUDA o OpenCL. En este trabajo, utilizamos CUDA, que es un lenguaje de programación desarrollado por NVIDIA para escribir código que se ejecuta exclusivamente en sus GPU. En particular, trabajamos con CUDA C++, que permite trabajar desde código escrito en C++.
+
+
+

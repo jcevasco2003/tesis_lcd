@@ -1,3 +1,12 @@
 \section{Conjunto de datos}
 
 Para evaluar el desempeño del sistema, utilizamos el conjunto de datos propuesto en el mismo artículo de VIGS-Fusion \cite{ndoye2025vigs}, disponible en \url{https://entrepot.recherche.data.gouv.fr/dataset.xhtml?persistentId=doi:10.57745/CI0K9G}. Este conjunto de datos se compone de secuencias de video capturadas en un entorno interior, con una cámara RGB-D y una IMU. Las secuencias incluyen movimientos variados, así como las trayectorias de referencia obtenidas mediante un sistema de seguimiento externo. Actualmente, es el único conjunto de datos público que incluye tanto imágenes RGB-D como datos de IMU calibrados.
+
+En particular, las métricas fueron tomadas sobre las siguientes secuencias:
+
+\begin{enumerate}
+    \item \textit{Line}: Secuencia con un movimiento lineal del UAV. Luego de comenzar, se eleva, se desplaza hacia adelante, vuelve y aterriza donde comenzó
+    \item \textit{Square-Shape}: Secuencia con un movimiento en forma de cuadrado. Se eleva, se desplaza hacia delante, gira 90 grados y repite el proceso hasta volver al punto de inicio, donde aterriza.
+    \item \textit{Rotation-Only}: Secuencia donde se eleva, realiza un giro de 360 grados y luego aterriza en el inicio.
+    \item \textit{Line-Rot}: Similar a la secuencia \textit{Line}, pero luego de desplazarse hacia delante realiza rotaciones hacia ambos lados antes de volver.
+\end{enumerate}

@@ -16,41 +16,41 @@ Para esta sección, seguiremos de cerca los apuntes de \cite{sola2021microliethe
 
 Un grupo de Lie $\mathcal{G}$ es un conjunto que satisface dos propiedades: Es un grupo con operación suave, y es una variedad suave.
 
-Una variedad suave es un espacio topológico que, localmente, se asemeja a un espacio lineal. Es suave en el sentido de diferenciable, por lo que, dicho de forma más sencilla, no tiene bordes ni picos. Este espacio suele encontrarse dentro de otro espacio bajo ciertas restricciones de estado. Tal es el caso de los vectores en $\mathbb{R}^3$ que cumplen con tener norma uno. Este espacio conforma una variedad esférica de radio uno y suave.
+Una variedad suave es un espacio topológico que, localmente, se asemeja a un espacio euclídeo de dimensión finita. Es suave en el sentido de diferenciable, por lo que, dicho de forma más sencilla, no tiene bordes ni picos. Este espacio suele encontrarse dentro de otro espacio bajo ciertas restricciones de estado. Tal es el caso de los vectores en $\mathbb{R}^3$ que cumplen con tener norma uno. Este espacio conforma una variedad esférica de radio uno y suave.
 
-Un grupo $(\mathcal{G}, \circ)$ es un conjunto $\mathcal{G}$ con una operación de composición $\circ$, tal que satisface los siguientes axiomas:
+Un grupo $(\mathcal{G}, \circ)$ es un conjunto $\mathcal{G}$ con una operación binaria $\circ$, tal que satisface los siguientes axiomas:
 
-Dados $\mathcal{X}, \mathcal{Y}, \mathcal{Z} \in \mathcal{G}$ cualesquiera,
+Dados $X, Y, Z \in \mathcal{G}$ cualesquiera,
 
 \begin{enumerate}
 \item \textbf{Clausura:} 
-Para todo $\mathcal{X}, \mathcal{Y} \in \mathcal{G}$,
+Para todo $X, Y \in \mathcal{G}$,
 \[
-\mathcal{X} \circ \mathcal{Y} \in \mathcal{G}.
+X \circ Y \in \mathcal{G}.
 \]
 
 \item \textbf{Elemento neutro:} 
-Existe un elemento $\mathcal{E} \in \mathcal{G}$ tal que, para todo $\mathcal{X} \in \mathcal{G}$,
+Existe un elemento $E \in \mathcal{G}$ tal que, para todo $X \in \mathcal{G}$,
 \[
-\mathcal{E} \circ \mathcal{X} = \mathcal{X} \circ \mathcal{E} = \mathcal{X}.
+E \circ X = X \circ E = X.
 \]
 
 \item \textbf{Elemento inverso:} 
-Para todo $\mathcal{X} \in \mathcal{G}$ existe un elemento inverso $\mathcal{X}^{-1} \in \mathcal{G}$ tal que
+Para todo $X \in \mathcal{G}$ existe un elemento inverso $X^{-1} \in \mathcal{G}$ tal que
 \[
-\mathcal{X}^{-1} \circ \mathcal{X}
+X^{-1} \circ X
 =
-\mathcal{X} \circ \mathcal{X}^{-1}
+X \circ X^{-1}
 =
-\mathcal{E}.
+E.
 \]
 
 \item \textbf{Asociatividad:} 
-Para todo $\mathcal{X}, \mathcal{Y}, \mathcal{Z} \in \mathcal{G}$,
+Para todo $X, Y, Z \in \mathcal{G}$,
 \[
-(\mathcal{X} \circ \mathcal{Y}) \circ \mathcal{Z}
+(X \circ Y) \circ Z
 =
-\mathcal{X} \circ (\mathcal{Y} \circ \mathcal{Z}).
+X \circ (Y \circ Z).
 \]
 \end{enumerate}
 
@@ -61,60 +61,60 @@ En todos los puntos del grupo de Lie, los espacios tangentes se ven igual relati
 
 \subsection{Acciones de grupo}
 
-Con los grupos de Lie, es posible transformar elementos de otros conjuntos, como rotaciones o escalas, o combinaciones de transformaciones.
+Con los grupos de Lie, es posible transformar elementos de otros conjuntos actuando sobre ellos. En particular, como trabajamos con grupos de matrices, extendemos la acción de grupo a vectores y matrices mediante la multiplicación matricial.
 
-Dado un Grupo de Lie $\mathcal{M}$ y un conjunto $\mathcal{V}$, se nota $\mathcal{X} \cdot v$ a la acción de $\mathcal{X} \in \mathcal{M}$ en $v \in \mathcal{V}$,
+Dado un Grupo de Lie $\mathcal{M}$ y un conjunto $\mathcal{V}$, se nota $X \cdot v$ a la acción de $X \in \mathcal{M}$ en $v \in \mathcal{V}$,
 
 $$
 \cdot : \mathcal{M} \times \mathcal{V} \to \mathcal{V}, 
 \qquad
-(\mathcal{X}, v) \mapsto \mathcal{X} \cdot v.
+(X, v) \mapsto X \cdot v.
 $$
 
 Para que $\cdot$ sea una acción de grupo, tiene que satisfacer los siguientes axiomas:
 
 \begin{enumerate}
 \item \textbf{Identidad:}  
-Existe un elemento identidad $\mathcal{E} \in \mathcal{M}$ tal que, para todo $v \in \mathcal{V}$,
+Existe un elemento identidad $E \in \mathcal{M}$ tal que, para todo $v \in \mathcal{V}$,
 \[
-\mathcal{E} \cdot v = v.
+E \cdot v = v.
 \]
 
-\item \textbf{Compatibilidad con la composición:}  
-Para todo $\mathcal{X}, \mathcal{Y} \in \mathcal{M}$ y todo $v \in \mathcal{V}$,
+\item \textbf{Compatibilidad con la operación del grupo:}  
+Para todo $X, Y \in \mathcal{M}$ y todo $v \in \mathcal{V}$,
 \[
-(\mathcal{X} \circ \mathcal{Y}) \cdot v
+(X \circ Y) \cdot v
 =
-\mathcal{X} \cdot (\mathcal{Y} \cdot v).
+X \cdot (Y \cdot v).
 \]
 \end{enumerate}
 
-Podemos pensar la composición $\circ$ como un caso particular de acción del grupo a sí mismo.
+Podemos pensar la operación $\circ$ como un caso particular de acción del grupo a sí mismo.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Álgebra de Lie}
 
-Denotamos el espacio tangente a un punto $\mathcal{X} \in \mathcal{M}$ como $T_{\mathcal{X}} \mathcal{M}$.
+Denotamos el espacio tangente a un punto $X \in \mathcal{M}$ como $T_{X} \mathcal{M}$.
 
 En particular, el espacio tangente a la identidad, $\mathcal{T_E M}$ es llamado el álgebra de Lie de $\mathcal{M}$, notado $\mathfrak{m}$.
 
-Es importante mencionar que $\mathfrak{m}$ es un espacio vectorial de dimensión igual a los grados de libertad de $\mathcal{M}$. En la literatura, se nota a elementos del álgebra de Lie con $\wedge$, como $v^\wedge$ para velocidades. También se añade un identificador en la esquina superior izquierda cuando se quiere especificar el espacio tangente en cuestión, por ejemplo, $^{\mathcal{X}}v^\wedge$. 
+Es importante mencionar que $\mathfrak{m}$ es un espacio vectorial de dimensión igual a los grados de libertad de $\mathcal{M}$. En la literatura, se nota a elementos del álgebra de Lie con $\wedge$, como $v^\wedge$ para velocidades. También se añade un identificador en la esquina superior izquierda cuando se quiere especificar el espacio tangente en cuestión, por ejemplo, $^{X}v^\wedge$. 
 
 La estructura del espacio tangente se puede obtener diferenciando la restricción del grupo del siguiente modo: tomamos una curva parametrizada en el tiempo y la recorremos. La diferenciación representa derivar la curva, ya que resulta tangente a la variedad. Además, a partir de ello distinguimos un caso particular: los grupos multiplicativos inducen una restricción adicional, que es 
 $$
-\mathcal{X}^{-1} \mathcal{\dot{X}} + \mathcal{\dot{X}}^{-1}\mathcal{X} = 0.
+X^{-1} \dot{X} + \dot{X}^{-1}X = 0.
 $$
 
 Así, los elementos del álgebra de Lie, es decir del espacio tangente a la identidad, son de la forma
 
 \begin{equation}
-v^{\wedge} = \mathcal{X}^{-1} \mathcal{\dot{X}} = - \mathcal{\dot{X}}^{-1} \mathcal{X}.
+v^{\wedge} = X^{-1} \dot{X} = - \dot{X}^{-1} X.
 \label{derivada_algebra_lie}
 \end{equation}
 
-Los elementos del álgebra de Lie, notados $\tau^{\wedge}$, pueden ser expresados como combinación lineal de una base $E$ de $\mathfrak{m}$. Los elementos $E_i$ son llamados generadores y son las derivadas de $\mathcal{X}$ alrededor del origen para cada dirección $i$. 
+Los elementos del álgebra de Lie, notados $\tau^{\wedge}$, pueden ser expresados como combinación lineal de una base $E$ de $\mathfrak{m}$. Los elementos $E_i$ son llamados generadores y son las derivadas de $X$ alrededor del origen para cada dirección $i$. 
 
 De esta forma, podemos manipular las coordenadas como vectores en $\mathbb{R}^{m}$, con $m$ la dimensión de $\mathfrak{m}$, las cuales denotaremos $\tau$. Podemos pasar entre $\mathfrak{m}$ y $\mathbb{R}^{m}$ mediante dos isomorfismos que se llamaran $hat$ y $vee$, que son uno la inversa del otro.
 
@@ -150,23 +150,23 @@ Llamamos retracción al mapeo de elementos del álgebra de Lie hacia el grupo. E
     \label{grafico_mapa_exponencial}
 \end{figure}
 
-El mapa exponencial surge al considerar las derivadas temporales de $\mathcal{X} \in \mathcal{M}$ sobre la variedad. Despejando la ecuación \ref{derivada_algebra_lie}, tenemos que
+El mapa exponencial surge al considerar las derivadas temporales de $X \in \mathcal{M}$ sobre la variedad. Despejando la ecuación \ref{derivada_algebra_lie}, tenemos que
 
 $$
-\mathcal{\dot{X}} = \mathcal{X} v^\wedge.
+\dot{X} = X v^\wedge.
 $$
 
 Fijando $v$, tenemos una Ecuación Diferencial Ordinaria de solución
 $$
-\mathcal{X}(t) = \mathcal{X}(0) \exp(v^\wedge t).
+X(t) = X(0) \exp(v^\wedge t).
 $$
 
-Como $\mathcal{X}(t)$ y $\mathcal{X}(0)$ son elementos del grupo, entonces $\exp(v^\wedge t) = \mathcal{X}(0)^{-1} \mathcal{X}(t)$ lo es también. Luego, $\exp(v^\wedge t) $ mapea elementos $v^\wedge$ del álgebra de Lie al grupo.
+Como $X(t)$ y $X(0)$ son elementos del grupo, entonces $\exp(v^\wedge t) = X(0)^{-1} X(t)$ lo es también. Luego, $\exp(v^\wedge t) $ mapea elementos $v^\wedge$ del álgebra de Lie al grupo.
 
 Para los grupos multiplicativos, se puede obtener una forma cerrada del mapa exponencial mediante el desarrollo de Taylor:
 
 \begin{equation}
-\exp(\tau^\wedge) = \mathcal{E} + \tau^\wedge + \frac{1}{2} {\tau^\wedge}^2 +
+\exp(\tau^\wedge) = E + \tau^\wedge + \frac{1}{2} {\tau^\wedge}^2 +
                         \frac{1}{3!} {\tau^\wedge}^3 + \cdot \cdot \cdot
 \end{equation}
 
@@ -177,7 +177,7 @@ El mapa exponencial cumple las siguiente propiedades:
 \item $\exp((t+s)\tau^\wedge) = \exp(t \tau^\wedge) \exp(s\tau^\wedge)$.
 \item $\exp(t\tau^\wedge) = \exp(\tau^\wedge)^t$.
 \item $\exp(-\tau^\wedge) = \exp(\tau^\wedge)^{-1}$.
-\item $\exp(\mathcal{X} \tau^\wedge \mathcal{X}^{-1}) = \mathcal{X} \exp(\tau^\wedge) \mathcal{X}^{-1}$.
+\item $\exp(X \tau^\wedge X^{-1}) = X \exp(\tau^\wedge) X^{-1}$.
 
 \end{itemize}
 
@@ -191,31 +191,31 @@ Del mismo modo que podemos hablar del mapa exponencial e inverso, podemos hablar
 
 \subsection{Suma y Resta directas}
 
-Mediante la suma y resta podemos analizar incrementos en una variedad expresándolos en el espacio lineal a partir de los operadores Exp y Log. Como la composición no es conmutable, definimos a izquierda y a derecha según el orden de los operandos.
+Mediante la suma y resta podemos analizar incrementos en una variedad expresándolos en el espacio lineal a partir de los operadores Exp y Log. Como la operación del grupo no es conmutable, definimos a izquierda y a derecha según el orden de los operandos.
 
 \begin{itemize}
 \item 
 $$
-\oplus \text{ a derecha}: \qquad \mathcal{Y} = \mathcal{X} \oplus \\^\mathcal{X}\tau \coloneq
-                    \mathcal{X} \circ \text{Exp}(^\mathcal{X}\tau) \in \mathcal{M}.
+\oplus \text{ a derecha}: \qquad Y = X \oplus \\^X\tau \coloneq
+                    X \circ \text{Exp}(^X\tau) \in \mathcal{M}.
 $$
 
 \item
 $$
-\ominus \text{ a derecha}: \qquad ^\mathcal{E}\tau = \mathcal{Y} \ominus \mathcal{X} \coloneq
-             \text{Log}(\mathcal{X}^{-1} \circ \mathcal{Y}) \in \mathcal{T}_\mathcal{X}\mathcal{M}.
+\ominus \text{ a derecha}: \qquad ^E\tau = Y \ominus X \coloneq
+             \text{Log}(X^{-1} \circ Y) \in \mathcal{T}_X\mathcal{M}.
 $$
 
 \item 
 $$
-\oplus \text{ a izquierda}: \qquad \mathcal{Y} = \\^\mathcal{X}\tau \oplus \mathcal{X} \coloneq
-                    \text{Exp}(^\mathcal{E}\tau) \circ \mathcal{X} \in \mathcal{M}.
+\oplus \text{ a izquierda}: \qquad Y = \\^X\tau \oplus X \coloneq
+                    \text{Exp}(^E\tau) \circ X \in \mathcal{M}.
 $$
 
 \item 
 $$
-\ominus \text{ a izquierda}: \qquad ^\mathcal{E}\tau = \mathcal{Y} \ominus \mathcal{X} \coloneq
-             \text{Log}(\mathcal{Y} \circ \mathcal{X}^{-1}) \in \mathcal{T}_\mathcal{E}\mathcal{M}.
+\ominus \text{ a izquierda}: \qquad ^E\tau = Y \ominus X \coloneq
+             \text{Log}(Y \circ X^{-1}) \in \mathcal{T}_E\mathcal{M}.
 $$
 
 \end{itemize}
@@ -230,18 +230,18 @@ Igualando la suma a izquierda y a derecha, y utilizando las propiedades antes de
     
 \begin{equation}
 \begin{split}
-\prescript{\mathcal{E}}{}{\tau} \oplus \mathcal{X} &= \mathcal{X} \oplus \prescript{\mathcal{X}}{}{\tau} \\\\
+\prescript{E}{}{\tau} \oplus X &= X \oplus \prescript{X}{}{\tau} \\\\
  %
-\text{Exp}(\prescript{\mathcal{E}}{}{\tau}^\wedge) \mathcal{X} &= 
-\mathcal{X} \text{Exp}(\prescript{\mathcal{X}}{}{\tau})
+\text{Exp}(\prescript{E}{}{\tau}^\wedge) X &= 
+X \text{Exp}(\prescript{X}{}{\tau})
 \\\\
 %
-\exp(\prescript{\mathcal{E}}{}{\tau}\mathcal{X}) =
-\mathcal{X} &\exp(\prescript{\mathcal{X}}{}{\tau})^\wedge \mathcal{X}^{-1} = 
-\exp(\mathcal{X} \prescript{\mathcal{X}}{}{\tau}^\wedge \mathcal{X}^{-1}) \\\\
+\exp(\prescript{E}{}{\tau}X) =
+X &\exp(\prescript{X}{}{\tau})^\wedge X^{-1} = 
+\exp(X \prescript{X}{}{\tau}^\wedge X^{-1}) \\\\
  %
-\prescript{\mathcal{E}}{}{\tau}^\wedge &= 
-\mathcal{X} \prescript{\mathcal{X}}{}{\tau}^\wedge \mathcal{X}^{-1}
+\prescript{E}{}{\tau}^\wedge &= 
+X \prescript{X}{}{\tau}^\wedge X^{-1}
 \end{split}
 \end{equation}
 
@@ -367,7 +367,7 @@ tangente mediante los operadores $\oplus$ y $\ominus$.
 
 \subsection{Grupos particulares}
 
-En el marco de este trabajo, el grupo de Lie considerado es el de matrices Euclídeas $SE(3)$, que modela la pose del robot, específicamente el sensor, en el espacio. Es decir, tanto las rotaciones como traslaciones en un espacio tridimensional. 
+En el marco de este trabajo, el grupo de Lie considerado es el de matrices Euclídeas $SE(3)$, que modela la pose del robot, específicamente el sensor, en el espacio. Es decir, tanto las rotaciones como traslaciones en un espacio tridimensional.
 
 Para definirlo, primero definimos el grupo de matrices de rotación $SO(3)$,
 
@@ -409,7 +409,7 @@ $$
 \end{bmatrix}
 $$
 
-\noindent que permite representar rotaciones y productos cruz con multiplicación matricial.
+\noindent que permite representar rotaciones y productos cruz con su operación de grupo: la multiplicación matricial.
 
 A partir de la literatura, tenemos los siguientes resultados.
 
@@ -453,7 +453,7 @@ $$
 $$
 
 \item 
-Composición
+Operación del grupo
 $$
 \text{M}_a \text{M}_b = 
 \begin{bmatrix}
