@@ -241,6 +241,10 @@ INPUT /usr/share/texlive/texmf-dist/fonts/tfm/public/cm/cmsl10.tfm
 INPUT ./agradecimientos.tex
 INPUT ./agradecimientos.tex
 INPUT agradecimientos.tex
+INPUT ./tesis.toc
+INPUT ./tesis.toc
+INPUT tesis.toc
+OUTPUT tesis.toc
 INPUT ../chapters/introduccion/main.tex
 INPUT ../chapters/introduccion/main.tex
 INPUT ../chapters/introduccion/main.tex

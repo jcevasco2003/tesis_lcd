@@ -1,0 +1,111 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {chapter}{\numberline {1.}Introducción}{11}{}%
+\contentsline {section}{\numberline {1.1}Motivación}{11}{}%
+\contentsline {section}{\numberline {1.2}Objetivos}{12}{}%
+\contentsline {section}{\numberline {1.3}Estructura de la tesis}{12}{}%
+\contentsline {chapter}{\numberline {2.}Marco Teórico}{13}{}%
+\contentsline {section}{\numberline {2.1}Notación y convenciones}{13}{}%
+\contentsline {subsection}{\numberline {2.1.1}Objetos matemáticos}{13}{}%
+\contentsline {subsection}{\numberline {2.1.2}Reglas de escritura}{13}{}%
+\contentsline {subsection}{\numberline {2.1.3}Covarianzas}{13}{}%
+\contentsline {subsection}{\numberline {2.1.4}Coordenadas homogéneas, proyección y Jacobiano}{13}{}%
+\contentsline {subsection}{\numberline {2.1.5}Transformaciones y marcos}{14}{}%
+\contentsline {subsection}{\numberline {2.1.6}Operaciones de Lie}{14}{}%
+\contentsline {subsection}{\numberline {2.1.7}Notación auxiliar}{14}{}%
+\contentsline {section}{\numberline {2.2}Imágenes y píxeles}{15}{}%
+\contentsline {section}{\numberline {2.3}Cámaras y parámetros intrínsecos}{16}{}%
+\contentsline {section}{\numberline {2.4}Coordenadas homogéneas}{17}{}%
+\contentsline {section}{\numberline {2.5}Transformaciones rígidas y parámetros extrínsecos}{18}{}%
+\contentsline {section}{\numberline {2.6}Proyección}{18}{}%
+\contentsline {section}{\numberline {2.7}Proyección inversa e imágenes de profundidad}{19}{}%
+\contentsline {section}{\numberline {2.8}Reconstrucción a partir de múltiples imágenes y odometría}{20}{}%
+\contentsline {section}{\numberline {2.9}Localización y mapeo simultáneos}{22}{}%
+\contentsline {section}{\numberline {2.10}Grupos y álgebras de Lie}{23}{}%
+\contentsline {subsection}{\numberline {2.10.1}Grupos de Lie}{23}{}%
+\contentsline {subsection}{\numberline {2.10.2}Acciones de grupo}{24}{}%
+\contentsline {subsection}{\numberline {2.10.3}Álgebra de Lie}{25}{}%
+\contentsline {subsection}{\numberline {2.10.4}Mapa exponencial y mapa inverso}{25}{}%
+\contentsline {subsection}{\numberline {2.10.5}Suma y Resta directas}{27}{}%
+\contentsline {subsection}{\numberline {2.10.6}Adjunta y Matriz Adjunta}{27}{}%
+\contentsline {subsection}{\numberline {2.10.7}Derivadas y Jacobianos}{28}{}%
+\contentsline {subsection}{\numberline {2.10.8}Grupos particulares}{29}{}%
+\contentsline {subsection}{\numberline {2.10.9}Cuaterniones}{31}{}%
+\contentsline {section}{\numberline {2.11}Optimización}{31}{}%
+\contentsline {subsection}{\numberline {2.11.1}Método de Newton}{32}{}%
+\contentsline {subsection}{\numberline {2.11.2}Método de Cauchy}{33}{}%
+\contentsline {subsection}{\numberline {2.11.3}Método de Levenberg-Marquadt}{33}{}%
+\contentsline {subsection}{\numberline {2.11.4}Aplicación en la pose}{34}{}%
+\contentsline {subsection}{\numberline {2.11.5}ADAM}{35}{}%
+\contentsline {section}{\numberline {2.12}Gaussian Splatting}{36}{}%
+\contentsline {subsection}{\numberline {2.12.1}Renderizado}{37}{}%
+\contentsline {subsection}{\numberline {2.12.2}Orden de profundidad}{39}{}%
+\contentsline {subsection}{\numberline {2.12.3}Función de costo y gradientes}{41}{}%
+\contentsline {subsection}{\numberline {2.12.4}Gestión de mapa}{41}{}%
+\contentsline {section}{\numberline {2.13}Unidad de medición inercial}{43}{}%
+\contentsline {subsection}{\numberline {2.13.1}Cinemática de la IMU}{45}{}%
+\contentsline {chapter}{\numberline {3.}Estado del arte}{47}{}%
+\contentsline {section}{\numberline {3.1}VIGS-Fusion}{47}{}%
+\contentsline {subsection}{\numberline {3.1.1}Optimización de la pose}{47}{}%
+\contentsline {subsection}{\numberline {3.1.2}Residuo RGB-D}{48}{}%
+\contentsline {subsubsection}{Jacobiano del error fotométrico}{48}{}%
+\contentsline {subsubsection}{Jacobiano del error geométrico}{49}{}%
+\contentsline {subsubsection}{Resultados para $r_{RGB-D}$}{49}{}%
+\contentsline {subsection}{\numberline {3.1.3}Residuo IMU}{50}{}%
+\contentsline {subsection}{\numberline {3.1.4}Residuo de marginalización}{52}{}%
+\contentsline {subsection}{\numberline {3.1.5}Función de costo para gaussianas}{54}{}%
+\contentsline {paragraph}{Término fotométrico ($\mathcal {L}_{\text {rgb}}$):}{54}{}%
+\contentsline {paragraph}{Término de profundidad mediana ($\mathcal {L}_{\text {depth}}$):}{54}{}%
+\contentsline {paragraph}{Término de distorsión de profundidad ($\mathcal {L}_{\text {dist}}$):}{54}{}%
+\contentsline {paragraph}{Término de regularización isotrópica ($\mathcal {L}_{\text {iso}}$):}{54}{}%
+\contentsline {subsection}{\numberline {3.1.6}Gradientes}{55}{}%
+\contentsline {subsubsection}{Gradiente de color}{55}{}%
+\contentsline {subsubsection}{Gradiente de opacidad}{55}{}%
+\contentsline {subsubsection}{Gradiente de la media}{56}{}%
+\contentsline {paragraph}{Media bidimensional}{56}{}%
+\contentsline {paragraph}{Profundidad}{56}{}%
+\contentsline {paragraph}{Deducción del gradiente del término de profundidad mediana}{57}{}%
+\contentsline {paragraph}{Deducción del gradiente del término de distorsión}{57}{}%
+\contentsline {paragraph}{Gradiente total respecto a la profundidad}{57}{}%
+\contentsline {paragraph}{Covarianza proyectada}{58}{}%
+\contentsline {subsubsection}{Gradientes respecto a Covarianza, Escala y Rotación}{58}{}%
+\contentsline {paragraph}{Gradiente respecto a la covarianza 3D}{59}{}%
+\contentsline {paragraph}{Gradiente respecto a la escala}{59}{}%
+\contentsline {paragraph}{Regularización isotrópica}{60}{}%
+\contentsline {paragraph}{Gradiente respecto a la rotación}{60}{}%
+\contentsline {subsubsection}{Peso por relevancia}{60}{}%
+\contentsline {subsection}{\numberline {3.1.7}Fourier Gaussian Splatting}{61}{}%
+\contentsline {section}{\numberline {3.2}LoopSplat: Detección de ciclos basada en descriptores visuales globales y submapas}{62}{}%
+\contentsline {subsection}{\numberline {3.2.1}Descriptor visual}{62}{}%
+\contentsline {subsection}{\numberline {3.2.2}Submapas}{63}{}%
+\contentsline {subsection}{\numberline {3.2.3}Medida de similaridad entre keyframes}{63}{}%
+\contentsline {subsection}{\numberline {3.2.4}Registro de submapas}{64}{}%
+\contentsline {subsection}{\numberline {3.2.5}Optimización del grafo de poses}{64}{}%
+\contentsline {section}{\numberline {3.3}Programación en GPU}{65}{}%
+\contentsline {chapter}{\numberline {4.}Sistema}{67}{}%
+\contentsline {section}{\numberline {4.1}Heurísticas para gestión del mapa}{67}{}%
+\contentsline {subsection}{\numberline {4.1.1}Sobel y Laplace}{68}{}%
+\contentsline {subsection}{\numberline {4.1.2}Canny}{69}{}%
+\contentsline {section}{\numberline {4.2}Selección y muestreo de keyframes}{70}{}%
+\contentsline {section}{\numberline {4.3}Detección y cierre de ciclos}{71}{}%
+\contentsline {subsection}{\numberline {4.3.1}Submapas}{71}{}%
+\contentsline {subsection}{\numberline {4.3.2}Descriptor}{72}{}%
+\contentsline {subsection}{\numberline {4.3.3}Heurísticas la detección de ciclos}{72}{}%
+\contentsline {subsection}{\numberline {4.3.4}Registro de gaussianas}{72}{}%
+\contentsline {subsection}{\numberline {4.3.5}Optimización del grafo de poses}{73}{}%
+\contentsline {section}{\numberline {4.4}ROS2}{73}{}%
+\contentsline {section}{\numberline {4.5}Tareas en GPU}{74}{}%
+\contentsline {section}{\numberline {4.6}Hilos en CPU}{74}{}%
+\contentsline {subsection}{\numberline {4.6.1}Hilos empleados}{74}{}%
+\contentsline {chapter}{\numberline {5.}Resultados}{77}{}%
+\contentsline {section}{\numberline {5.1}Métricas}{77}{}%
+\contentsline {subsection}{\numberline {5.1.1}ATE RMSE}{77}{}%
+\contentsline {subsection}{\numberline {5.1.2}PSNR}{77}{}%
+\contentsline {subsection}{\numberline {5.1.3}Tiempo de mapeo por imagen (Map/img)}{78}{}%
+\contentsline {subsection}{\numberline {5.1.4}Tiempo de seguimiento por imagen (Track/img)}{78}{}%
+\contentsline {section}{\numberline {5.2}Conjunto de datos}{78}{}%
+\contentsline {section}{\numberline {5.3}Evaluación}{79}{}%
+\contentsline {subsection}{\numberline {5.3.1}Comparativa entre heurísticas de gestión de mapa}{79}{}%
+\contentsline {subsection}{\numberline {5.3.2}Comparativa con VIGS-Fusion}{81}{}%
+\contentsline {subsection}{\numberline {5.3.3}Visualización}{81}{}%
+\contentsline {chapter}{\numberline {6.}Conclusiones}{83}{}%
+\contentsline {section}{\numberline {6.1}Trabajo futuro}{83}{}%
